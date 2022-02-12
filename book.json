@@ -2,7 +2,7 @@
   "title": "Summary",
   "links": {
     "sidebar": {
-      "Home": "https://lviter.github.io"
+      "Home": "https://github.com/lviter/professional"
     }
   },
   "plugins" : [
@@ -15,12 +15,13 @@
     "-highlight",
     "-lunr",
     "-search",
+    "theme-comscore",
     "search-pro",
     "splitter"
   ],
   "pluginsConfig": {
     "page-footer-ex": {
-      "copyright": "使用[知识共享 署名-相同方式共享 4.0协议](https://creativecommons.org/licenses/by-sa/4.0/)发布",
+      "copyright": "关注点分离",
       "markdown": true,
       "update_label": "<i>updated</i>",
       "update_format": "YYYY-MM-DD HH:mm:ss"
