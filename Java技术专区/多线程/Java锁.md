@@ -14,7 +14,49 @@ ReentrantLock/Synchronized典型的可重入锁
 #### 作用
 避免死锁
 #### 代码
-[可重入锁示例synchronized](../../src/com/llh/advance/lock/ReentrantLockDemo.java)
+```java
+public class ReentrantLockTest {
+    public static void main(String[] args) {
+        ReentrantLockTest reentrantLockTest = new ReentrantLockTest();
+        new Thread(() -> {
+            reentrantLockTest.b();
+        }, "b1").start();
+
+        Thread thread =new Thread(() -> {
+            reentrantLockTest.a();
+        }, "a1");
+        thread.start();
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(thread.getState());
+
+
+    }
+
+    synchronized void a() {
+        System.out.println(Thread.currentThread().getName() + "进入A方法");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        b();
+    }
+
+    synchronized void b() {
+        System.out.println(Thread.currentThread().getName() + "进入B方法");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(Thread.currentThread().getName() + "退出b方法");
+    }
+}
+```
 ### ReentrantLock可重入锁
 - 初始化ReentrantLock默认非公平锁
 ```java
@@ -42,7 +84,6 @@ java除了使用关键字synchronized外，还可以使用ReentrantLock实现独
 
 ### 自旋锁
 尝试获取锁的线程不会立即阻塞，而是采用循环的方式去尝试获取锁。好处：减少线程上下文切换的消耗，缺点：会耗CPU
-[代码](../../src/com/llh/advance/lock/SpinLockDemo.java)
 
 ### 独占锁
 指该锁一次只能被一个线程持有，对synchronized/reentrantLock而言都是独占锁

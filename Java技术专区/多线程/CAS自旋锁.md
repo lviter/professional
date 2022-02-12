@@ -5,12 +5,61 @@ unsafe类的compareAndSwap()方法,实现比较并交换
 - 引发ABA问题
 ### 自己实现自旋锁
 尝试获取锁的线程不会立即阻塞，而是采用循环的方式去尝试获取锁。好处：减少线程上下文切换的消耗，缺点：会耗CPU
-[代码](../../src/com/llh/advance/lock/SpinLockDemo.java)
-## CAS引发的ABA问题
 ```java
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.atomic.AtomicStampedReference;
+public class SpinLockDemo {
 
+    /**
+     * 原子引用线程
+     */
+    AtomicReference<Thread> atomicReference = new AtomicReference();
+
+    public void myLock() {
+        Thread thread = Thread.currentThread();
+        System.out.println(Thread.currentThread().getName() + "come in");
+        while (!atomicReference.compareAndSet(null, thread)) {
+            System.out.println("尝试");
+        }
+    }
+
+    public void myUnlock() {
+        Thread thread = Thread.currentThread();
+        atomicReference.compareAndSet(thread, null);
+        System.out.println(Thread.currentThread().getName() + "invoked my unlock");
+    }
+
+    public static void main(String[] args) {
+        SpinLockDemo spinLockDemo = new SpinLockDemo();
+        new Thread(() -> {
+            spinLockDemo.myLock();
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            spinLockDemo.myUnlock();
+        }, "AA").start();
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        new Thread(() -> {
+            spinLockDemo.myLock();
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            spinLockDemo.myUnlock();
+        }, "BB").start();
+    }
+}
+```
+
+## CAS引发的ABA问题
+
+```java
 /**
  * 解决ABA问题（原子引用？版本号？）
  */
@@ -75,6 +124,4 @@ public class ABADemo {
         }, "t4").start();
     }
 }
-
 ```
-代码实现如[这里](../../src/com/llh/advance/thread/ABADemo.java)
