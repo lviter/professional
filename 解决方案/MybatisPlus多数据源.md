@@ -179,7 +179,6 @@ public class MybatisPlusConfig {
 
 ```
 3. 新增数据源切换拦截器```DataSourceSwitchAspect.java```
-- 如下
 
 ```java
 import com.dadi01.scrm.service.member.provider.util.DBTypeEnum;
@@ -229,7 +228,6 @@ public class DataSourceSwitchAspect {
 ```
 
 4. 设置上下文数据源```DbContextHolder.java```
-- 如下：
 
 ```java
 import com.dadi01.scrm.service.member.provider.util.DBTypeEnum;
@@ -262,7 +260,6 @@ public class DbContextHolder {
 ```
 
 5. 实现数据源切换```DynamicDataSource.java```
-- 如下：
 
 ```java
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
@@ -276,7 +273,6 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 
 ```
 6. 多数据源枚举类```DBTypeEnum.java```
-- 如下：
 
 ```java
 public enum DBTypeEnum {
