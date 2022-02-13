@@ -105,24 +105,9 @@ spring:
 ```
 
 2. 新增```MybatisPlusConfig.java```文件
+
 ```java
-import com.baomidou.mybatisplus.core.MybatisConfiguration;
-import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
-import com.dadi01.scrm.service.member.provider.util.DBTypeEnum;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.type.JdbcType;
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import javax.sql.DataSource;
-import java.util.HashMap;
-import java.util.Map;
+
 @EnableTransactionManagement
 @Configuration
 @MapperScan("com.dadi01.scrm.service.member.provider.mapper.db*.*")
@@ -194,6 +179,7 @@ public class MybatisPlusConfig {
 
 ```
 3. 新增数据源切换拦截器```DataSourceSwitchAspect.java```
+- 如下
 ```java
 import com.dadi01.scrm.service.member.provider.util.DBTypeEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -242,6 +228,7 @@ public class DataSourceSwitchAspect {
 ```
 
 4. 设置上下文数据源```DbContextHolder.java```
+- 如下：
 ```java
 import com.dadi01.scrm.service.member.provider.util.DBTypeEnum;
 public class DbContextHolder {
@@ -273,6 +260,7 @@ public class DbContextHolder {
 ```
 
 5. 实现数据源切换```DynamicDataSource.java```
+- 如下：
 ```java
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
@@ -285,6 +273,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 
 ```
 6. 多数据源枚举类```DBTypeEnum.java```
+- 如下：
 ```java
 public enum DBTypeEnum {
     db1("db1"), db2("db2"), db3("db3");
