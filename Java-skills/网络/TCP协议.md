@@ -9,9 +9,10 @@ TCP报文格式比较重要的字段有：<br/>
     - RST：重置连接
     - SYN：发起一个新连接
     - FIN：释放一个连接
+
 ###  TCP三次握手（Three-Way Handshake）
 三次握手==TCP建立连接，这个连接必须是一方主动打开，另一方被动打开，如图（来源于网络）<br/>
-![](https://llhyoudao.oss-cn-shenzhen.aliyuncs.com/%E6%9C%89%E9%81%93%E4%BA%91/tcp3shake.png)
+![](../../static/image-net/tcp三次握手.png)
 1. 客户端向服务器端发送一段TCP报文:SYN=1,seq=x
     - 标记位为SYN，表示“请求建立新连接”;
     - 序号为Seq=X（X一般为1）
@@ -31,9 +32,11 @@ TCP报文格式比较重要的字段有：<br/>
 - 第一次握手：Client什么都不能确认;Server端接收正常，对方发送正常
 - 第二次握手：Client确定自己发送正常，接收正常，对方发送正常，接收正常;Server确认对方发送正常，自己接收正常
 - 第三次握手：Client确定自己发送正常，接收正常，对方发送正常，接收正常;Server确认对方发送正常，自己接收正常，自己发送正常，对方接收正常
+#### 三次握手可以携带数据吗
+- 第三次可以，前两次不可以，如果有人要恶意攻击服务器，那他每次都在第一次握手中的 SYN 报文中放入大量的数据，疯狂着重复发 SYN 报文，这会让服务器花费大量的内存空间来缓存这些报文，这样服务器就更容易被攻击
 ### TCP四次挥手（Four-Way Wavehand）
 四次挥手即TCP连接的释放(解除)。连接的释放必须是一方主动释放，另一方被动释放<br/>
-![](https://llhyoudao.oss-cn-shenzhen.aliyuncs.com/%E6%9C%89%E9%81%93%E4%BA%91/tecp4wave.png)
+![](../../static/image-net/tcp四次挥手.png)
 1. 首先客户端想要释放连接，向服务器端发送一段TCP报文，其中：FIN=1,seq=u
     - 标记位为FIN，表示“请求释放连接“
     - 序号为Seq=U

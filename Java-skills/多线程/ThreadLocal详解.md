@@ -3,8 +3,9 @@
 - 源码解析：
     - set方法：通过Thread.currentThread()方法获取了当前的线程引用，并传给了getMap(Thread)方法获取一个ThreadLocalMap的实例![](../../static/image-juc/ThreadLocal_set.png)
     - 每个Thread对象都有一个ThreadLocalMap，当创建一个ThreadLocal的时候，就会将该ThreadLocal对象添加到该Map中，其中键就是ThreadLocal，值可以是任意类型
+
 ### ThreadLocal内存泄露问题
-为什么ThreadLocal会导致内存泄露
+- 为什么ThreadLocal会导致内存泄露
 #### 前提需要了解
 - 强引用：当JVM内存空间不足时，宁愿程序抛出OOM使程序异常终止也不愿回收具有强引用的存活者的对象
 - 弱引用：在GC的时候，不管内存空间足不足都会回收这个对象
