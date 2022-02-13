@@ -1,5 +1,5 @@
 ## ArrayList
-ArrayList是实现了List的动态**数组**，每个ArrayList实例都有一个容量，容量用来指定数 56组的大小。默认初始容量是10，ArrayList中元素增加，容量也会不断的自动增长。每次添加元素时，ArrayList都会检查是否需要进行扩容.
+ArrayList是实现了List的动态**数组**，每个ArrayList实例都有一个容量，容量用来指定数  组的大小。默认初始容量是10，ArrayList中元素增加，容量也会不断的自动增长。每次添加元素时，ArrayList都会检查是否需要进行扩容.
 
 ## ArrayList源码解读
 1. 底层使用数组
@@ -51,6 +51,43 @@ add 方法第一步操作会去判断是否扩容，size为数组内已有元素
 将element插入数组内指定index的位置
 
 ## 解决arraylist线程安全问题
-在多线程并发场景下，araylist的add操作可能导致：插入null值；少插入值；插入值超过数组长度。解决arraylist并发导致的问题，有以下几个解决方案：[代码](../../../src/com/llh/advance/collection/CopyOnWriteArrayListTest.java)
+在多线程并发场景下，araylist的add操作可能导致：插入null值；少插入值；插入值超过数组长度。解决arraylist并发导致的问题，有以下几个解决方案：
 1. 使用Collections.synchronizedList()方法，相当于synchronized同步锁，不建议使用，影响性能
 2. 使用[CopyOnWriteArrayList](CopyOnWriteArrayList详解.md)
+```java
+public class CopyOnWriteArrayListTest {
+    public static void main(String[] args) {
+
+        CopyOnWriteArrayList<String> copyOnWriteArrayList = new CopyOnWriteArrayList();
+        for (int i = 0; i < 3; i++) {
+            new Thread(() -> {
+                copyOnWriteArrayList.add(UUID.randomUUID().toString().substring(0, 8));
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(copyOnWriteArrayList);
+            }, "t1").start();
+        }
+    }
+}
+
+class ArrayListDemo {
+
+    public static List<String> addArrayList() {
+        List<String> strings = new ArrayList<>();
+        strings.add(UUID.randomUUID().toString().substring(0, 8));
+        return strings;
+    }
+
+}
+
+class ArrayListSync {
+    public static List<String> addArrayList() {
+        List<String> strings = Collections.synchronizedList(new ArrayList<>());
+        strings.add(UUID.randomUUID().toString().substring(0, 8));
+        return strings;
+    }
+}
+```
