@@ -21,7 +21,7 @@
 3. 性能监控麻烦
 ```
 ### SpingCloud与SpringBoot对应关系
-![](../../../static/image/springboot与SpringCloud版本对应.png)
+![](../../static/image/springboot与SpringCloud版本对应.png)
 ### SpringCloud都有哪些组件
 - 很多，常用的
     - Eureka:服务注册发现
