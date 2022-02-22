@@ -226,9 +226,9 @@ clickhouse-server start
 clickhouse-client --host=<host> --port=<port> --user=<user> --password=<password>
 ​
 例如：
-clickhouse-client --host=sky-node04 --port=9002 --user=dd01test --password=ynjb8b6h
+clickhouse-client --host=sky-node04 --port=9002 --user=dd01test --password=''
 ​
-[root@sky-node04 ~]# clickhouse-client --host=sky-node04 --port=9002 --user=dd01test --password=ynjb8b6h
+[root@sky-node04 ~]# clickhouse-client --host=sky-node04 --port=9002 --user=dd01test --password=''
 ClickHouse client version 20.8.3.18.
 Connecting to sky-node04:9002 as user dd01test.
 Connected to ClickHouse server version 20.8.3 revision 54438.
