@@ -1,8 +1,10 @@
 {
   "title": "Summary",
+  "author" : "lviter",
+  "description" : "关注点分离",
   "links": {
     "sidebar": {
-      "Home": "https://github.com/lviter/professional"
+      "GitHub": "https://github.com/lviter/professional"
     }
   },
   "plugins" : [
@@ -17,11 +19,14 @@
     "-search",
     "theme-comscore",
     "search-pro",
-    "splitter"
+    "splitter",
+    "back-to-top-button",
+    "advanced-emoji",
+    "pageview-count"
   ],
   "pluginsConfig": {
     "page-footer-ex": {
-      "copyright": "关注点分离",
+      "copyright": "Copyright & copy lviter@163.com",
       "markdown": true,
       "update_label": "<i>updated</i>",
       "update_format": "YYYY-MM-DD HH:mm:ss"
