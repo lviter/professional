@@ -1,8 +1,11 @@
 ## JVM一些命令以及解释
+
 ### 1. jmap命令概述
+
     jmap可以输出所有内存中对象，甚至可以将VM中的heap输出，打印出某个java进程(pid)内存内的所有对象情况
 
 ### 2. jmap例子详解
+
     ```shell
         jmap -heap 17100
     ```
@@ -55,8 +58,11 @@
     
     27666 interned Strings occupying 2848840 bytes.
     ```
-#### 2.1 Heap Configuration: 
-- MinHeapFreeRatio: 空间堆空间的最小百分比，公式：HeapFreeRatio =(CurrentFreeHeapSize/CurrentTotalHeapSize) * 100，值区间0-100，默认值为40，如果HeapFreeRatio < MinHeapFreeRatio，则需要进行堆扩容，扩容的时机应该在每次垃圾回收之后
+
+#### 2.1 Heap Configuration:
+
+- MinHeapFreeRatio: 空间堆空间的最小百分比，公式：HeapFreeRatio =(CurrentFreeHeapSize/CurrentTotalHeapSize) *
+  100，值区间0-100，默认值为40，如果HeapFreeRatio < MinHeapFreeRatio，则需要进行堆扩容，扩容的时机应该在每次垃圾回收之后
 - MaxHeapFreeRatio：解释如上，默认值为 70。如果HeapFreeRatio > MaxHeapFreeRatio，则需要进行堆缩容，缩容的时机应该在每次垃圾回收之后。
 - MaxHeapSize：JVM堆空间允许的最大值
 - NewSize：Java新生代堆空间的默认值
@@ -67,18 +73,26 @@
 - MetaspaceSize：JVM元空间默认值
 - CompressedClassSpaceSize/MaxMetaspaceSize：JVM元空间允许的最大值
 - G1HeapRegionSize：使用G1垃圾回收算法时，JVM将Heap空间分割若干个Region,该参数指定每个Region空间大小
+
 #### 2.2 Heap Usage:
+
 PS Young Generation 新生代情况
+
 - Eden区：capacity伊甸区容量，used使用容量，free空闲容量，5.076225131165748% used使用比例
 - From Space:survivor1区，参考eden区
 - To Space:survivor2区，参考eden区
 - PS Old Generation：老年代使用情况 老年代参考新生代eden区说明
-### 3. -histo[:live] 打印每个class的实例数目,内存占用,类全名信息. VM的内部类名字开头会加上前缀”*”. 如果live子参数加上后,只统计活的对象数量. 
+
+### 3. -histo[:live] 打印每个class的实例数目,内存占用,类全名信息. VM的内部类名字开头会加上前缀”*”. 如果live子参数加上后,只统计活的对象数量.
+
 示例：
+
 ```shell
  jmap -histo:live 17100
 ```
+
 打印信息部分如下：
+
 ```shell
 
  num     #instances         #bytes  class name
@@ -122,15 +136,21 @@ PS Young Generation 新生代情况
 
  ······
 ```
+
 - instances:实例数量
 - bytes:字节大小
 - class name:类名
+
 ### 4. -clstats打印classload和jvm heap持久层的信息，包括每个classloader名字，活泼型，地址，父classloader和加载的class数量
+
 示例：
+
 ```shell
  jmap -clstats 17100
 ```
+
 打印部分信息如下：
+
 ```shell
 Attaching to process ID 17100, please wait...
 Debugger attached successfully.
@@ -183,10 +203,13 @@ total = 308     10750   18404333            N/A         alive=1, dead=307       
 ```
 
 ### 5. 将内存详细使用情况打印文件
+
 ```shell
   jmap -dump:format=b,file=m.dat pid
 ```
+
 然后可以使用jhat命令发布到本地5000端口上
+
 ```shell
 jhat -port 5000 m.dat
 ```
