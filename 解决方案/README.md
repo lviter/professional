@@ -1,1 +1,2 @@
-## resolve method
+## 解决方案
+各业务场景的解决方案，如延迟队列设计？mysql分库分表？appleId第三方授权登录
