@@ -1,7 +1,10 @@
 # 分布式服务框架
 [dubbo官网](https://dubbo.apache.org/zh/docs/)
+
 ## dubbo的原理
+
 1. 工作原理
+
 - service层：接口层，给服务提供者和消费者来实现
 - config层：配置层，主要对Dubbo进行各种配置
 - proxy层：服务代理层，consumer，provider,dubbo都会生成代理，代理之间进行网络通信
@@ -14,6 +17,9 @@
 - serialize层：数据序列化层
 
 2. 工作流程
+
 - provider向注册中心去注册
 - consumer从注册中心
+
 3. 注册中心挂了可以继续通信吗？
+
