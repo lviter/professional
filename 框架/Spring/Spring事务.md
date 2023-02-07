@@ -13,7 +13,8 @@
 spring是用AOP来代理事务控制，是针对接口或类的，所以同一个service类中两个方法的调用，传播机制是不生效的。
 原因：在spring中，当一个方法开启事务时，spring创建这个方法的类的bean对象，则创建该对象的代理对象。spring中调用bean对象的方法才会去判断方法上的注解。在代理bean对象中，一个方法调用本身的另一个方法，实则调用的代理对象的原始对象（不属于
 spring bean）的方法，调用方法时不会去判断方法上的注解。这就是传播机制不生效的原因
-解决：获取到当前service的代理类即可实现调用自己类的方法：自身类注入自己；AopContext.currentProxy来获取，但是此方法需要再启动类开启exposeProxy注释（@EnableAspectJAutoProxy(exposeProxy = true)）
+解决：获取到当前service的代理类即可实现调用自己类的方法：自身类注入自己；AopContext.currentProxy来获取，但是此方法需要再启动类开启exposeProxy注释（@EnableAspectJAutoProxy(
+exposeProxy = true)）
 
 - **PROPAGATION_REQUIRED**
     - spring的默认事务传播类型required:如果当前没有事务，则新建事务；
@@ -37,3 +38,16 @@ spring bean）的方法，调用方法时不会去判断方法上的注解。这
     - 如果当前没有事务，则抛出异常，即父方法必须有事务
 - **NEVER**
     - 以非事务方法运行，如果当前有事务即抛异常；不允许父方法有事务
+
+## Spring事务失效的11种场景
+1. 访问权限问题，spring要求被代理方法必须是public的。spring源码种，如果目标方法不是public，则TransactionAttribute返回null，不支持事务
+2. 方法用final修饰，也会导致失效，因为spring事务底层是aop，用了jdk的动态代理或者cglib的动态代理，会生成代理类，在代理类中实现事务功能（static修饰同样失效）
+3. 直接调用内部方法，解决方案应该注入自己调用或者使用AopContext.currentProxy来获取
+4. 未被Spring管理，当然无法使用spring事务
+5. 多线程调用，重新new一个线程调用带事务的方法，因为线程不同，获取到数据库连接不一样，从而是两个不同的事务。spring事务时通过数据库连接实现的，当前线程保存了一个map,key是数据源，value是数据库连接
+6. 表不支持事务，如myisam引擎
+7. 事务没有开启，如果springboot项目，事务默认是开启的，但spring项目，需要xml配置
+8. 事务传播特性，只有PROPAGATION_REQUIRED、REQUIRES_NEW、NESTED这三种才会创建新事务
+9. try...catch自己捕获了异常，导致事务不回滚
+10. 手动抛了spring事务不支持的异常，也不会回滚。spring事务，默认情况下只回滚RuntimeException运行时异常和Error错误，对于普通的非运行时异常，不会回滚
+11. 指定了rollbackFor异常回滚，但是并不是报的此类异常，也不会捕获回滚
