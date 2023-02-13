@@ -19,3 +19,13 @@ master-slave架构，由一个Coordinator节点，一个Discovery 节点，和�
 - Discovery Server服务注册，Coordinator从Discovery Server获得可以正常工作的Worker节点。
 
 ### 应用场景
+
+### 遇到的语法问题
+
+set session hive.insert_existing_partitions_behavior = 'overwrite'; 解析：presto不支持 insert overwrite，所以提供了三种模式： 
+
+
+
+1. set session hive.insert_existing_partitions_behavior = 'overwrite';
+2. set session hive.insert_existing_partitions_behavior = 'append';
+3. set session hive.insert_existing_partitions_behavior = 'error';
