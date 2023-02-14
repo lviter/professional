@@ -1,5 +1,7 @@
 # Hive
 
+https://www.docs4dev.com/docs/zh/apache-hive/3.1.1/reference/
+
 ## 遇到的语法
 
 ### insert into 和insert overwrite区别
@@ -15,3 +17,18 @@
 - hive > insert into dwd_user select * from ods_user; insert into 是可以省略table关键字
 - hive > insert overwrite table dwd_user select * from ods_user; 覆盖之前的数据，table关键字不可省略
 
+### if语法
+
+if和case差不多，都是处理单个列的查询结果 表达式:
+
+```hql
+if(boolean testCondition, T valueTrue, T valueFalseOrNull)
+```
+
+当条件testCondition为TRUE时，返回valueTrue；否则返回valueFalseOrNull （if中的等于条件用“=”或“==”均可）
+
+### order by  id DESC nulls last 排序字段
+
+1. order by后面可以有多列进行排序，默认按字典排序。
+2. order by为全局排序。
+3. order by需要reduce操作，且只有一个reduce，无法配置(因为多个reduce无法完成全局排序)
