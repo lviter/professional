@@ -32,3 +32,35 @@ if(boolean testCondition, T valueTrue, T valueFalseOrNull)
 1. order by后面可以有多列进行排序，默认按字典排序。
 2. order by为全局排序。
 3. order by需要reduce操作，且只有一个reduce，无法配置(因为多个reduce无法完成全局排序)
+
+### with as语法
+
+with as就类似于一个视图或临时表，可以用来存储一部分的sql语句作为别名，不同的是with as 属于一次性的，而且必须要和其他sql一起使用才可以
+
+```hql
+with dwd_test as (
+select  user_id
+        , user_name as name
+        , trade_number as tradeNumber
+        , business_type as businessType
+        , win_bid_date as bidDate
+        , loading_date as loadingDate
+        , demand_order_code as demandOrderCode
+        , user_mobile as userMobile
+from dwd_test.test001
+where loading_date between '${startDate}' and '${endDate}'
+    /*and user_id > 0*/
+    <%if(isNotEmpty(userType)){%>
+        and user_type = ${userType}
+    <%}%>
+    <%if(isNotEmpty(businessType)){%>
+        and business_type = ${businessType}
+    <%}%>
+        and ${bdDataScope}
+<%if(isEmpty(orderBy)) {print(' order by user_id desc nulls last ');}%>      
+<%if(isNotEmpty(orderBy)) {print(' order by ' + orderBy + ' nulls last ');}%>  
+)
+select
+    dt.*
+from dwd_test dt
+```
