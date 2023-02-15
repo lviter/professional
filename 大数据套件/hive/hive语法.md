@@ -73,3 +73,17 @@ row_number() over(partition by 分组列 order by 排序列 desc)
 - partition：按照month分成区块
 - order by ：排序是在partition分成的区块中分别进行。
 - row_number()：对各个分区分别添加编号，类似于rownum的递增序列
+
+### least/greatest函数
+
+least函数
+
+1. 取多列最小值select least(-99, 0, 73) -- -99
+2. 存在null或者字符串，有null取null，有字符串取null，select least(-99, 0, 73, null) --null ;select least(-99, 0, 73, 'string') --null
+3. 存在日期，取最小日期 select least('2022-01-01','2022-06-01','2022-06-09') -- 2022-01-01
+
+greatest函数
+
+1. 取多列最大值 select greatest(-99, 0, 73) --73
+2. 存在null取到null
+3. 存在日期，取最大日期 select greatest('2022-01-01','2022-06-01','2022-06-09') --2022-06-09（如果不确定日期有无空，可以设置空值默认时间，再用函数）
