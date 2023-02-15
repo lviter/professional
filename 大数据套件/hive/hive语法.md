@@ -64,3 +64,12 @@ select
     dt.*
 from dwd_test dt
 ```
+
+### row_number over(partition by,order by)用法
+
+row_number() over(partition by 分组列 order by 排序列 desc)
+在使用 row_number() over()函数的时候，over()里面的分组以及排序的执行晚于 where、group by、order by 的执行
+
+- partition：按照month分成区块
+- order by ：排序是在partition分成的区块中分别进行。
+- row_number()：对各个分区分别添加编号，类似于rownum的递增序列
