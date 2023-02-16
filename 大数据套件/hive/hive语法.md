@@ -87,3 +87,31 @@ greatest函数
 1. 取多列最大值 select greatest(-99, 0, 73) --73
 2. 存在null取到null
 3. 存在日期，取最大日期 select greatest('2022-01-01','2022-06-01','2022-06-09') --2022-06-09（如果不确定日期有无空，可以设置空值默认时间，再用函数）
+
+### 小数取整函数（floor，ceil，round函数）
+
+1. floor()向下取整函数 select floor(1.4)  # 结果是：1
+2. ceil()向上取整 select ceil(1.4)  #结果是：2
+3. round()四舍五入 select round(1.455, 2)  #结果是：1.46，即四舍五入到十分位
+
+### 内置时间函数datediff/date_add
+
+1. datediff函数
+
+日期比较函数，返回结束日期减去开始日期的天数（两个日期必须是'yyyy-MM-dd'的格式，否则执行结果会是NULL）
+
+```hql
+datediff(string enddate,string startdate)
+```
+
+例如：select datediff('2022-12-31','2022-12-20');执行结果11
+
+2. date_add日期增加函数
+
+返回开始日期startdate增加days天后的日期。
+
+```hql
+date_add(string startdate, intdays)
+```
+
+例如：select date_add('2022-12-20',11);执行结果:2022-12-31
