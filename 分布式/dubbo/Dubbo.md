@@ -1,7 +1,10 @@
 # 分布式服务框架
+
 [dubbo官网](https://dubbo.apache.org/zh/docs/)
 
 ## dubbo的原理
+
+![](../../static/image-dubbo/dubbo架构图.png)
 
 1. 工作原理
 
@@ -19,7 +22,11 @@
 2. 工作流程
 
 - provider向注册中心去注册
-- consumer从注册中心
+- consumer从注册中心订阅服务，注册中心通知consumer注册好的服务
+- consumer调用provider
+- consumer和provide都异步通知监控中心
 
 3. 注册中心挂了可以继续通信吗？
+
+可以，初始化时，消费者会将provide提供的地址等信息拉取到本地，所以注册中心挂了仍然可以继续通信
 
