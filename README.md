@@ -29,3 +29,7 @@
 ## 有任何问题联系我
 
 - 邮箱：lviter@163.com
+- 感谢大家，打赏码支持
+  ![](static/image/donate.png)
+- 本文快捷访问：
+  ![](static/image/qrcode_lviter.png)
