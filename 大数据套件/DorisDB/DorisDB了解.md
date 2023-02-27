@@ -25,3 +25,7 @@
 3. list分区，分区列支持 BOOLEAN, TINYINT, SMALLINT, INT, BIGINT, LARGEINT, DATE, DATETIME, CHAR, VARCHAR
    数据类型，分区值为枚举值。只有当数据为目标分区枚举值其中之一时，才可以命中分区
 4. bucket，分桶列的选择，是在 查询吞吐 和 查询并发 之间的一种权衡
+
+
+***
+[大数据Hadoop之——DorisDB介绍与环境部署（StarRocks）](https://blog.csdn.net/qq_35745940/article/details/125580804)
