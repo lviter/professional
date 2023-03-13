@@ -1,6 +1,6 @@
 # Groovy
 
-使用java jvm虚拟机运行
+使用java jvm虚拟机运行(jdk类库都可引入使用)
 
 ## 代码示例
 
