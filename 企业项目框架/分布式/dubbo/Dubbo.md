@@ -4,7 +4,7 @@
 
 ## dubbo的原理
 
-![](../../static/image-dubbo/dubbo架构图.png)
+![](../../../static/image-dubbo/dubbo架构图.png)
 
 1. 工作原理
 

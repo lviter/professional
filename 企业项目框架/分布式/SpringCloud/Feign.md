@@ -3,7 +3,7 @@ FeignClient
 ### 什么是Feign
 一个声明式的Web服务客户端，编写Web服务客户端只需要创建一个接口，然后添加注解即可
 ### Feign组件详解
-如图：![](../../static/image/feign组件.png)
+如图：![](../../../static/image/feign组件.png)
 1. contract契约组件
    - feign中通过定义API接口方式调用远程的Http API，调用Client时候增加一些注解描述这个调用API的基本信息，如请求是GET/POST
 2. Encoder编码组件
@@ -22,4 +22,4 @@ FeignClient
    - 可以为Feign添加多个拦截器，请求执行前设置一些扩展的参数信息
 9. QueryMapEncoder参数查询
    - 针对实体类参数查询的编码器
-![img.png](../../static/image/Feign调用流程.png)
+![img.png](../../../static/image/Feign调用流程.png)
