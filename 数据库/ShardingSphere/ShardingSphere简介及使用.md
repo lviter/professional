@@ -1,9 +1,12 @@
 ## ShardingSphere​
+
 	Apache ShardingSphere 是一套开源的分布式数据库中间件解决方案组成的生态圈，它由 JDBC、Proxy 和 Sidecar（规划中）这 3 款相互独立，却又能够混合部署配合使用的产品组成。 它们均提供标准化的数据分片、分布式事务和数据库治理功能，可适用于如 Java 同构、异构语言、云原生等各种多样化的应用场景。
 
-Apache ShardingSphere 定位为关系型数据库中间件，旨在充分合理地在分布式的场景下利用关系型数据库的计算和存储能力，而并非实现一个全新的关系型数据库。 它通过关注不变，进而抓住事物本质。关系型数据库当今依然占有巨大市场，是各个公司核心业务的基石，未来也难于撼动，我们目前阶段更加关注在原有基础上的增量，而非颠覆。
+Apache ShardingSphere 定位为关系型数据库中间件，旨在充分合理地在分布式的场景下利用关系型数据库的计算和存储能力，而并非实现一个全新的关系型数据库。
+它通过关注不变，进而抓住事物本质。关系型数据库当今依然占有巨大市场，是各个公司核心业务的基石，未来也难于撼动，我们目前阶段更加关注在原有基础上的增量，而非颠覆。
 
-Apache ShardingSphere 5.x 版本开始致力于可插拔架构，项目的功能组件能够灵活的以可插拔的方式进行扩展。 目前，数据分片、读写分离、数据加密、影子库压测等功能，以及 MySQL、PostgreSQL、SQLServer、Oracle 等 SQL 与协议的支持，均通过插件的方式织入项目。 
+Apache ShardingSphere 5.x 版本开始致力于可插拔架构，项目的功能组件能够灵活的以可插拔的方式进行扩展。 目前，数据分片、读写分离、数据加密、影子库压测等功能，以及
+MySQL、PostgreSQL、SQLServer、Oracle 等 SQL 与协议的支持，均通过插件的方式织入项目。
 
 ![](https://shardingsphere.apache.org/document/current/img/shardingsphere-scope_cn.png)
 
@@ -21,7 +24,8 @@ Apache ShardingSphere 5.x 版本开始致力于可插拔架构，项目的功能
 
 #### ShardingSphere-Proxy
 
-定位为透明化的数据库代理端，提供封装了数据库二进制协议的服务端版本，用于完成对异构语言的支持。 目前提供 MySQL 和 PostgreSQL 版本，它可以使用任何兼容 MySQL/PostgreSQL 协议的访问客户端(如：MySQL Command Client, MySQL Workbench, Navicat 等)操作数据，对 DBA 更加友好。
+定位为透明化的数据库代理端，提供封装了数据库二进制协议的服务端版本，用于完成对异构语言的支持。 目前提供 MySQL 和 PostgreSQL 版本，它可以使用任何兼容 MySQL/PostgreSQL 协议的访问客户端(如：MySQL
+Command Client, MySQL Workbench, Navicat 等)操作数据，对 DBA 更加友好。
 
 - 向应用程序完全透明，可直接当做 MySQL/PostgreSQL 使用。
 - 适用于任何兼容 MySQL/PostgreSQL 协议的的客户端。
@@ -32,11 +36,10 @@ Apache ShardingSphere 5.x 版本开始致力于可插拔架构，项目的功能
 
 定位为 Kubernetes 的云原生数据库代理，以 Sidecar 的形式代理所有对数据库的访问。 通过无中心、零侵入的方案提供与数据库交互的的啮合层，即 `Database Mesh`，又可称数据库网格。
 
-Database Mesh 的关注重点在于如何将分布式的数据访问应用与数据库有机串联起来，它更加关注的是交互，是将杂乱无章的应用与数据库之间的交互进行有效地梳理。 使用 Database Mesh，访问数据库的应用和数据库终将形成一个巨大的网格体系，应用和数据库只需在网格体系中对号入座即可，它们都是被啮合层所治理的对象。
+Database Mesh 的关注重点在于如何将分布式的数据访问应用与数据库有机串联起来，它更加关注的是交互，是将杂乱无章的应用与数据库之间的交互进行有效地梳理。 使用 Database
+Mesh，访问数据库的应用和数据库终将形成一个巨大的网格体系，应用和数据库只需在网格体系中对号入座即可，它们都是被啮合层所治理的对象。
 
 ![](https://shardingsphere.apache.org/document/current/img/shardingsphere-sidecar-brief.png)
-
-
 
 |            | ShardingSphere-JDBC | *ShardingSphere-Proxy* | *ShardingSphere-Sidecar* |
 | :--------- | :------------------ | :--------------------- | ------------------------ |
@@ -49,9 +52,11 @@ Database Mesh 的关注重点在于如何将分布式的数据访问应用与数
 
 #### 混合架构
 
-ShardingSphere-JDBC 采用无中心化架构，适用于 Java 开发的高性能的轻量级 OLTP 应用；ShardingSphere-Proxy 提供静态入口以及异构语言的支持，适用于 OLAP 应用以及对分片数据库进行管理和运维的场景。
+ShardingSphere-JDBC 采用无中心化架构，适用于 Java 开发的高性能的轻量级 OLTP 应用；ShardingSphere-Proxy 提供静态入口以及异构语言的支持，适用于 OLAP
+应用以及对分片数据库进行管理和运维的场景。
 
-Apache ShardingSphere 是多接入端共同组成的生态圈。 通过混合使用 ShardingSphere-JDBC 和 ShardingSphere-Proxy，并采用同一注册中心统一配置分片策略，能够灵活的搭建适用于各种场景的应用系统，使得架构师更加自由地调整适合与当前业务的最佳系统架构。
+Apache ShardingSphere 是多接入端共同组成的生态圈。 通过混合使用 ShardingSphere-JDBC 和
+ShardingSphere-Proxy，并采用同一注册中心统一配置分片策略，能够灵活的搭建适用于各种场景的应用系统，使得架构师更加自由地调整适合与当前业务的最佳系统架构。
 
 ![](https://shardingsphere.apache.org/document/current/img/shardingsphere-hybrid.png)
 
@@ -69,29 +74,32 @@ Apache ShardingSphere 是多接入端共同组成的生态圈。 通过混合使
 
 从运维成本方面考虑，当一个数据库实例中的数据达到阈值以上，对于 DBA 的运维压力就会增大。数据备份和恢复的时间成本都将随着数据量的大小而愈发不可控。一般来讲，单一数据库实例的数据的阈值在 1TB 之内，是比较合理的范围。
 
-在传统的关系型数据库无法满足互联网场景需要的情况下，将数据存储至原生支持分布式的 NoSQL 的尝试越来越多。 但 NoSQL 对 SQL 的不兼容性以及生态圈的不完善，使得它们在与关系型数据库的博弈中始终无法完成致命一击，而关系型数据库的地位却依然不可撼动。
+在传统的关系型数据库无法满足互联网场景需要的情况下，将数据存储至原生支持分布式的 NoSQL 的尝试越来越多。 但 NoSQL 对 SQL
+的不兼容性以及生态圈的不完善，使得它们在与关系型数据库的博弈中始终无法完成致命一击，而关系型数据库的地位却依然不可撼动。
 
-数据分片指按照某个维度将存放在单一数据库中的数据分散地存放至多个数据库或表中以达到提升性能瓶颈以及可用性的效果。 数据分片的有效手段是对关系型数据库进行分库和分表。分库和分表均可以有效的避免由数据量超过可承受阈值而产生的查询瓶颈。 除此之外，分库还能够用于有效的分散对数据库单点的访问量；分表虽然无法缓解数据库压力，但却能够提供尽量将分布式事务转化为本地事务的可能，一旦涉及到跨库的更新操作，分布式事务往往会使问题变得复杂。 使用多主多从的分片方式，可以有效的避免数据单点，从而提升数据架构的可用性。
+数据分片指按照某个维度将存放在单一数据库中的数据分散地存放至多个数据库或表中以达到提升性能瓶颈以及可用性的效果。 数据分片的有效手段是对关系型数据库进行分库和分表。分库和分表均可以有效的避免由数据量超过可承受阈值而产生的查询瓶颈。
+除此之外，分库还能够用于有效的分散对数据库单点的访问量；分表虽然无法缓解数据库压力，但却能够提供尽量将分布式事务转化为本地事务的可能，一旦涉及到跨库的更新操作，分布式事务往往会使问题变得复杂。
+使用多主多从的分片方式，可以有效的避免数据单点，从而提升数据架构的可用性。
 
 通过分库和分表进行数据的拆分来使得各个表的数据量保持在阈值以下，以及对流量进行疏导应对高访问量，是应对高并发和海量数据系统的有效手段。 数据分片的拆分方式又分为垂直分片和水平分片。
 
 **垂直分片**
 
-按照业务拆分的方式称为垂直分片，又称为纵向拆分，它的核心理念是专库专用。 在拆分之前，一个数据库由多个数据表构成，每个表对应着不同的业务。而拆分之后，则是按照业务将表进行归类，分布到不同的数据库中，从而将压力分散至不同的数据库。 下图展示了根据业务需要，将用户表和订单表垂直分片到不同的数据库的方案。
+按照业务拆分的方式称为垂直分片，又称为纵向拆分，它的核心理念是专库专用。 在拆分之前，一个数据库由多个数据表构成，每个表对应着不同的业务。而拆分之后，则是按照业务将表进行归类，分布到不同的数据库中，从而将压力分散至不同的数据库。
+下图展示了根据业务需要，将用户表和订单表垂直分片到不同的数据库的方案。
 
 ![](https://shardingsphere.apache.org/document/current/img/sharding/vertical_sharding.png)
 
 **水平分片**
 
-水平分片又称为横向拆分。 相对于垂直分片，它不再将数据根据业务逻辑分类，而是通过某个字段（或某几个字段），根据某种规则将数据分散至多个库或表中，每个分片仅包含数据的一部分。 例如：根据主键分片，偶数主键的记录放入 0 库（或表），奇数主键的记录放入 1 库（或表），如下图所示。
+水平分片又称为横向拆分。 相对于垂直分片，它不再将数据根据业务逻辑分类，而是通过某个字段（或某几个字段），根据某种规则将数据分散至多个库或表中，每个分片仅包含数据的一部分。 例如：根据主键分片，偶数主键的记录放入 0
+库（或表），奇数主键的记录放入 1 库（或表），如下图所示。
 
 ![](https://shardingsphere.apache.org/document/current/img/sharding/horizontal_sharding.png)
 
 ##### 分片架构
 
 ![](https://static001.geekbang.org/resource/image/21/40/21c6c97cb9285c09c90d7c8a8ddc4040.jpg)
-
-
 
 ##### 数据分片
 
@@ -115,29 +123,52 @@ Apache ShardingSphere 是多接入端共同组成的生态圈。 通过混合使
 
 **绑定表**
 
-指分片规则一致的主表和子表。例如：`t_order` 表和 `t_order_item` 表，均按照 `order_id` 分片，则此两张表互为绑定表关系。绑定表之间的多表关联查询不会出现笛卡尔积关联，关联查询效率将大大提升。举例说明，如果 SQL 为：
+指分片规则一致的主表和子表。例如：`t_order` 表和 `t_order_item` 表，均按照 `order_id` 分片，则此两张表互为绑定表关系。绑定表之间的多表关联查询不会出现笛卡尔积关联，关联查询效率将大大提升。举例说明，如果
+SQL 为：
 
 ```sql
-SELECT i.* FROM t_order o JOIN t_order_item i ON o.order_id=i.order_id WHERE o.order_id in (10, 11);
+SELECT i.*
+FROM t_order o
+         JOIN t_order_item i ON o.order_id = i.order_id
+WHERE o.order_id in (10, 11);
 ```
 
 在不配置绑定表关系时，假设分片键 `order_id` 将数值 10 路由至第 0 片，将数值 11 路由至第 1 片，那么路由后的 SQL 应该为 4 条，它们呈现为笛卡尔积:
 
 ```sql
-SELECT i.* FROM t_order_0 o JOIN t_order_item_0 i ON o.order_id=i.order_id WHERE o.order_id in (10, 11);
-SELECT i.* FROM t_order_0 o JOIN t_order_item_1 i ON o.order_id=i.order_id WHERE o.order_id in (10, 11);
-SELECT i.* FROM t_order_1 o JOIN t_order_item_0 i ON o.order_id=i.order_id WHERE o.order_id in (10, 11);
-SELECT i.* FROM t_order_1 o JOIN t_order_item_1 i ON o.order_id=i.order_id WHERE o.order_id in (10, 11);
+SELECT i.*
+FROM t_order_0 o
+         JOIN t_order_item_0 i ON o.order_id = i.order_id
+WHERE o.order_id in (10, 11);
+SELECT i.*
+FROM t_order_0 o
+         JOIN t_order_item_1 i ON o.order_id = i.order_id
+WHERE o.order_id in (10, 11);
+SELECT i.*
+FROM t_order_1 o
+         JOIN t_order_item_0 i ON o.order_id = i.order_id
+WHERE o.order_id in (10, 11);
+SELECT i.*
+FROM t_order_1 o
+         JOIN t_order_item_1 i ON o.order_id = i.order_id
+WHERE o.order_id in (10, 11);
 ```
 
 在配置绑定表关系后，路由的 SQL 应该为 2 条：
 
 ```sql
-SELECT i.* FROM t_order_0 o JOIN t_order_item_0 i ON o.order_id=i.order_id WHERE o.order_id in (10, 11);
-SELECT i.* FROM t_order_1 o JOIN t_order_item_1 i ON o.order_id=i.order_id WHERE o.order_id in (10, 11);
+SELECT i.*
+FROM t_order_0 o
+         JOIN t_order_item_0 i ON o.order_id = i.order_id
+WHERE o.order_id in (10, 11);
+SELECT i.*
+FROM t_order_1 o
+         JOIN t_order_item_1 i ON o.order_id = i.order_id
+WHERE o.order_id in (10, 11);
 ```
 
-其中 `t_order` 在 FROM 的最左侧，ShardingSphere 将会以它作为整个绑定表的主表。 所有路由计算将会只使用主表的策略，那么 `t_order_item` 表的分片计算将会使用 `t_order` 的条件。故绑定表之间的分区键要完全相同。
+其中 `t_order` 在 FROM 的最左侧，ShardingSphere 将会以它作为整个绑定表的主表。 所有路由计算将会只使用主表的策略，那么 `t_order_item` 表的分片计算将会使用 `t_order`
+的条件。故绑定表之间的分区键要完全相同。
 
 **广播表**
 
@@ -147,7 +178,8 @@ SELECT i.* FROM t_order_1 o JOIN t_order_item_1 i ON o.order_id=i.order_id WHERE
 
 **分片键**
 
-用于分片的数据库字段，是将数据库（表）水平拆分的关键字段。例：将订单表中的订单主键的尾数取模分片，则订单主键为分片字段。 SQL 中如果无分片字段，将执行全路由，性能较差。 除了对单分片字段的支持，Apache ShardingSphere 也支持根据多个字段进行分片。
+用于分片的数据库字段，是将数据库（表）水平拆分的关键字段。例：将订单表中的订单主键的尾数取模分片，则订单主键为分片字段。 SQL 中如果无分片字段，将执行全路由，性能较差。 除了对单分片字段的支持，Apache ShardingSphere
+也支持根据多个字段进行分片。
 
 **分片算法**
 
@@ -157,7 +189,8 @@ SELECT i.* FROM t_order_1 o JOIN t_order_item_1 i ON o.order_id=i.order_id WHERE
 
 - 标准分片算法
 
-对应 StandardShardingAlgorithm，用于处理使用单一键作为分片键的 `=`、`IN`、`BETWEEN AND`、`>`、`<`、`>=`、`<=`进行分片的场景。需要配合 StandardShardingStrategy 使用。
+对应 StandardShardingAlgorithm，用于处理使用单一键作为分片键的 `=`、`IN`、`BETWEEN AND`、`>`、`<`、`>=`、`<=`进行分片的场景。需要配合
+StandardShardingStrategy 使用。
 
 - 复合分片算法
 
@@ -173,11 +206,15 @@ SELECT i.* FROM t_order_1 o JOIN t_order_item_1 i ON o.order_id=i.order_id WHERE
 
 - 标准分片策略
 
-对应 StandardShardingStrategy。提供对 SQ L语句中的 `=`, `>`, `<`, `>=`, `<=`, `IN` 和 `BETWEEN AND` 的分片操作支持。 StandardShardingStrategy 只支持单分片键，提供 PreciseShardingAlgorithm 和 RangeShardingAlgorithm 两个分片算法。 PreciseShardingAlgorithm 是必选的，用于处理 `=` 和 `IN` 的分片。 RangeShardingAlgorithm 是可选的，用于处理 `BETWEEN AND`, `>`, `<`, `>=`, `<=`分片，如果不配置 RangeShardingAlgorithm，SQL 中的 `BETWEEN AND` 将按照全库路由处理。
+对应 StandardShardingStrategy。提供对 SQ L语句中的 `=`, `>`, `<`, `>=`, `<=`, `IN` 和 `BETWEEN AND` 的分片操作支持。
+StandardShardingStrategy 只支持单分片键，提供 PreciseShardingAlgorithm 和 RangeShardingAlgorithm 两个分片算法。 PreciseShardingAlgorithm
+是必选的，用于处理 `=` 和 `IN` 的分片。 RangeShardingAlgorithm 是可选的，用于处理 `BETWEEN AND`, `>`, `<`, `>=`, `<=`分片，如果不配置
+RangeShardingAlgorithm，SQL 中的 `BETWEEN AND` 将按照全库路由处理。
 
 - 复合分片策略
 
-对应 ComplexShardingStrategy。复合分片策略。提供对 SQL 语句中的 `=`, `>`, `<`, `>=`, `<=`, `IN` 和 `BETWEEN AND` 的分片操作支持。 ComplexShardingStrategy 支持多分片键，由于多分片键之间的关系复杂，因此并未进行过多的封装，而是直接将分片键值组合以及分片操作符透传至分片算法，完全由应用开发者实现，提供最大的灵活度。
+对应 ComplexShardingStrategy。复合分片策略。提供对 SQL 语句中的 `=`, `>`, `<`, `>=`, `<=`, `IN` 和 `BETWEEN AND` 的分片操作支持。
+ComplexShardingStrategy 支持多分片键，由于多分片键之间的关系复杂，因此并未进行过多的封装，而是直接将分片键值组合以及分片操作符透传至分片算法，完全由应用开发者实现，提供最大的灵活度。
 
 - Hint分片策略
 
@@ -189,7 +226,8 @@ SELECT i.* FROM t_order_1 o JOIN t_order_item_1 i ON o.order_id=i.order_id WHERE
 
 **SQLHint**
 
-对于分片字段非 SQL 决定，而由其他外置条件决定的场景，可使用 SQL Hint 灵活的注入分片字段。 例：内部系统，按照员工登录主键分库，而数据库中并无此字段。SQL Hint 支持通过 Java API 和 SQL 注释（待实现）两种方式使用。 详情请参见[强制分片路由](https://shardingsphere.apache.org/document/current/cn/features/sharding/concept/hint/)
+对于分片字段非 SQL 决定，而由其他外置条件决定的场景，可使用 SQL Hint 灵活的注入分片字段。 例：内部系统，按照员工登录主键分库，而数据库中并无此字段。SQL Hint 支持通过 Java API 和 SQL
+注释（待实现）两种方式使用。 详情请参见[强制分片路由](https://shardingsphere.apache.org/document/current/cn/features/sharding/concept/hint/)
 
 ###### 配置
 
@@ -270,7 +308,8 @@ db0.t_order0, db0.t_order1, db1.t_order2, db1.t_order3, db1.t_order4
 
 **语法说明**
 
-行表达式的使用非常直观，只需要在配置中使用 `${ expression }` 或 `$->{ expression }` 标识行表达式即可。 目前支持数据节点和分片算法这两个部分的配置。行表达式的内容使用的是 Groovy 的语法，Groovy 能够支持的所有操作，行表达式均能够支持。例如：
+行表达式的使用非常直观，只需要在配置中使用 `${ expression }` 或 `$->{ expression }` 标识行表达式即可。 目前支持数据节点和分片算法这两个部分的配置。行表达式的内容使用的是 Groovy
+的语法，Groovy 能够支持的所有操作，行表达式均能够支持。例如：
 
 `${begin..end}` 表示范围区间
 
@@ -423,7 +462,10 @@ ds$->{id % 10}
 例如，以下 SQL：
 
 ```sql
-SELECT id, name FROM t_user WHERE status = 'ACTIVE' AND age > 18
+SELECT id, name
+FROM t_user
+WHERE status = 'ACTIVE'
+  AND age > 18
 ```
 
 解析之后的为抽象语法树见下图。
@@ -432,7 +474,10 @@ SELECT id, name FROM t_user WHERE status = 'ACTIVE' AND age > 18
 
 为了便于理解，抽象语法树中的关键字的 Token 用绿色表示，变量的 Token 用红色表示，灰色表示需要进一步拆分。
 
-最后，通过`visitor`对抽象语法树遍历构造域模型，通过域模型(`SQLStatement`)去提炼分片所需的上下文，并标记有可能需要改写的位置。 供分片使用的解析上下文包含查询选择项（Select Items）、表信息（Table）、分片条件（Sharding Condition）、自增主键信息（Auto increment Primary Key）、排序信息（Order By）、分组信息（Group By）以及分页信息（Limit、Rownum、Top）。 SQL 的一次解析过程是不可逆的，一个个 Token 按 SQL 原本的顺序依次进行解析，性能很高。 考虑到各种数据库 SQL 方言的异同，在解析模块提供了各类数据库的 SQL 方言字典。
+最后，通过`visitor`对抽象语法树遍历构造域模型，通过域模型(`SQLStatement`)去提炼分片所需的上下文，并标记有可能需要改写的位置。 供分片使用的解析上下文包含查询选择项（Select
+Items）、表信息（Table）、分片条件（Sharding Condition）、自增主键信息（Auto increment Primary Key）、排序信息（Order By）、分组信息（Group
+By）以及分页信息（Limit、Rownum、Top）。 SQL 的一次解析过程是不可逆的，一个个 Token 按 SQL 原本的顺序依次进行解析，性能很高。 考虑到各种数据库 SQL 方言的异同，在解析模块提供了各类数据库的 SQL
+方言字典。
 
 **SQL 解析引擎**
 
@@ -451,11 +496,11 @@ API使用
     <artifactId>shardingsphere-sql-parser-engine</artifactId>
     <version>${project.version}</version>
 </dependency>
-// 根据需要引入指定方言的解析模块（以MySQL为例）,可以添加所有支持的方言，也可以只添加使用到的
+        // 根据需要引入指定方言的解析模块（以MySQL为例）,可以添加所有支持的方言，也可以只添加使用到的
 <dependency>
-    <groupId>org.apache.shardingsphere</groupId>
-    <artifactId>shardingsphere-sql-parser-mysql</artifactId>
-    <version>${project.version}</version>
+<groupId>org.apache.shardingsphere</groupId>
+<artifactId>shardingsphere-sql-parser-mysql</artifactId>
+<version>${project.version}</version>
 </dependency>
 ```
 
@@ -468,7 +513,7 @@ API使用
  * useCache type:boolean 是否使用缓存
  * @return parse tree
  */
-ParseTree tree = new SQLParserEngine(databaseType).parse(sql, useCache); 
+ParseTree tree=new SQLParserEngine(databaseType).parse(sql,useCache); 
 ```
 
 - 获取SQLStatement
@@ -479,9 +524,9 @@ ParseTree tree = new SQLParserEngine(databaseType).parse(sql, useCache);
  * useCache type:boolean 是否使用缓存
  * @return SQLStatement
  */
-ParseTree tree = new SQLParserEngine(databaseType).parse(sql, useCache); 
-SQLVisitorEngine sqlVisitorEngine = new SQLVisitorEngine(databaseType, "STATEMENT");
-SQLStatement sqlStatement = sqlVisitorEngine.visit(tree);
+ParseTree tree=new SQLParserEngine(databaseType).parse(sql,useCache);
+        SQLVisitorEngine sqlVisitorEngine=new SQLVisitorEngine(databaseType,"STATEMENT");
+        SQLStatement sqlStatement=sqlVisitorEngine.visit(tree);
 ```
 
 - SQL格式化
@@ -492,14 +537,15 @@ SQLStatement sqlStatement = sqlVisitorEngine.visit(tree);
  * useCache type:boolean 是否使用缓存
  * @return String
  */
-ParseTree tree = new SQLParserEngine(databaseType).parse(sql, useCache); 
-SQLVisitorEngine sqlVisitorEngine = new SQLVisitorEngine(databaseType, "FORMAT");
-String formatedSql = sqlVisitorEngine.visit(tree);
+ParseTree tree=new SQLParserEngine(databaseType).parse(sql,useCache);
+        SQLVisitorEngine sqlVisitorEngine=new SQLVisitorEngine(databaseType,"FORMAT");
+        String formatedSql=sqlVisitorEngine.visit(tree);
 ```
 
 ###### 路由引擎
 
-根据解析上下文匹配数据库和表的分片策略，并生成路由路径。 对于携带分片键的 SQL，根据分片键的不同可以划分为单片路由(分片键的操作符是等号)、多片路由(分片键的操作符是 IN)和范围路由(分片键的操作符是 BETWEEN)。 不携带分片键的 SQL 则采用广播路由。
+根据解析上下文匹配数据库和表的分片策略，并生成路由路径。 对于携带分片键的 SQL，根据分片键的不同可以划分为单片路由(分片键的操作符是等号)、多片路由(分片键的操作符是 IN)和范围路由(分片键的操作符是 BETWEEN)。
+不携带分片键的 SQL 则采用广播路由。
 
 **分片路由**
 
@@ -507,7 +553,8 @@ String formatedSql = sqlVisitorEngine.visit(tree);
 
 - 直接路由
 
-满足直接路由的条件相对苛刻，它需要通过 Hint（使用 HintAPI 直接指定路由至库表）方式分片，并且是只分库不分表的前提下，则可以避免 SQL 解析和之后的结果归并。 因此它的兼容性最好，可以执行包括子查询、自定义函数等复杂情况的任意 SQL。直接路由还可以用于分片键不在 SQL 中的场景。例如，设置用于数据库分片的键为 `3`
+满足直接路由的条件相对苛刻，它需要通过 Hint（使用 HintAPI 直接指定路由至库表）方式分片，并且是只分库不分表的前提下，则可以避免 SQL 解析和之后的结果归并。 因此它的兼容性最好，可以执行包括子查询、自定义函数等复杂情况的任意
+SQL。直接路由还可以用于分片键不在 SQL 中的场景。例如，设置用于数据库分片的键为 `3`
 
 ```java
 hintManager.setDatabaseShardingValue(3);
@@ -516,40 +563,51 @@ hintManager.setDatabaseShardingValue(3);
 假如路由算法为 `value % 2`，当一个逻辑库 `t_order` 对应 2 个真实库 `t_order_0` 和 `t_order_1` 时，路由后 SQL 将在 `t_order_1` 上执行。下方是使用 API 的代码样例：
 
 ```java
-String sql = "SELECT * FROM t_order";
-try (
-        HintManager hintManager = HintManager.getInstance();
-        Connection conn = dataSource.getConnection();
-        PreparedStatement pstmt = conn.prepareStatement(sql)) {
-    hintManager.setDatabaseShardingValue(3);
-    try (ResultSet rs = pstmt.executeQuery()) {
-        while (rs.next()) {
-            //...
+String sql="SELECT * FROM t_order";
+        try(
+        HintManager hintManager=HintManager.getInstance();
+        Connection conn=dataSource.getConnection();
+        PreparedStatement pstmt=conn.prepareStatement(sql)){
+        hintManager.setDatabaseShardingValue(3);
+        try(ResultSet rs=pstmt.executeQuery()){
+        while(rs.next()){
+        //...
         }
-    }
-}
+        }
+        }
 ```
 
 - 标准路由
 
-标准路由是 ShardingSphere 最为推荐使用的分片方式，它的适用范围是不包含关联查询或仅包含绑定表之间关联查询的 SQL。 当分片运算符是等于号时，路由结果将落入单库（表），当分片运算符是 BETWEEN 或 IN 时，则路由结果不一定落入唯一的库（表），因此一条逻辑 SQL 最终可能被拆分为多条用于执行的真实 SQL。 举例说明，如果按照 `order_id` 的奇数和偶数进行数据分片，一个单表查询的 SQL 如下：
+标准路由是 ShardingSphere 最为推荐使用的分片方式，它的适用范围是不包含关联查询或仅包含绑定表之间关联查询的 SQL。 当分片运算符是等于号时，路由结果将落入单库（表），当分片运算符是 BETWEEN 或 IN
+时，则路由结果不一定落入唯一的库（表），因此一条逻辑 SQL 最终可能被拆分为多条用于执行的真实 SQL。 举例说明，如果按照 `order_id` 的奇数和偶数进行数据分片，一个单表查询的 SQL 如下：
 
 ```java
-SELECT * FROM t_order WHERE order_id IN (1, 2);
+SELECT*FROM t_order WHERE order_id IN(1,2);
 ```
 
 那么路由的结果为：
 
 ```sql
-SELECT * FROM t_order_0 WHERE order_id IN (1, 2);
-SELECT * FROM t_order_1 WHERE order_id IN (1, 2);
+SELECT *
+FROM t_order_0
+WHERE order_id IN (1, 2);
+SELECT *
+FROM t_order_1
+WHERE order_id IN (1, 2);
 ```
 
 绑定表的关联查询与单表查询复杂度和性能相当。举例说明，如果一个包含绑定表的关联查询的 SQL 如下：
 
 ```sql
-SELECT * FROM t_order_0 o JOIN t_order_item_0 i ON o.order_id=i.order_id  WHERE order_id IN (1, 2);
-SELECT * FROM t_order_1 o JOIN t_order_item_1 i ON o.order_id=i.order_id  WHERE order_id IN (1, 2);
+SELECT *
+FROM t_order_0 o
+         JOIN t_order_item_0 i ON o.order_id = i.order_id
+WHERE order_id IN (1, 2);
+SELECT *
+FROM t_order_1 o
+         JOIN t_order_item_1 i ON o.order_id = i.order_id
+WHERE order_id IN (1, 2);
 ```
 
 - 笛卡尔路由
@@ -557,10 +615,22 @@ SELECT * FROM t_order_1 o JOIN t_order_item_1 i ON o.order_id=i.order_id  WHERE 
 笛卡尔路由是最复杂的情况，它无法根据绑定表的关系定位分片规则，因此非绑定表之间的关联查询需要拆解为笛卡尔积组合执行。 如果上个示例中的 SQL 并未配置绑定表关系，那么路由的结果应为：
 
 ```sql
-SELECT * FROM t_order_0 o JOIN t_order_item_0 i ON o.order_id=i.order_id  WHERE order_id IN (1, 2);
-SELECT * FROM t_order_0 o JOIN t_order_item_1 i ON o.order_id=i.order_id  WHERE order_id IN (1, 2);
-SELECT * FROM t_order_1 o JOIN t_order_item_0 i ON o.order_id=i.order_id  WHERE order_id IN (1, 2);
-SELECT * FROM t_order_1 o JOIN t_order_item_1 i ON o.order_id=i.order_id  WHERE order_id IN (1, 2);
+SELECT *
+FROM t_order_0 o
+         JOIN t_order_item_0 i ON o.order_id = i.order_id
+WHERE order_id IN (1, 2);
+SELECT *
+FROM t_order_0 o
+         JOIN t_order_item_1 i ON o.order_id = i.order_id
+WHERE order_id IN (1, 2);
+SELECT *
+FROM t_order_1 o
+         JOIN t_order_item_0 i ON o.order_id = i.order_id
+WHERE order_id IN (1, 2);
+SELECT *
+FROM t_order_1 o
+         JOIN t_order_item_1 i ON o.order_id = i.order_id
+WHERE order_id IN (1, 2);
 ```
 
 **广播路由**
@@ -572,16 +642,26 @@ SELECT * FROM t_order_1 o JOIN t_order_item_1 i ON o.order_id=i.order_id  WHERE 
 全库表路由用于处理对数据库中与其逻辑表相关的所有真实表的操作，主要包括不带分片键的 DQL 和 DML，以及 DDL 等。例如：
 
 ```sql
-SELECT * FROM t_order WHERE good_prority IN (1, 10);
+SELECT *
+FROM t_order
+WHERE good_prority IN (1, 10);
 ```
 
 则会遍历所有数据库中的所有表，逐一匹配逻辑表和真实表名，能够匹配得上则执行。路由后成为
 
 ```sql
-SELECT * FROM t_order_0 WHERE good_prority IN (1, 10);
-SELECT * FROM t_order_1 WHERE good_prority IN (1, 10);
-SELECT * FROM t_order_2 WHERE good_prority IN (1, 10);
-SELECT * FROM t_order_3 WHERE good_prority IN (1, 10);
+SELECT *
+FROM t_order_0
+WHERE good_prority IN (1, 10);
+SELECT *
+FROM t_order_1
+WHERE good_prority IN (1, 10);
+SELECT *
+FROM t_order_2
+WHERE good_prority IN (1, 10);
+SELECT *
+FROM t_order_3
+WHERE good_prority IN (1, 10);
 ```
 
 - 全库路由
@@ -589,7 +669,8 @@ SELECT * FROM t_order_3 WHERE good_prority IN (1, 10);
 全库路由用于处理对数据库的操作，包括用于库设置的 SET 类型的数据库管理命令，以及 TCL 这样的事务控制语句。 在这种情况下，会根据逻辑库的名字遍历所有符合名字匹配的真实库，并在真实库中执行该命令，例如
 
 ```sql
-SET autocommit=0;
+SET
+autocommit=0;
 ```
 
 在 `t_order` 中执行，`t_order` 有 2 个真实库。则实际会在 `t_order_0` 和 `t_order_1` 上都执行这个命令
@@ -599,7 +680,8 @@ SET autocommit=0;
 全实例路由用于 DCL 操作，授权语句针对的是数据库的实例。无论一个实例中包含多少个 Schema，每个数据库的实例只执行一次。例如：
 
 ```sql
-CREATE USER customer@127.0.0.1 identified BY '123';
+CREATE
+USER customer@127.0.0.1 identified BY '123';
 ```
 
 这个命令将在所有的真实数据库实例中执行，以确保 customer 用户可以访问每一个实例。
@@ -619,17 +701,15 @@ t_order 的两个真实表 t_order_0，t_order_1 的描述结构相同，所以�
 阻断路由用于屏蔽 SQL 对数据库的操作，例如：
 
 ```sql
-USE order_db;
+USE
+order_db;
 ```
-
 
 这个命令不会在真实数据库中执行，因为 ShardingSphere 采用的是逻辑 Schema 的方式，无需将切换数据库 Schema 的命令发送至数据库中。
 
 路由引擎的整体结构划分如下图。
 
 ![](https://shardingsphere.apache.org/document/current/img/sharding/route_architecture.png)
-
-
 
 #### 分布式事务
 
@@ -640,7 +720,8 @@ USE order_db;
 - 隔离性（Isolation）指多个事务并发执行时，一个事务的执行不应影响其他事务的执行。
 - 持久性（Durability）指已提交的事务修改数据会被持久保存。
 
-在单一数据节点中，事务仅限于对单一数据库资源的访问控制，称之为本地事务。几乎所有的成熟的关系型数据库都提供了对本地事务的原生支持。 但是在基于微服务的分布式应用环境下，越来越多的应用场景要求对多个服务的访问及其相对应的多个数据库资源能纳入到同一个事务当中，分布式事务应运而生。
+在单一数据节点中，事务仅限于对单一数据库资源的访问控制，称之为本地事务。几乎所有的成熟的关系型数据库都提供了对本地事务的原生支持。
+但是在基于微服务的分布式应用环境下，越来越多的应用场景要求对多个服务的访问及其相对应的多个数据库资源能纳入到同一个事务当中，分布式事务应运而生。
 
 关系型数据库虽然对本地事务提供了完美的 `ACID` 原生支持。 但在分布式的场景下，它却成为系统性能的桎梏。如何让数据库在分布式场景下满足 `ACID` 的特性或找寻相应的替代方案，是分布式事务的重点工作。
 
@@ -654,7 +735,8 @@ XA协议最早的分布式事务模型是由 `X/Open` 国际联盟提出的 `X/O
 
 基于XA协议实现的分布式事务对业务侵入很小。 它最大的优势就是对使用方透明，用户可以像使用本地事务一样使用基于XA协议的分布式事务。 XA协议能够严格保障事务 `ACID` 特性。
 
-严格保障事务 `ACID` 特性是一把双刃剑。 事务执行在过程中需要将所需资源全部锁定，它更加适用于执行时间确定的短事务。 对于长事务来说，整个事务进行期间对数据的独占，将导致对热点数据依赖的业务系统并发性能衰退明显。 因此，在高并发的性能至上场景中，基于XA协议的分布式事务并不是最佳选择。
+严格保障事务 `ACID` 特性是一把双刃剑。 事务执行在过程中需要将所需资源全部锁定，它更加适用于执行时间确定的短事务。 对于长事务来说，整个事务进行期间对数据的独占，将导致对热点数据依赖的业务系统并发性能衰退明显。
+因此，在高并发的性能至上场景中，基于XA协议的分布式事务并不是最佳选择。
 
 **柔性事务**
 
@@ -680,19 +762,24 @@ XA协议最早的分布式事务模型是由 `X/Open` 国际联盟提出的 `X/O
 
 ###### XA两阶段事务
 
-两阶段事务提交采用的是 X/OPEN 组织所定义的[DTP模型](http://pubs.opengroup.org/onlinepubs/009680699/toc.pdf)所抽象的 AP（应用程序）, TM（事务管理器）和 RM（资源管理器） 概念来保证分布式事务的强一致性。 其中 TM 与 RM 间采用 XA 的协议进行双向通信。 与传统的本地事务相比，XA 事务增加了准备阶段，数据库除了被动接受提交指令外，还可以反向通知调用方事务是否可以被提交。 `TM` 可以收集所有分支事务的准备结果，并于最后进行原子提交，以保证事务的强一致性。
+两阶段事务提交采用的是 X/OPEN 组织所定义的[DTP模型](http://pubs.opengroup.org/onlinepubs/009680699/toc.pdf)所抽象的 AP（应用程序）, TM（事务管理器）和
+RM（资源管理器） 概念来保证分布式事务的强一致性。 其中 TM 与 RM 间采用 XA 的协议进行双向通信。 与传统的本地事务相比，XA 事务增加了准备阶段，数据库除了被动接受提交指令外，还可以反向通知调用方事务是否可以被提交。 `TM`
+可以收集所有分支事务的准备结果，并于最后进行原子提交，以保证事务的强一致性。
 
 ![](https://shardingsphere.apache.org/document/current/img/transaction/2pc-tansaction-modle.png)
 
-Java 通过定义 JTA 接口实现了 XA 模型，JTA 接口中的 `ResourceManager` 需要数据库厂商提供 XA 驱动实现， `TransactionManager` 则需要事务管理器的厂商实现，传统的事务管理器需要同应用服务器绑定，因此使用的成本很高。 而嵌入式的事务管器可以以 jar 包的形式提供服务，同 Apache ShardingSphere 集成后，可保证分片后跨库事务强一致性。
+Java 通过定义 JTA 接口实现了 XA 模型，JTA 接口中的 `ResourceManager` 需要数据库厂商提供 XA 驱动实现， `TransactionManager`
+则需要事务管理器的厂商实现，传统的事务管理器需要同应用服务器绑定，因此使用的成本很高。 而嵌入式的事务管器可以以 jar 包的形式提供服务，同 Apache ShardingSphere 集成后，可保证分片后跨库事务强一致性。
 
 通常，只有使用了事务管理器厂商所提供的 XA 事务连接池，才能支持 XA 的事务。Apache ShardingSphere 在整合 XA 事务时，采用分离 XA 事务管理和连接池管理的方式，做到对应用程序的零侵入。
 
 ###### SEATA 柔性事务
 
-[Seata](https://github.com/seata/seata)是阿里集团和蚂蚁金服联合打造的分布式事务框架。 其 AT 事务的目标是在微服务架构下，提供增量的事务 ACID 语意，让开发者像使用本地事务一样，使用分布式事务，核心理念同 Apache ShardingSphere 一脉相承。
+[Seata](https://github.com/seata/seata)是阿里集团和蚂蚁金服联合打造的分布式事务框架。 其 AT 事务的目标是在微服务架构下，提供增量的事务 ACID
+语意，让开发者像使用本地事务一样，使用分布式事务，核心理念同 Apache ShardingSphere 一脉相承。
 
-Seata AT 事务模型包含TM (事务管理器)，RM (资源管理器) 和 TC (事务协调器)。 TC 是一个独立部署的服务，TM 和 RM 以 jar 包的方式同业务应用一同部署，它们同 TC 建立长连接，在整个事务生命周期内，保持远程通信。 TM 是全局事务的发起方，负责全局事务的开启，提交和回滚。 RM 是全局事务的参与者，负责分支事务的执行结果上报，并且通过 TC 的协调进行分支事务的提交和回滚。
+Seata AT 事务模型包含TM (事务管理器)，RM (资源管理器) 和 TC (事务协调器)。 TC 是一个独立部署的服务，TM 和 RM 以 jar 包的方式同业务应用一同部署，它们同 TC
+建立长连接，在整个事务生命周期内，保持远程通信。 TM 是全局事务的发起方，负责全局事务的开启，提交和回滚。 RM 是全局事务的参与者，负责分支事务的执行结果上报，并且通过 TC 的协调进行分支事务的提交和回滚。
 
 Seata 管理的分布式事务的典型生命周期：
 
@@ -718,7 +805,8 @@ Seata 管理的分布式事务的典型生命周期：
 
 **执行真实分片SQL**
 
-`XAShardingTransactionManager`将数据库连接所对应的 XAResource 注册到当前 XA 事务中之后，事务管理器会在此阶段发送 `XAResource.start` 命令至数据库。 数据库在收到 `XAResource.end` 命令之前的所有 SQL 操作，会被标记为 XA 事务。
+`XAShardingTransactionManager`将数据库连接所对应的 XAResource 注册到当前 XA 事务中之后，事务管理器会在此阶段发送 `XAResource.start` 命令至数据库。
+数据库在收到 `XAResource.end` 命令之前的所有 SQL 操作，会被标记为 XA 事务。
 
 ```bash
 XAResource1.start             ## Enlist阶段执行
@@ -729,7 +817,9 @@ XAResource1.end               ## 提交阶段执行
 
 **提交或回滚事务**
 
-`XAShardingTransactionManager` 在接收到接入端的提交命令后，会委托实际的 XA 事务管理进行提交动作， 事务管理器将收集到的当前线程中所有注册的 XAResource，并发送 `XAResource.end` 指令，用以标记此 XA 事务边界。 接着会依次发送 `prepare` 指令，收集所有参与 XAResource 投票。 若所有 XAResource 的反馈结果均为正确，则调用 `commit` 指令进行最终提交； 若有任意 XAResource 的反馈结果不正确，则调用 `rollback` 指令进行回滚。 在事务管理器发出提交指令后，任何 XAResource 产生的异常都会通过恢复日志进行重试，以保证提交阶段的操作原子性，和数据强一致性。
+`XAShardingTransactionManager` 在接收到接入端的提交命令后，会委托实际的 XA 事务管理进行提交动作， 事务管理器将收集到的当前线程中所有注册的 XAResource，并发送 `XAResource.end`
+指令，用以标记此 XA 事务边界。 接着会依次发送 `prepare` 指令，收集所有参与 XAResource 投票。 若所有 XAResource 的反馈结果均为正确，则调用 `commit` 指令进行最终提交； 若有任意
+XAResource 的反馈结果不正确，则调用 `rollback` 指令进行回滚。 在事务管理器发出提交指令后，任何 XAResource 产生的异常都会通过恢复日志进行重试，以保证提交阶段的操作原子性，和数据强一致性。
 
 ```bash
 XAResource1.prepare           ## ack: yes
@@ -745,7 +835,9 @@ XAResource2.rollback
 
 ###### Seata 柔性事务
 
-整合 Seata AT 事务时，需要将 TM，RM 和 TC 的模型融入 Apache ShardingSphere 的分布式事务生态中。 在数据库资源上，Seata 通过对接 `DataSource` 接口，让 JDBC 操作可以同 TC 进行远程通信。 同样，Apache ShardingSphere 也是面向 `DataSource` 接口，对用户配置的数据源进行聚合。 因此，将 `DataSource` 封装为 基于Seata 的 `DataSource` 后，就可以将 Seata AT 事务融入到 Apache ShardingSphere的分片生态中。
+整合 Seata AT 事务时，需要将 TM，RM 和 TC 的模型融入 Apache ShardingSphere 的分布式事务生态中。 在数据库资源上，Seata 通过对接 `DataSource` 接口，让 JDBC 操作可以同 TC
+进行远程通信。 同样，Apache ShardingSphere 也是面向 `DataSource` 接口，对用户配置的数据源进行聚合。 因此，将 `DataSource` 封装为 基于Seata 的 `DataSource` 后，就可以将
+Seata AT 事务融入到 Apache ShardingSphere的分片生态中。
 
 ![](https://shardingsphere.apache.org/document/current/img/transaction/sharding-transaciton-base-seata-at-design.png)
 
@@ -759,11 +851,12 @@ TM 控制全局事务的边界，TM 通过向 TC 发送 Begin 指令，获取全
 
 **执行真实分片SQL**
 
-处于 Seata 全局事务中的分片 SQL 通过 RM 生成 undo 快照，并且发送 `participate` 指令至 TC，加入到全局事务中。 由于 Apache ShardingSphere 的分片物理 SQL 采取多线程方式执行，因此整合 Seata AT 事务时，需要在主线程和子线程间进行全局事务 ID 的上下文传递。
+处于 Seata 全局事务中的分片 SQL 通过 RM 生成 undo 快照，并且发送 `participate` 指令至 TC，加入到全局事务中。 由于 Apache ShardingSphere 的分片物理 SQL
+采取多线程方式执行，因此整合 Seata AT 事务时，需要在主线程和子线程间进行全局事务 ID 的上下文传递。
 
 **提交或回滚事务**
 
- 提交 Seata 事务时，TM 会向 TC 发送全局事务的提交或回滚指令，TC 根据全局事务 ID 协调所有分支事务进行提交或回滚。
+提交 Seata 事务时，TM 会向 TC 发送全局事务的提交或回滚指令，TC 根据全局事务 ID 协调所有分支事务进行提交或回滚。
 
 #### 分布式治理
 
@@ -790,7 +883,7 @@ namespace
     ├      ├      ├──table                       # 表结构配置
 ```
 
- /authentication
+/authentication
 
 权限配置，可配置访问 ShardingSphere-Proxy 的用户名和密码
 
@@ -1084,39 +1177,39 @@ dataSources:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/ds1
     username: root
-    password: 
+    password:
 
 rules:
-# 配置分片规则
-- !SHARDING
-  tables:
-    # 配置 t_order 表规则
-    t_order: 
-      actualDataNodes: ds${0..1}.t_order${0..1}
-      # 配置分库策略
-      databaseStrategy:
-        standard:
-          shardingColumn: user_id
-          shardingAlgorithmName: database_inline
-      # 配置分表策略
-      tableStrategy:
-        standard:
-          shardingColumn: order_id
-          shardingAlgorithmName: table_inline
-    t_order_item: 
-    # 省略配置 t_order_item 表规则...
-    # ...
-    
-  # 配置分片算法
-  shardingAlgorithms:
-    database_inline:
-      type: INLINE
-      props:
-        algorithm-expression: ds${user_id % 2}
-    table_inline:
-      type: INLINE
-      props:
-        algorithm-expression: t_order_${order_id % 2}
+  # 配置分片规则
+  - !SHARDING
+    tables:
+      # 配置 t_order 表规则
+      t_order:
+        actualDataNodes: ds${0..1}.t_order${0..1}
+        # 配置分库策略
+        databaseStrategy:
+          standard:
+            shardingColumn: user_id
+            shardingAlgorithmName: database_inline
+        # 配置分表策略
+        tableStrategy:
+          standard:
+            shardingColumn: order_id
+            shardingAlgorithmName: table_inline
+      t_order_item:
+      # 省略配置 t_order_item 表规则...
+      # ...
+
+    # 配置分片算法
+    shardingAlgorithms:
+      database_inline:
+        type: INLINE
+        props:
+          algorithm-expression: ds${user_id % 2}
+      table_inline:
+        type: INLINE
+        props:
+          algorithm-expression: t_order_${order_id % 2}
 ```
 
 ###### 安装
@@ -1132,29 +1225,30 @@ wget https://archive.apache.org/dist/shardingsphere/4.1.1/apache-shardingsphere-
 
 ```java
 // 指定 YAML 文件路径
-File yamlFile = // ...
+File yamlFile= // ...
 // 创建 ShardingSphereDataSource
-DataSource dataSource = YamlShardingSphereDataSourceFactory.createDataSource(yamlFile);
+        DataSource dataSource=YamlShardingSphereDataSourceFactory.createDataSource(yamlFile);
 ```
 
 **使用 ShardingSphereDataSource**
 
-通过 YamlShardingSphereDataSourceFactory 工厂创建的 ShardingSphereDataSource 实现自 JDBC 的标准接口 DataSource。 可通过 DataSource 选择使用原生 JDBC，或JPA， MyBatis 等 ORM 框架。
+通过 YamlShardingSphereDataSourceFactory 工厂创建的 ShardingSphereDataSource 实现自 JDBC 的标准接口 DataSource。 可通过 DataSource 选择使用原生
+JDBC，或JPA， MyBatis 等 ORM 框架。
 
 ```java
-DataSource dataSource = YamlShardingSphereDataSourceFactory.createDataSource(yamlFile);
-String sql = "SELECT i.* FROM t_order o JOIN t_order_item i ON o.order_id=i.order_id WHERE o.user_id=? AND o.order_id=?";
-try (
-        Connection conn = dataSource.getConnection();
-        PreparedStatement ps = conn.prepareStatement(sql)) {
-    ps.setInt(1, 10);
-    ps.setInt(2, 1000);
-    try (ResultSet rs = preparedStatement.executeQuery()) {
-        while(rs.next()) {
-            // ...
+DataSource dataSource=YamlShardingSphereDataSourceFactory.createDataSource(yamlFile);
+        String sql="SELECT i.* FROM t_order o JOIN t_order_item i ON o.order_id=i.order_id WHERE o.user_id=? AND o.order_id=?";
+        try(
+        Connection conn=dataSource.getConnection();
+        PreparedStatement ps=conn.prepareStatement(sql)){
+        ps.setInt(1,10);
+        ps.setInt(2,1000);
+        try(ResultSet rs=preparedStatement.executeQuery()){
+        while(rs.next()){
+        // ...
         }
-    }
-}
+        }
+        }
 ```
 
 #### Shardingsphere-Proxy
@@ -1209,8 +1303,8 @@ dataSources: # 数据源配置，可配置多个 <data-source-name>
     minPoolSize: 1  # 最小连接数     
 
 rules: # 与 ShardingSphere-JDBC 配置一致
-  # ...
-  
+# ...
+
 authentication:
   users:
     root: # 自定义用户名
@@ -1218,11 +1312,9 @@ authentication:
     sharding: # 自定义用户名
       password: sharding # 自定义用户名
       authorizedSchemas: sharding_db, replica_query_db # 该用户授权可访问的数据库，多个用逗号分隔。缺省将拥有 root 权限，可访问全部数据库。
-      
+
 
 ```
-
-
 
 ###### 安装
 
@@ -1681,7 +1773,8 @@ mysql  -h10.100.0.1 -P 13308 -usharding -psharding
 
 ##### 单路由
 
-在1000数据量的基础上分库分表，根据`id`分为4个库，部署在同一台机器上，根据`k`分为1024个表，查询操作路由到单库单表； 作为对比，MySQL运行在1000数据量的基础上，使用INSERT+UPDATE+DELETE和单路由查询语句。
+在1000数据量的基础上分库分表，根据`id`分为4个库，部署在同一台机器上，根据`k`分为1024个表，查询操作路由到单库单表；
+作为对比，MySQL运行在1000数据量的基础上，使用INSERT+UPDATE+DELETE和单路由查询语句。
 
 ##### 主从
 
@@ -1689,7 +1782,8 @@ mysql  -h10.100.0.1 -P 13308 -usharding -psharding
 
 ##### 主从+加密+分库分表
 
-在1000数据量的基础上，根据`id`分为4个库，部署在四台不同的机器上，根据`k`分为1024个表，`c`使用aes加密，`pad`使用md5加密，查询操作路由到单库单表； 作为对比，MySQL运行在1000数据量的基础上，使用INSERT+UPDATE+DELETE和单路由查询语句。
+在1000数据量的基础上，根据`id`分为4个库，部署在四台不同的机器上，根据`k`分为1024个表，`c`使用aes加密，`pad`使用md5加密，查询操作路由到单库单表；
+作为对比，MySQL运行在1000数据量的基础上，使用INSERT+UPDATE+DELETE和单路由查询语句。
 
 ##### 全路由
 
@@ -1700,12 +1794,13 @@ mysql  -h10.100.0.1 -P 13308 -usharding -psharding
 ##### 数据库表结构
 
 ```sql
-CREATE TABLE `tbl` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `k` int(11) NOT NULL DEFAULT 0,
-  `c` char(120) NOT NULL DEFAULT '',
-  `pad` char(60) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+CREATE TABLE `tbl`
+(
+    `id`  bigint(20) NOT NULL AUTO_INCREMENT,
+    `k`   int(11) NOT NULL DEFAULT 0,
+    `c`   char(120) NOT NULL DEFAULT '',
+    `pad` char(60)  NOT NULL DEFAULT '',
+    PRIMARY KEY (`id`)
 );
 ```
 
@@ -1720,7 +1815,7 @@ dataSources:
   ds_0:
     url: jdbc:mysql://***.***.***.***:****/ds?serverTimezone=UTC&useSSL=false
     username: test
-    password: 
+    password:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
@@ -1728,15 +1823,15 @@ dataSources:
   ds_1:
     url: jdbc:mysql://***.***.***.***:****/ds?serverTimezone=UTC&useSSL=false
     username: test
-    password: 
+    password:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 200
   ds_2:
     url: jdbc:mysql://***.***.***.***:****/ds?serverTimezone=UTC&useSSL=false
-    username: test 
-    password: 
+    username: test
+    password:
     connectionTimeoutMilliseconds: 30000
     idleTimeoutMilliseconds: 60000
     maxLifetimeMilliseconds: 1800000
@@ -1750,37 +1845,37 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 200
 rules:
-- !SHARDING
-  tables:
-    tbl:
-      actualDataNodes: ds_${0..3}.tbl${0..1023}
-      tableStrategy:
-        standard:
-          shardingColumn: k
-          shardingAlgorithmName: tbl_table_inline
-      keyGenerateStrategy:
+  - !SHARDING
+    tables:
+      tbl:
+        actualDataNodes: ds_${0..3}.tbl${0..1023}
+        tableStrategy:
+          standard:
+            shardingColumn: k
+            shardingAlgorithmName: tbl_table_inline
+        keyGenerateStrategy:
           column: id
           keyGeneratorName: snowflake
-  defaultDatabaseStrategy:
-    standard:
-      shardingColumn: id
-      shardingAlgorithmName: default_db_inline
-  defaultTableStrategy:
-    none:
-  shardingAlgorithms:
-    tbl_table_inline:
-      type: INLINE
-      props:
-        algorithm-expression: tbl${k % 1024}
-    default_db_inline:
-      type: INLINE
-      props:
-        algorithm-expression: ds_${id % 4}
-  keyGenerators:
-    snowflake:
-      type: SNOWFLAKE
-      props:
-        worker-id: 123
+    defaultDatabaseStrategy:
+      standard:
+        shardingColumn: id
+        shardingAlgorithmName: default_db_inline
+    defaultTableStrategy:
+      none:
+    shardingAlgorithms:
+      tbl_table_inline:
+        type: INLINE
+        props:
+          algorithm-expression: tbl${k % 1024}
+      default_db_inline:
+        type: INLINE
+        props:
+          algorithm-expression: ds_${id % 4}
+    keyGenerators:
+      snowflake:
+        type: SNOWFLAKE
+        props:
+          worker-id: 123
 ```
 
 ######  主从配置
@@ -1886,83 +1981,83 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 200
 rules:
-- !SHARDING
-  tables:
-    tbl:
-      actualDataNodes: pr_ds_${0..3}.tbl${0..1023}
-      databaseStrategy:
-        standard:
-          shardingColumn: id
-          shardingAlgorithmName: tbl_database_inline
-      tableStrategy:
-        standard:
-          shardingColumn: k
-          shardingAlgorithmName: tbl_table_inline
-      keyGenerateStrategy:
-        column: id
-        keyGeneratorName: snowflake
-  bindingTables:
-    - tbl
-  defaultDataSourceName: primary_ds_1
-  defaultTableStrategy:
-    none:
-  shardingAlgorithms:
-    tbl_database_inline:
-      type: INLINE
-      props:
-        algorithm-expression: pr_ds_${id % 4}
-    tbl_table_inline:
-      type: INLINE
-      props:
-        algorithm-expression: tbl${k % 1024}
-  keyGenerators:
-    snowflake:
-      type: SNOWFLAKE
-      props:
+  - !SHARDING
+    tables:
+      tbl:
+        actualDataNodes: pr_ds_${0..3}.tbl${0..1023}
+        databaseStrategy:
+          standard:
+            shardingColumn: id
+            shardingAlgorithmName: tbl_database_inline
+        tableStrategy:
+          standard:
+            shardingColumn: k
+            shardingAlgorithmName: tbl_table_inline
+        keyGenerateStrategy:
+          column: id
+          keyGeneratorName: snowflake
+    bindingTables:
+      - tbl
+    defaultDataSourceName: primary_ds_1
+    defaultTableStrategy:
+      none:
+    shardingAlgorithms:
+      tbl_database_inline:
+        type: INLINE
+        props:
+          algorithm-expression: pr_ds_${id % 4}
+      tbl_table_inline:
+        type: INLINE
+        props:
+          algorithm-expression: tbl${k % 1024}
+    keyGenerators:
+      snowflake:
+        type: SNOWFLAKE
+        props:
           worker-id: 123
-- !REPLICA_QUERY
-  dataSources:
-    pr_ds_0:
-      primaryDataSourceName: primary_ds_0
-      replicaDataSourceNames:
-        - replica_ds_0
-      loadBalancerName: round_robin
-    pr_ds_1:
-      primaryDataSourceName: primary_ds_1
-      replicaDataSourceNames:
-        - replica_ds_1
-      loadBalancerName: round_robin
-    pr_ds_2:
-      primaryDataSourceName: primary_ds_2
-      replicaDataSourceNames:
-        - replica_ds_2
-      loadBalancerName: round_robin
-    pr_ds_3:
-      primaryDataSourceName: primary_ds_3
-      replicaDataSourceNames:
-        - replica_ds_3
-      loadBalancerName: round_robin
-  loadBalancers:
-    round_robin:
-      type: ROUND_ROBIN
-- !ENCRYPT:
-  encryptors:
-    aes_encryptor:
-      type: AES
-      props:
-        aes-key-value: 123456abc
-    md5_encryptor:
-      type: MD5
-  tables:
-    sbtest:
-      columns:
-        c:
-          plainColumn: c_plain
-          cipherColumn: c_cipher
-          encryptorName: aes_encryptor
-        pad:
-          cipherColumn: pad_cipher
-          encryptorName: md5_encryptor
+  - !REPLICA_QUERY
+    dataSources:
+      pr_ds_0:
+        primaryDataSourceName: primary_ds_0
+        replicaDataSourceNames:
+          - replica_ds_0
+        loadBalancerName: round_robin
+      pr_ds_1:
+        primaryDataSourceName: primary_ds_1
+        replicaDataSourceNames:
+          - replica_ds_1
+        loadBalancerName: round_robin
+      pr_ds_2:
+        primaryDataSourceName: primary_ds_2
+        replicaDataSourceNames:
+          - replica_ds_2
+        loadBalancerName: round_robin
+      pr_ds_3:
+        primaryDataSourceName: primary_ds_3
+        replicaDataSourceNames:
+          - replica_ds_3
+        loadBalancerName: round_robin
+    loadBalancers:
+      round_robin:
+        type: ROUND_ROBIN
+  - !ENCRYPT:
+    encryptors:
+      aes_encryptor:
+        type: AES
+        props:
+          aes-key-value: 123456abc
+      md5_encryptor:
+        type: MD5
+    tables:
+      sbtest:
+        columns:
+          c:
+            plainColumn: c_plain
+            cipherColumn: c_cipher
+            encryptorName: aes_encryptor
+          pad:
+            cipherColumn: pad_cipher
+            encryptorName: md5_encryptor
 props:
   query-with-cipher-column: true
 ```
@@ -2006,40 +2101,38 @@ dataSources:
     maxLifetimeMilliseconds: 1800000
     maxPoolSize: 200
 rules:
-- !SHARDING
-  tables:
-    tbl:
-      actualDataNodes: ds_${0..3}.tbl1
-      tableStrategy:
-        standard:
-          shardingColumn: k
-          shardingAlgorithmName: tbl_table_inline
-      keyGenerateStrategy:
-        column: id
-        keyGeneratorName: snowflake
-  defaultDatabaseStrategy:
-    standard:
-      shardingColumn: id
-      shardingAlgorithmName: default_database_inline
-  defaultTableStrategy:
-    none:  
-  shardingAlgorithms:
-    default_database_inline:
-      type: INLINE
-      props:
-        algorithm-expression: ds_${id % 4}
-    tbl_table_inline:
-      type: INLINE
-      props:
-        algorithm-expression: tbl1    
-  keyGenerators:
-    snowflake:
-      type: SNOWFLAKE
-      props:
-        worker-id: 123
+  - !SHARDING
+    tables:
+      tbl:
+        actualDataNodes: ds_${0..3}.tbl1
+        tableStrategy:
+          standard:
+            shardingColumn: k
+            shardingAlgorithmName: tbl_table_inline
+        keyGenerateStrategy:
+          column: id
+          keyGeneratorName: snowflake
+    defaultDatabaseStrategy:
+      standard:
+        shardingColumn: id
+        shardingAlgorithmName: default_database_inline
+    defaultTableStrategy:
+      none:
+    shardingAlgorithms:
+      default_database_inline:
+        type: INLINE
+        props:
+          algorithm-expression: ds_${id % 4}
+      tbl_table_inline:
+        type: INLINE
+        props:
+          algorithm-expression: tbl1
+    keyGenerators:
+      snowflake:
+        type: SNOWFLAKE
+        props:
+          worker-id: 123
 ```
-
-
 
 #### 测试结果验证
 
@@ -2097,23 +2190,29 @@ create database ds_1 default character set utf8mb4;
 #### 需要手动创建库表
 
 ```sql
-# 创建数据库
-create database ds_0 default character set utf8mb4;
-create database ds_1 default character set utf8mb4;
-# 创建数据表
-CREATE TABLE `tbl_0` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `k` int(11) NOT NULL DEFAULT 0,
-  `c` char(120) NOT NULL DEFAULT '',
-  `pad` char(60) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+#
+创建数据库
+create
+database ds_0 default character set utf8mb4;
+create
+database ds_1 default character set utf8mb4;
+#
+创建数据表
+CREATE TABLE `tbl_0`
+(
+    `id`  bigint(20) NOT NULL AUTO_INCREMENT,
+    `k`   int(11) NOT NULL DEFAULT 0,
+    `c`   char(120) NOT NULL DEFAULT '',
+    `pad` char(60)  NOT NULL DEFAULT '',
+    PRIMARY KEY (`id`)
 );
-CREATE TABLE `tbl_1` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `k` int(11) NOT NULL DEFAULT 0,
-  `c` char(120) NOT NULL DEFAULT '',
-  `pad` char(60) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+CREATE TABLE `tbl_1`
+(
+    `id`  bigint(20) NOT NULL AUTO_INCREMENT,
+    `k`   int(11) NOT NULL DEFAULT 0,
+    `c`   char(120) NOT NULL DEFAULT '',
+    `pad` char(60)  NOT NULL DEFAULT '',
+    PRIMARY KEY (`id`)
 );
 ```
 
