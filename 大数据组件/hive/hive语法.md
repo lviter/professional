@@ -74,6 +74,8 @@ row_number() over(partition by 分组列 order by 排序列 desc)
 - order by ：排序是在partition分成的区块中分别进行。
 - row_number()：对各个分区分别添加编号，类似于rownum的递增序列
 
+实例：取分组内的排第二的数据可用此种方式
+
 ### least/greatest函数
 
 least函数
