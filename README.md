@@ -47,5 +47,8 @@
 
 - **邮箱：lviter@163.com**
 - **感谢大家，打赏码支持**
+- **优秀的文档大家一起学习，推荐几个地址**：
+    - [**美团技术团队**](https://tech.meituan.com/)
+    - [**阿里云内核月报**](https://www.bookstack.cn/read/aliyun-rds-core/summary.md)
 
-  ![](static/image/donate.png)
+      ![](static/image/donate.png)
