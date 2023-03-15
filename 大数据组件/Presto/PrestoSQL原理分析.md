@@ -1,6 +1,6 @@
 # Presto
 
-官网：https://prestodb.io/
+[官网](https://prestodb.io/)
 
 Presto is an open source SQL query engine that's fast, reliable, and efficient at scale. Use Presto to run
 interactive/ad hoc queries at sub-second performance for your high volume apps.
@@ -22,9 +22,7 @@ master-slave架构，由一个Coordinator节点，一个Discovery 节点，和�
 
 ### 遇到的语法问题
 
-set session hive.insert_existing_partitions_behavior = 'overwrite'; 解析：presto不支持 insert overwrite，所以提供了三种模式： 
-
-
+set session hive.insert_existing_partitions_behavior = 'overwrite'; 解析：presto不支持 insert overwrite，所以提供了三种模式：
 
 1. set session hive.insert_existing_partitions_behavior = 'overwrite';
 2. set session hive.insert_existing_partitions_behavior = 'append';
