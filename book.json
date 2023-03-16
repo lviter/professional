@@ -71,7 +71,7 @@
       ]
     },
     "donate": {
-      "wechat": "../../static/image/donate.png",
+      "wechat": "static/image/donate.png",
       "title": "点这里",
       "button": "打赏",
       "wechatText": "微信打赏"
