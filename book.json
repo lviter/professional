@@ -24,6 +24,8 @@
     "back-to-top-button",
     "advanced-emoji",
     "pageview-count",
+    "-sharing",
+    "sharing-plus",
     "insert-logo"
   ],
   "pluginsConfig": {
@@ -44,19 +46,29 @@
     "insert-logo": {
       "url": "static/images/qrcode_lviter.png",
       "style": "background: none; max-height: 30px; min-height: 30px"
+    },
+    "sharing": {
+      "douban": false,
+      "facebook": false,
+      "google": true,
+      "line": true,
+      "qq": false,
+      "qzone": true,
+      "weibo": true,
+      "whatsapp": false,
+      "all": [
+        "douban",
+        "facebook",
+        "google",
+        "hatenaBookmark",
+        "instapaper",
+        "linkedin",
+        "twitter",
+        "weibo",
+        "messenger",
+        "whatsapp"
+      ]
     }
-  },
-  "sharing": {
-    "facebook": true,
-    "twitter": true,
-    "weibo": true,
-    "qq": true,
-    "all": [
-      "douban",
-      "google",
-      "qzone",
-      "linkedin"
-    ]
   },
   "ignores": [
     "_book",
