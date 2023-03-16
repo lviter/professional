@@ -71,11 +71,9 @@
       ]
     },
     "donate": {
-      "wechat": "微信收款的二维码URL",
-      "alipay": "支付宝收款的二维码URL",
-      "title": "",
-      "button": "赏",
-      "alipayText": "支付宝打赏",
+      "wechat": "static/image/donate.png",
+      "title": "欢迎小哥/小妹",
+      "button": "打赏",
       "wechatText": "微信打赏"
     }
   },
