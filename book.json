@@ -1,13 +1,14 @@
 {
-  "title": "Summary",
-  "author" : "lviter",
-  "description" : "关注点分离",
+  "title": "越过山丘",
+  "author": "lviter",
+  "description": "关注点分离",
   "links": {
     "sidebar": {
       "GitHub": "https://github.com/lviter/professional"
     }
   },
-  "plugins" : [
+  "language": "zh-hans",
+  "plugins": [
     "expandable-chapters",
     "copy-code-button",
     "page-footer-ex",
@@ -22,7 +23,8 @@
     "splitter",
     "back-to-top-button",
     "advanced-emoji",
-    "pageview-count"
+    "pageview-count",
+    "insert-logo"
   ],
   "pluginsConfig": {
     "page-footer-ex": {
@@ -32,10 +34,33 @@
       "update_format": "YYYY-MM-DD HH:mm:ss"
     },
     "prism": {
-      "css": ["prismjs/themes/prism-solarizedlight.css"],
-      "lang": {"flow": "typescript"}
+      "css": [
+        "prismjs/themes/prism-solarizedlight.css"
+      ],
+      "lang": {
+        "flow": "typescript"
+      }
+    },
+    "insert-logo": {
+      "url": "static/images/qrcode_lviter.png",
+      "style": "background: none; max-height: 30px; min-height: 30px"
     }
   },
-  "ignores" : ["_book", "node_modules"]
+  "sharing": {
+    "facebook": true,
+    "twitter": true,
+    "weibo": true,
+    "qq": true,
+    "all": [
+      "douban",
+      "google",
+      "qzone",
+      "linkedin"
+    ]
+  },
+  "ignores": [
+    "_book",
+    "node_modules"
+  ]
 }
 
