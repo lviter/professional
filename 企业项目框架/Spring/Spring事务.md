@@ -2,6 +2,16 @@
 
 概念：用户的一系列数据库操作，增删改查，这些操作可视为一个完整的逻辑处理工作单元，要么全部执行，要么全部不执行，是不可分割的工作单元。
 
+## Spring事务
+
+- 编程式事务：类似于JDBC编程实现事务管理。管理使用TransactionTemplate或者直接使用底层的PlatformTransactionManager。对于编程式事务管理，Spring推荐使用TransactionTemplate
+- 声明式事务：管理建立在 AOP 之上的。其本质是对方法前后进行拦截，然后在目标方法开始之前创建或者加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务
+- @Transactional注解：只能标注共有方法，可以加在方法以及类上，类上增加的整个类的所有公共方法都会支持事务。
+  - rollbackFor，遇到异常即回滚
+  - noRollbackFor，遇到指定异常不回滚
+  - timeout单位为秒，超时属性，事务在强制回滚之前可以保持多久，可以防止长期运行的事务占用资源
+  - readOnly，只读属性，表示这个事务只读取数据但不更新数据，这样可以帮助数据库引擎优化事务
+
 ## Spring事务需要解决的问题
 
 - serviceA方法调用了serviceB方法，两个方法都有事务，这个时候serviceB方法异常，是serviceB方法提交，还是两个一起回滚
@@ -40,6 +50,7 @@ exposeProxy = true)）
     - 以非事务方法运行，如果当前有事务即抛异常；不允许父方法有事务
 
 ## Spring事务失效的11种场景
+
 1. 访问权限问题，spring要求被代理方法必须是public的。spring源码种，如果目标方法不是public，则TransactionAttribute返回null，不支持事务
 2. 方法用final修饰，也会导致失效，因为spring事务底层是aop，用了jdk的动态代理或者cglib的动态代理，会生成代理类，在代理类中实现事务功能（static修饰同样失效）
 3. 直接调用内部方法，解决方案应该注入自己调用或者使用AopContext.currentProxy来获取
