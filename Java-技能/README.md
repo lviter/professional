@@ -1,2 +1,2 @@
 ## Java core
-![img.png](img.png)
+![img.png](../static/image-collection/img.png)
