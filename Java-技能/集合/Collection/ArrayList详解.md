@@ -1,6 +1,13 @@
 ## ArrayList
 ArrayList是实现了List的动态**数组**，每个ArrayList实例都有一个容量，容量用来指定数  组的大小。默认初始容量是10，ArrayList中元素增加，容量也会不断的自动增长。每次添加元素时，ArrayList都会检查是否需要进行扩容.
 
+- 随机元素时间复杂度O(1),插入删除操作需要大量移动元素，效率较低（链表特性）
+- 容器底层采用数组存储，每次扩容1.5倍
+- ArrayList的实现中大量地调用了Arrays.copyof()和System.arraycopy()方法，其实Arrays.copyof()内部也是调用System.arraycopy()。System.arraycopy()为Native方法
+- 可以存储null值
+- ArrayList 每次修改（增加、删除）容器时，都是修改自身的 modCount；在生成迭代器时，迭代器会保存该 modCount 值，迭代器每次获取元素时，会比较自身的 modCount 与 ArrayList 的
+  modCount是否相等，来判断容器是否已经被修改，如果被修改了则抛出异 常（fast-fail 机制）。
+
 ## ArrayList源码解读
 1. 底层使用数组
 ```java
@@ -53,7 +60,7 @@ add 方法第一步操作会去判断是否扩容，size为数组内已有元素
 ## 解决arraylist线程安全问题
 在多线程并发场景下，araylist的add操作可能导致：插入null值；少插入值；插入值超过数组长度。解决arraylist并发导致的问题，有以下几个解决方案：
 1. 使用Collections.synchronizedList()方法，相当于synchronized同步锁，不建议使用，影响性能
-2. 使用[CopyOnWriteArrayList](CopyOnWriteArrayList详解.md)
+2. 使用[CopyOnWriteArrayList](CopyOnWriteArrayList详解.md)，ReentrantLock可重入锁
 ```java
 public class CopyOnWriteArrayListTest {
     public static void main(String[] args) {
