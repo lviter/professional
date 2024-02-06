@@ -1,0 +1,157 @@
+{
+  "main": {
+    "id": "b2f1bd6f3b665679",
+    "type": "split",
+    "children": [
+      {
+        "id": "9ba97d20392f5a25",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9fcb89b7827e741f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "中间件/消息队列/Kafka/Kafka入门.md",
+                "mode": "source",
+                "source": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "bcabd398b95ac2cc",
+    "type": "split",
+    "children": [
+      {
+        "id": "b38850aecaa3fc23",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6dc25858175afab7",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "c819f5d831743c9f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "1ccd70f581bbb54b",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "662b06929ebd4c5a",
+    "type": "split",
+    "children": [
+      {
+        "id": "87715b98f09a911c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6edd2a3778c8b2d3",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "中间件/消息队列/Kafka/Kafka入门.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "988e115b585a45e1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "中间件/消息队列/Kafka/Kafka入门.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "ebad83e43f26d839",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "430254699a5f146e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "中间件/消息队列/Kafka/Kafka入门.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "9fcb89b7827e741f",
+  "lastOpenFiles": [
+    "中间件/消息队列/Kafka/Kafka入门.md",
+    "异常问题排查/Transaction-rollback-only.md",
+    "2023-03-13.md",
+    "未命名.canvas",
+    "README.md"
+  ]
+}
