@@ -1,0 +1,2887 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>垃圾收集器与内存分配策略 · 越过山丘</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="lviter">
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-prism/prism-solarizedlight.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-insert-logo/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="自动内存管理机制.html" />
+    
+    
+    <link rel="prev" href="OutOfMemoryError异常.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://github.com/lviter/professional" target="_blank" class="custom-link">GitHub</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Java-技能
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../IO模型/">
+            
+                <a href="../../IO模型/">
+            
+                    
+                    IO模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    JVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    深入理解JVM-jdk1.7
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1.1" data-path="HotSpot虚拟机对象探秘.html">
+            
+                <a href="HotSpot虚拟机对象探秘.html">
+            
+                    
+                    HotSpot虚拟机对象探秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.2" data-path="JVM调优-jdk1.8.html">
+            
+                <a href="JVM调优-jdk1.8.html">
+            
+                    
+                    JVM调优-jdk1.8
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.3" data-path="OutOfMemoryError异常.html">
+            
+                <a href="OutOfMemoryError异常.html">
+            
+                    
+                    OutOfMemoryError异常
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2.1.4" data-path="垃圾收集器与内存分配策略.html">
+            
+                <a href="垃圾收集器与内存分配策略.html">
+            
+                    
+                    垃圾收集器与内存分配策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.5" data-path="自动内存管理机制.html">
+            
+                <a href="自动内存管理机制.html">
+            
+                    
+                    自动内存管理机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" >
+            
+                <span>
+            
+                    
+                    多线程
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1" data-path="../../多线程/AQS.html">
+            
+                <a href="../../多线程/AQS.html">
+            
+                    
+                    AQS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.2" data-path="../../多线程/CAS自旋锁.html">
+            
+                <a href="../../多线程/CAS自旋锁.html">
+            
+                    
+                    CAS自旋锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.3" data-path="../../多线程/Java锁.html">
+            
+                <a href="../../多线程/Java锁.html">
+            
+                    
+                    Java锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.4" data-path="../../多线程/JMM内存模型Volatile关键字.html">
+            
+                <a href="../../多线程/JMM内存模型Volatile关键字.html">
+            
+                    
+                    JMM内存模型Volatile关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.5" data-path="../../多线程/Synchronized锁详解.html">
+            
+                <a href="../../多线程/Synchronized锁详解.html">
+            
+                    
+                    Synchronized锁详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.6" data-path="../../多线程/ThreadLocal详解.html">
+            
+                <a href="../../多线程/ThreadLocal详解.html">
+            
+                    
+                    ThreadLocal详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.7" data-path="../../多线程/一部分并发理论基础.html">
+            
+                <a href="../../多线程/一部分并发理论基础.html">
+            
+                    
+                    一部分并发理论基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.8" data-path="../../多线程/二部分并发工具类详解.html">
+            
+                <a href="../../多线程/二部分并发工具类详解.html">
+            
+                    
+                    二部分并发工具类详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.9" data-path="../../多线程/多线程面试题总结.html">
+            
+                <a href="../../多线程/多线程面试题总结.html">
+            
+                    
+                    多线程面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" >
+            
+                <span>
+            
+                    
+                    数据处理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="../../数据处理/json.html">
+            
+                <a href="../../数据处理/json.html">
+            
+                    
+                    Json
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" >
+            
+                <span>
+            
+                    
+                    网络
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.5.1" >
+            
+                <span>
+            
+                    
+                    Http
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.5.1.1" data-path="../../网络/http/HTTP常见错误码.html">
+            
+                <a href="../../网络/http/HTTP常见错误码.html">
+            
+                    
+                    HTTP常见错误码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.1.2" data-path="../../网络/http/HTTP常见面试.html">
+            
+                <a href="../../网络/http/HTTP常见面试.html">
+            
+                    
+                    HTTP常见面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.2" data-path="../../网络/TCP协议.html">
+            
+                <a href="../../网络/TCP协议.html">
+            
+                    
+                    TCP协议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.3" data-path="../../网络/计算机网络.html">
+            
+                <a href="../../网络/计算机网络.html">
+            
+                    
+                    计算机网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../../设计模式/">
+            
+                <a href="../../设计模式/">
+            
+                    
+                    设计模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.6.1" data-path="../../设计模式/创建型模型/">
+            
+                <a href="../../设计模式/创建型模型/">
+            
+                    
+                    创建型模型
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.6.1.1" data-path="../../设计模式/创建型模型/单例模式.html">
+            
+                <a href="../../设计模式/创建型模型/单例模式.html">
+            
+                    
+                    单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.1.2" data-path="../../设计模式/创建型模型/简单工厂模式.html">
+            
+                <a href="../../设计模式/创建型模型/简单工厂模式.html">
+            
+                    
+                    简单工厂模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.2" data-path="../../设计模式/行为模型/">
+            
+                <a href="../../设计模式/行为模型/">
+            
+                    
+                    行为模型
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.6.2.1" data-path="../../设计模式/行为模型/命令模式.html">
+            
+                <a href="../../设计模式/行为模型/命令模式.html">
+            
+                    
+                    命令模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.2.2" data-path="../../设计模式/行为模型/模板方法设计模式.html">
+            
+                <a href="../../设计模式/行为模型/模板方法设计模式.html">
+            
+                    
+                    模板方法设计模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.2.3" data-path="../../设计模式/行为模型/策略模式.html">
+            
+                <a href="../../设计模式/行为模型/策略模式.html">
+            
+                    
+                    策略模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.2.4" data-path="../../设计模式/行为模型/责任链模式.html">
+            
+                <a href="../../设计模式/行为模型/责任链模式.html">
+            
+                    
+                    责任链模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.3" data-path="../../设计模式/设计模式基础概念.html">
+            
+                <a href="../../设计模式/设计模式基础概念.html">
+            
+                    
+                    设计模式基础概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../../集合/">
+            
+                <a href="../../集合/">
+            
+                    
+                    集合
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.7.1" data-path="../../集合/Collection/">
+            
+                <a href="../../集合/Collection/">
+            
+                    
+                    Collection
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.7.1.1" data-path="../../集合/Collection/ArrayList详解.html">
+            
+                <a href="../../集合/Collection/ArrayList详解.html">
+            
+                    
+                    ArrayList详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.2" data-path="../../集合/Collection/CopyOnWriteArrayList详解.html">
+            
+                <a href="../../集合/Collection/CopyOnWriteArrayList详解.html">
+            
+                    
+                    CopyOnWriteArrayList详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.3" data-path="../../集合/Collection/HashSet详解.html">
+            
+                <a href="../../集合/Collection/HashSet详解.html">
+            
+                    
+                    HashSet详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.4" data-path="../../集合/Collection/Java集合面试.html">
+            
+                <a href="../../集合/Collection/Java集合面试.html">
+            
+                    
+                    Java集合面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.5" data-path="../../集合/Collection/Map详解.html">
+            
+                <a href="../../集合/Collection/Map详解.html">
+            
+                    
+                    Map详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.6" data-path="../../集合/Collection/Queue.html">
+            
+                <a href="../../集合/Collection/Queue.html">
+            
+                    
+                    Queue
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.2" data-path="../../集合/Fail-Fast.html">
+            
+                <a href="../../集合/Fail-Fast.html">
+            
+                    
+                    Fail Fast
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../../常用lambda表达式.html">
+            
+                <a href="../../常用lambda表达式.html">
+            
+                    
+                    常用lambda表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../../linux/">
+            
+                <a href="../../../linux/">
+            
+                    
+                    Linux
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" >
+            
+                <span>
+            
+                    
+                    Centos
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../../../linux/centos/基础操作命令.html">
+            
+                <a href="../../../linux/centos/基础操作命令.html">
+            
+                    
+                    基础操作命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../../中间件/">
+            
+                <a href="../../../中间件/">
+            
+                    
+                    中间件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" >
+            
+                <span>
+            
+                    
+                    Elastic Search
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="../../../中间件/ElasticSearch/Es-Nested嵌套查询.html">
+            
+                <a href="../../../中间件/ElasticSearch/Es-Nested嵌套查询.html">
+            
+                    
+                    Es-Nested嵌套查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="../../../中间件/ElasticSearch/Es7.4.2-RestHighLevelClient增删改查.html">
+            
+                <a href="../../../中间件/ElasticSearch/Es7.4.2-RestHighLevelClient增删改查.html">
+            
+                    
+                    Es7.4.2-RestHighLevelClient增删改查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.3" data-path="../../../中间件/ElasticSearch/Es基础查询.html">
+            
+                <a href="../../../中间件/ElasticSearch/Es基础查询.html">
+            
+                    
+                    Es基础查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.4" data-path="../../../中间件/ElasticSearch/Es基础语法.html">
+            
+                <a href="../../../中间件/ElasticSearch/Es基础语法.html">
+            
+                    
+                    Es基础语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.5" data-path="../../../中间件/ElasticSearch/es复杂统计-绝对值.html">
+            
+                <a href="../../../中间件/ElasticSearch/es复杂统计-绝对值.html">
+            
+                    
+                    es复杂统计-绝对值
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.6" data-path="../../../中间件/ElasticSearch/es通用查询.html">
+            
+                <a href="../../../中间件/ElasticSearch/es通用查询.html">
+            
+                    
+                    es通用查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7" data-path="../../../中间件/ElasticSearch/安装ELK.html">
+            
+                <a href="../../../中间件/ElasticSearch/安装ELK.html">
+            
+                    
+                    安装ELK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.8" data-path="../../../中间件/ElasticSearch/搜索引擎.html">
+            
+                <a href="../../../中间件/ElasticSearch/搜索引擎.html">
+            
+                    
+                    搜索引擎
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    Postgressql
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../../../中间件/Postgressql/初始Psql.html">
+            
+                <a href="../../../中间件/Postgressql/初始Psql.html">
+            
+                    
+                    初始Psql
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../../中间件/redis/">
+            
+                <a href="../../../中间件/redis/">
+            
+                    
+                    Redis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="../../../中间件/redis/Redis实现延迟队列.html">
+            
+                <a href="../../../中间件/redis/Redis实现延迟队列.html">
+            
+                    
+                    Redis实现延迟队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="../../../中间件/redis/Redis数据结构.html">
+            
+                <a href="../../../中间件/redis/Redis数据结构.html">
+            
+                    
+                    Redis数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="../../../中间件/redis/Redis核心1-11基础篇.html">
+            
+                <a href="../../../中间件/redis/Redis核心1-11基础篇.html">
+            
+                    
+                    Redis核心1-11基础篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4" data-path="../../../中间件/redis/Redis核心12-21高级篇.html">
+            
+                <a href="../../../中间件/redis/Redis核心12-21高级篇.html">
+            
+                    
+                    Redis核心12-21高级篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../../中间件/消息队列/消息队列.html">
+            
+                <a href="../../../中间件/消息队列/消息队列.html">
+            
+                    
+                    消息队列
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.1" >
+            
+                <span>
+            
+                    
+                    Kafka
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.1.1" data-path="../../../中间件/消息队列/Kafka/Kafka入门.html">
+            
+                <a href="../../../中间件/消息队列/Kafka/Kafka入门.html">
+            
+                    
+                    Kafka入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.1.2" data-path="../../../中间件/消息队列/Kafka/Kafka消费超时导致重复消费.html">
+            
+                <a href="../../../中间件/消息队列/Kafka/Kafka消费超时导致重复消费.html">
+            
+                    
+                    Kafka消费超时导致重复消费
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.2" >
+            
+                <span>
+            
+                    
+                    Rabbit Mq
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.2.1" data-path="../../../中间件/消息队列/RabbitMq/RabbitMQ安装及使用.html">
+            
+                <a href="../../../中间件/消息队列/RabbitMq/RabbitMQ安装及使用.html">
+            
+                    
+                    RabbitMQ安装及使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../../企业项目框架/">
+            
+                <a href="../../../企业项目框架/">
+            
+                    
+                    企业项目框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" >
+            
+                <span>
+            
+                    
+                    DDD领域
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="../../../企业项目框架/DDD领域/日常使用遇到的.html">
+            
+                <a href="../../../企业项目框架/DDD领域/日常使用遇到的.html">
+            
+                    
+                    日常使用遇到的
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../../企业项目框架/dubbo/">
+            
+                <a href="../../../企业项目框架/dubbo/">
+            
+                    
+                    Dubbo
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="../../../企业项目框架/dubbo/Dubbo.html">
+            
+                <a href="../../../企业项目框架/dubbo/Dubbo.html">
+            
+                    
+                    Dubbo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.2" data-path="../../../企业项目框架/dubbo/分布式服务框架.html">
+            
+                <a href="../../../企业项目框架/dubbo/分布式服务框架.html">
+            
+                    
+                    分布式服务框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../../../企业项目框架/ORM框架/">
+            
+                <a href="../../../企业项目框架/ORM框架/">
+            
+                    
+                    ORM框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.1" data-path="../../../企业项目框架/ORM框架/Mybatis详解.html">
+            
+                <a href="../../../企业项目框架/ORM框架/Mybatis详解.html">
+            
+                    
+                    Mybatis详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../../../企业项目框架/Spring/">
+            
+                <a href="../../../企业项目框架/Spring/">
+            
+                    
+                    Spring
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.4.1" data-path="../../../企业项目框架/Spring/InitillizingBean.html">
+            
+                <a href="../../../企业项目框架/Spring/InitillizingBean.html">
+            
+                    
+                    Initillizing Bean
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2" data-path="../../../企业项目框架/Spring/SpringAOP.html">
+            
+                <a href="../../../企业项目框架/Spring/SpringAOP.html">
+            
+                    
+                    Spring AOP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.3" data-path="../../../企业项目框架/Spring/Spring事务.html">
+            
+                <a href="../../../企业项目框架/Spring/Spring事务.html">
+            
+                    
+                    Spring事务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.4" data-path="../../../企业项目框架/Spring/TransactionSynchronizationManager.html">
+            
+                <a href="../../../企业项目框架/Spring/TransactionSynchronizationManager.html">
+            
+                    
+                    Transaction Synchronization Manager
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.5" data-path="../../../企业项目框架/Spring/大事务处理优化.html">
+            
+                <a href="../../../企业项目框架/Spring/大事务处理优化.html">
+            
+                    
+                    大事务处理优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.6" data-path="../../../企业项目框架/Spring/很老的东西.html">
+            
+                <a href="../../../企业项目框架/Spring/很老的东西.html">
+            
+                    
+                    很老的东西
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.7" data-path="../../../企业项目框架/Spring/循环依赖.html">
+            
+                <a href="../../../企业项目框架/Spring/循环依赖.html">
+            
+                    
+                    循环依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" >
+            
+                <span>
+            
+                    
+                    Spring Boot
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.5.1" data-path="../../../企业项目框架/SpringBoot/SpringApplication解析.html">
+            
+                <a href="../../../企业项目框架/SpringBoot/SpringApplication解析.html">
+            
+                    
+                    SpringApplication解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5.2" data-path="../../../企业项目框架/SpringBoot/SpringBoot-Arthas.html">
+            
+                <a href="../../../企业项目框架/SpringBoot/SpringBoot-Arthas.html">
+            
+                    
+                    Spring Boot Arthas
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" >
+            
+                <span>
+            
+                    
+                    Spring Cloud
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.6.1" data-path="../../../企业项目框架/SpringCloud/Eureka.html">
+            
+                <a href="../../../企业项目框架/SpringCloud/Eureka.html">
+            
+                    
+                    Eureka
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6.2" data-path="../../../企业项目框架/SpringCloud/Feign.html">
+            
+                <a href="../../../企业项目框架/SpringCloud/Feign.html">
+            
+                    
+                    Feign
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6.3" data-path="../../../企业项目框架/SpringCloud/Hystrix.html">
+            
+                <a href="../../../企业项目框架/SpringCloud/Hystrix.html">
+            
+                    
+                    Hystrix
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6.4" data-path="../../../企业项目框架/SpringCloud/微服务SpringCloud.html">
+            
+                <a href="../../../企业项目框架/SpringCloud/微服务SpringCloud.html">
+            
+                    
+                    微服务SpringCloud
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../../../企业项目框架/SpringFramework/">
+            
+                <a href="../../../企业项目框架/SpringFramework/">
+            
+                    
+                    Spring Framework
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.7.1" data-path="../../../企业项目框架/SpringFramework/源码解析之ApplicationContext.html">
+            
+                <a href="../../../企业项目框架/SpringFramework/源码解析之ApplicationContext.html">
+            
+                    
+                    源码解析之ApplicationContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    偏门但研究过的东西
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../../偏门但研究过的东西/Apache%20CXF.md">
+            
+                <span>
+            
+                    
+                    Apache CXF
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../../偏门但研究过的东西/SpringSecurity.html">
+            
+                <a href="../../../偏门但研究过的东西/SpringSecurity.html">
+            
+                    
+                    Spring Security
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    大数据组件
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" >
+            
+                <span>
+            
+                    
+                    Groovy
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1.1" data-path="../../../大数据组件/Groovy/Groovy基础语法.html">
+            
+                <a href="../../../大数据组件/Groovy/Groovy基础语法.html">
+            
+                    
+                    Groovy基础语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" >
+            
+                <span>
+            
+                    
+                    Hadoop
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.1" data-path="../../../大数据组件/hadoop/初识.html">
+            
+                <a href="../../../大数据组件/hadoop/初识.html">
+            
+                    
+                    初识
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" >
+            
+                <span>
+            
+                    
+                    Hive
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.3.1" data-path="../../../大数据组件/hive/hive基础语法DDL.html">
+            
+                <a href="../../../大数据组件/hive/hive基础语法DDL.html">
+            
+                    
+                    hive基础语法DDL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3.2" data-path="../../../大数据组件/hive/hive语法.html">
+            
+                <a href="../../../大数据组件/hive/hive语法.html">
+            
+                    
+                    hive语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" >
+            
+                <span>
+            
+                    
+                    Member
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.4.1" data-path="../../../大数据组件/member/会员大数据相关.html">
+            
+                <a href="../../../大数据组件/member/会员大数据相关.html">
+            
+                    
+                    会员大数据相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" >
+            
+                <span>
+            
+                    
+                    Presto
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.5.1" data-path="../../../大数据组件/Presto/PrestoSQL原理分析.html">
+            
+                <a href="../../../大数据组件/Presto/PrestoSQL原理分析.html">
+            
+                    
+                    PrestoSQL原理分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../../../大数据组件/StarRocks-DorisDB/">
+            
+                <a href="../../../大数据组件/StarRocks-DorisDB/">
+            
+                    
+                    Star Rocks Doris DB
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.6.1" data-path="../../../大数据组件/StarRocks-DorisDB/DorisDB了解.html">
+            
+                <a href="../../../大数据组件/StarRocks-DorisDB/DorisDB了解.html">
+            
+                    
+                    DorisDB了解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.2" data-path="../../../大数据组件/StarRocks-DorisDB/DorisDB语法.html">
+            
+                <a href="../../../大数据组件/StarRocks-DorisDB/DorisDB语法.html">
+            
+                    
+                    DorisDB语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" >
+            
+                <span>
+            
+                    
+                    调度
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.7.1" >
+            
+                <span>
+            
+                    
+                    Az Kaban
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.7.1.1" data-path="../../../大数据组件/调度/AzKaban/多任务流并行.html">
+            
+                <a href="../../../大数据组件/调度/AzKaban/多任务流并行.html">
+            
+                    
+                    多任务流并行
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.8" data-path="../../../大数据组件/ClickHouse集群安装.html">
+            
+                <a href="../../../大数据组件/ClickHouse集群安装.html">
+            
+                    
+                    ClickHouse集群安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="../../../大数据组件/数据研发流程.html">
+            
+                <a href="../../../大数据组件/数据研发流程.html">
+            
+                    
+                    数据研发流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    工具类
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" >
+            
+                <span>
+            
+                    
+                    加解密类
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1.1" data-path="../../../工具类/加解密类/加解密操作.html">
+            
+                <a href="../../../工具类/加解密类/加解密操作.html">
+            
+                    
+                    加解密操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../../../数据库/">
+            
+                <a href="../../../数据库/">
+            
+                    
+                    数据库
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <span>
+            
+                    
+                    Mysql
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1.1" data-path="../../../数据库/mysql/ACID与事务隔离级别.html">
+            
+                <a href="../../../数据库/mysql/ACID与事务隔离级别.html">
+            
+                    
+                    ACID与事务隔离级别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.2" data-path="../../../数据库/mysql/MVCC.html">
+            
+                <a href="../../../数据库/mysql/MVCC.html">
+            
+                    
+                    MVCC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.3" data-path="../../../数据库/mysql/Mysql实战-基础篇.html">
+            
+                <a href="../../../数据库/mysql/Mysql实战-基础篇.html">
+            
+                    
+                    Mysql实战-基础篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.4" data-path="../../../数据库/mysql/Mysql实战-实践篇.html">
+            
+                <a href="../../../数据库/mysql/Mysql实战-实践篇.html">
+            
+                    
+                    Mysql实战-实践篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.5" data-path="../../../数据库/mysql/常用SQL聚合.html">
+            
+                <a href="../../../数据库/mysql/常用SQL聚合.html">
+            
+                    
+                    常用SQL聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.6" data-path="../../../数据库/mysql/系统学习Mysql.html">
+            
+                <a href="../../../数据库/mysql/系统学习Mysql.html">
+            
+                    
+                    系统学习Mysql
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" >
+            
+                <span>
+            
+                    
+                    Sharding Sphere
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.2.1" data-path="../../../数据库/ShardingSphere/ShardingSphere简介及使用.html">
+            
+                <a href="../../../数据库/ShardingSphere/ShardingSphere简介及使用.html">
+            
+                    
+                    ShardingSphere简介及使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../../../数据结构/">
+            
+                <a href="../../../数据结构/">
+            
+                    
+                    数据结构
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../../../数据结构/算法/">
+            
+                <a href="../../../数据结构/算法/">
+            
+                    
+                    算法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1.1" data-path="../../../数据结构/算法/限流算法.html">
+            
+                <a href="../../../数据结构/算法/限流算法.html">
+            
+                    
+                    限流算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../../../数据结构/线性表.html">
+            
+                <a href="../../../数据结构/线性表.html">
+            
+                    
+                    线性表
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    编程基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../../../编程基础/与、或、异或.html">
+            
+                <a href="../../../编程基础/与、或、异或.html">
+            
+                    
+                    与、或、异或
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../../../解决方案/">
+            
+                <a href="../../../解决方案/">
+            
+                    
+                    解决方案
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" >
+            
+                <span>
+            
+                    
+                    异常问题排查
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1.1" data-path="../../../解决方案/异常问题排查/Transaction-rollback-only.html">
+            
+                <a href="../../../解决方案/异常问题排查/Transaction-rollback-only.html">
+            
+                    
+                    Transaction Rollback Only
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../../../解决方案/7千万+用户数据分库分表.html">
+            
+                <a href="../../../解决方案/7千万+用户数据分库分表.html">
+            
+                    
+                    7千万+用户数据分库分表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../../../解决方案/AppleId第三方授权登录流程调研.html">
+            
+                <a href="../../../解决方案/AppleId第三方授权登录流程调研.html">
+            
+                    
+                    AppleId第三方授权登录流程调研
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="../../../解决方案/Idea远程调试监控端口.html">
+            
+                <a href="../../../解决方案/Idea远程调试监控端口.html">
+            
+                    
+                    Idea远程调试监控端口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5" data-path="../../../解决方案/Java获取真实ip地址.html">
+            
+                <a href="../../../解决方案/Java获取真实ip地址.html">
+            
+                    
+                    Java获取真实ip地址
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.6" data-path="../../../解决方案/Jenkins脚本实例.html">
+            
+                <a href="../../../解决方案/Jenkins脚本实例.html">
+            
+                    
+                    Jenkins脚本实例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.7" data-path="../../../解决方案/MybatisPlus多数据源.html">
+            
+                <a href="../../../解决方案/MybatisPlus多数据源.html">
+            
+                    
+                    MybatisPlus多数据源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.8" data-path="../../../解决方案/Mysql分库分表.html">
+            
+                <a href="../../../解决方案/Mysql分库分表.html">
+            
+                    
+                    Mysql分库分表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.9" data-path="../../../解决方案/nacos使用文档说明简介.html">
+            
+                <a href="../../../解决方案/nacos使用文档说明简介.html">
+            
+                    
+                    nacos使用文档说明简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.10" data-path="../../../解决方案/OAuth2.0授权登录调研.html">
+            
+                <a href="../../../解决方案/OAuth2.0授权登录调研.html">
+            
+                    
+                    OAuth2.0授权登录调研
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.11" data-path="../../../解决方案/TiDB性能测试.html">
+            
+                <a href="../../../解决方案/TiDB性能测试.html">
+            
+                    
+                    TiDB性能测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.12" data-path="../../../解决方案/延迟队列解决方案.html">
+            
+                <a href="../../../解决方案/延迟队列解决方案.html">
+            
+                    
+                    延迟队列解决方案
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../../../计算机网络原理/">
+            
+                <a href="../../../计算机网络原理/">
+            
+                    
+                    计算机网络原理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../../../计算机网络原理/计算机网络概述.html">
+            
+                <a href="../../../计算机网络原理/计算机网络概述.html">
+            
+                    
+                    计算机网络概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >垃圾收集器与内存分配策略</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x4E0E;&#x5185;&#x5B58;&#x5206;&#x914D;&#x7B56;&#x7565;"><b>1.1. </b>&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x4E0E;&#x5185;&#x5B58;&#x5206;&#x914D;&#x7B56;&#x7565;</a></li><ul><li><span class="title-icon "></span><a href="#&#x6982;&#x8FF0;"><b>1.1.1. </b>&#x6982;&#x8FF0;</a></li><li><span class="title-icon "></span><a href="#&#x5BF9;&#x8C61;&#x5DF2;&#x6B7B;&#x5417;"><b>1.1.2. </b>&#x5BF9;&#x8C61;&#x5DF2;&#x6B7B;&#x5417;</a></li><li><span class="title-icon "></span><a href="#&#x5783;&#x573E;&#x6536;&#x96C6;&#x7B97;&#x6CD5;"><b>1.1.3. </b>&#x5783;&#x573E;&#x6536;&#x96C6;&#x7B97;&#x6CD5;</a></li><li><span class="title-icon "></span><a href="#hotspot&#x7684;&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;"><b>1.1.4. </b>HotSpot&#x7684;&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x4E0E;&#x5185;&#x5B58;&#x5206;&#x914D;&#x7B56;&#x7565;"><a name="&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x4E0E;&#x5185;&#x5B58;&#x5206;&#x914D;&#x7B56;&#x7565;" class="anchor-navigation-ex-anchor" href="#&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x4E0E;&#x5185;&#x5B58;&#x5206;&#x914D;&#x7B56;&#x7565;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. &#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x4E0E;&#x5185;&#x5B58;&#x5206;&#x914D;&#x7B56;&#x7565;</h2>
+<p>Java&#x4E0E;C++&#x4E4B;&#x95F4;&#x6709;&#x4E00;&#x5835;&#x7531;<strong><em>&#x5185;&#x5B58;&#x52A8;&#x6001;&#x5206;&#x914D;</em></strong>&#x548C;<strong><em>&#x5783;&#x573E;&#x6536;&#x96C6;</em></strong>&#x6280;&#x672F;&#x6240;&#x56F4;&#x6210;&#x7684;&#x201C;&#x9AD8;&#x5899;&#x201D;&#xFF0C;&#x5899;&#x5916;&#x9762;&#x7684;&#x4EBA;&#x60F3;&#x8FDB;&#x53BB;&#xFF0C;&#x5899;&#x91CC;&#x9762;&#x7684;&#x4EBA;&#x5374;&#x60F3;&#x51FA;&#x6765;</p>
+<h3 id="&#x6982;&#x8FF0;"><a name="&#x6982;&#x8FF0;" class="anchor-navigation-ex-anchor" href="#&#x6982;&#x8FF0;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.1. &#x6982;&#x8FF0;</h3>
+<p>&#x5783;&#x573E;&#x6536;&#x96C6;&#xFF08;Garbage Collection,GC&#xFF09;</p>
+<ul>
+<li>&#x5783;&#x573E;&#x6536;&#x96C6;&#x9700;&#x8981;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;<ul>
+<li>&#x54EA;&#x4E9B;&#x5185;&#x5B58;&#x9700;&#x8981;&#x56DE;&#x6536;&#xFF1F;</li>
+<li>&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x56DE;&#x6536;&#xFF1F;</li>
+<li>&#x5982;&#x4F55;&#x56DE;&#x6536;&#xFF1F;</li>
+</ul>
+</li>
+<li>&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x4E86;&#x89E3;&#x5783;&#x573E;&#x56DE;&#x6536;<ul>
+<li>&#x9700;&#x8981;&#x6392;&#x67E5;&#x5404;&#x79CD;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#xFF0C;&#x6CC4;&#x9732;&#x65F6;&#xFF0C;&#x5F53;&#x5783;&#x573E;&#x6536;&#x96C6;&#x6210;&#x4E3A;&#x7CFB;&#x7EDF;&#x8FBE;&#x5230;&#x66F4;&#x9AD8;&#x5E76;&#x53D1;&#x91CF;&#x7684;&#x74F6;&#x9888;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x9700;&#x8981;&#x5806;&#x5783;&#x573E;&#x6536;&#x96C6;&#x4EE5;&#x53CA;&#x5185;&#x5B58;&#x5206;&#x914D;&#x5B9E;&#x65BD;&#x5FC5;&#x8981;&#x7684;&#x76D1;&#x63A7;&#x548C;&#x8C03;&#x8282;
+-
+&#x4E4B;&#x524D;&#x4E86;&#x89E3;&#x5230;&#x4E86;Java&#x5185;&#x5B58;&#x8FD0;&#x884C;&#x65F6;&#x533A;&#x57DF;&#x7684;&#x5404;&#x4E2A;&#x90E8;&#x5206;&#xFF0C;&#x5176;&#x4E2D;&#x7A0B;&#x5E8F;&#x8BA1;&#x6570;&#x5668;&#x3001;&#x865A;&#x62DF;&#x673A;&#x6808;&#x3001;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;3&#x4E2A;&#x533A;&#x57DF;&#x662F;&#x968F;&#x7EBF;&#x7A0B;&#x800C;&#x751F;&#xFF0C;&#x968F;&#x7EBF;&#x7A0B;&#x800C;&#x706D;&#xFF1B;&#x6808;&#x4E2D;&#x7684;&#x6808;&#x5E27;&#x968F;&#x7740;&#x65B9;&#x6CD5;&#x7684;&#x8FDB;&#x5165;&#x548C;&#x9000;&#x51FA;&#x6267;&#x884C;&#x8005;&#x51FA;&#x6808;&#x548C;&#x5165;&#x6808;&#x7684;&#x64CD;&#x4F5C;&#x3002;&#x6BCF;&#x4E00;&#x4E2A;&#x6808;&#x5E27;&#x5206;&#x914D;&#x591A;&#x5C11;&#x5185;&#x5B58;&#x57FA;&#x672C;&#x4E0A;&#x5728;&#x7C7B;&#x7ED3;&#x6784;&#x786E;&#x5B9A;&#x540E;&#x4FBF;&#x5DF2;&#x77E5;&#xFF0C;&#x56E0;&#x6B64;&#x8FD9;&#x51E0;&#x4E2A;&#x533A;&#x57DF;&#x7684;&#x5185;&#x5B58;&#x5206;&#x914D;&#x548C;&#x56DE;&#x6536;&#x90FD;&#x5177;&#x5907;&#x786E;&#x5B9A;&#x6027;&#xFF0C;&#x5728;&#x8FD9;&#x51E0;&#x4E2A;&#x533A;&#x57DF;&#x5185;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x8FC7;&#x591A;&#x8003;&#x8651;&#x56DE;&#x6536;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x56E0;&#x4E3A;&#x65B9;&#x6CD5;&#x7ED3;&#x675F;&#x6216;&#x8005;&#x7EBF;&#x7A0B;&#x7ED3;&#x675F;&#x65F6;&#xFF0C;&#x5185;&#x5B58;&#x81EA;&#x7136;&#x5C31;&#x8DDF;&#x968F;&#x7740;&#x56DE;&#x6536;&#x4E86;&#x3002;</li>
+</ul>
+</li>
+<li>&#x800C;Java&#x5806;&#x548C;&#x65B9;&#x6CD5;&#x533A;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#x4E2D;&#x7684;&#x591A;&#x4E2A;&#x5B9E;&#x73B0;&#x7C7B;&#x9700;&#x8981;&#x7684;&#x5185;&#x5B58;&#x53EF;&#x80FD;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x4E2D;&#x7684;&#x591A;&#x4E2A;&#x5206;&#x652F;&#x9700;&#x8981;&#x7684;&#x5185;&#x5B58;&#x4E5F;&#x53EF;&#x80FD;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x6211;&#x4EEC;&#x53EA;&#x6709;&#x5728;&#x7A0B;&#x5E8F;&#x5904;&#x4E8E;&#x8FD0;&#x884C;&#x671F;&#x95F4;&#x65F6;&#x624D;&#x80FD;&#x77E5;&#x9053;&#x4F1A;&#x521B;&#x5EFA;&#x54EA;&#x4E9B;&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x90E8;&#x5206;&#x5185;&#x5B58;&#x7684;&#x5206;&#x914D;&#x548C;&#x56DE;&#x6536;&#x90FD;&#x662F;&#x52A8;&#x6001;&#x7684;&#xFF0C;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x5173;&#x6CE8;&#x7684;&#x5C31;&#x662F;&#x8FD9;&#x90E8;&#x5206;&#x5185;&#x5B58;&#x3002;</li>
+</ul>
+<h3 id="&#x5BF9;&#x8C61;&#x5DF2;&#x6B7B;&#x5417;"><a name="&#x5BF9;&#x8C61;&#x5DF2;&#x6B7B;&#x5417;" class="anchor-navigation-ex-anchor" href="#&#x5BF9;&#x8C61;&#x5DF2;&#x6B7B;&#x5417;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.2. &#x5BF9;&#x8C61;&#x5DF2;&#x6B7B;&#x5417;</h3>
+<ul>
+<li>&#x5806;&#x91CC;&#x5B58;&#x653E;&#x7740;java&#x4E16;&#x754C;&#x4E2D;&#x51E0;&#x4E4E;&#x6240;&#x6709;&#x7684;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;&#xFF0C;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x5728;&#x5BF9;&#x5806;&#x8FDB;&#x884C;&#x56DE;&#x6536;&#x524D;&#xFF0C;&#x7B2C;&#x4E00;&#x4EF6;&#x4E8B;&#x8981;&#x786E;&#x5B9A;&#x7684;&#x5C31;&#x662F;&#x54EA;&#x4E9B;&#x5BF9;&#x8C61;&#x662F;&#x53EF;&#x4EE5;&#x88AB;&#x56DE;&#x6536;&#x7684;&#xFF08;&#x4E0D;&#x53EF;&#x80FD;&#x518D;&#x88AB;&#x4EFB;&#x4F55;&#x9014;&#x5F84;&#x4F7F;&#x7528;&#x7684;&#x5BF9;&#x8C61;&#xFF09;&#x3002;</li>
+<li>&#x5224;&#x65AD;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x5B58;&#x6D3B;&#x7684;&#x7B97;&#x6CD5;&#xFF1A;<ol>
+<li>&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x7B97;&#x6CD5;</li>
+<li>&#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x7B97;&#x6CD5;</li>
+</ol>
+</li>
+</ul>
+<h4 id="&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x7B97;&#x6CD5;"><a name="&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x7B97;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x7B97;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x7B97;&#x6CD5;</h4>
+<ul>
+<li>&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;&#xFF1A;&#x7ED9;&#x5BF9;&#x8C61;&#x4E2D;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x5668;&#xFF0C;&#x6BCF;&#x5F53;&#x7531;&#x4E00;&#x4E2A;&#x5730;&#x65B9;&#x5F15;&#x7528;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8BA1;&#x6570;&#x5668;&#x503C;&#x5C31;&#x52A0;1&#xFF1B;&#x5F53;&#x5F15;&#x7528;&#x5931;&#x6548;&#x65F6;&#xFF0C;&#x8BA1;&#x6570;&#x5668;&#x503C;&#x51CF;1&#xFF1B;&#x4EFB;&#x4F55;&#x65F6;&#x523B;&#x8BA1;&#x6570;&#x5668;&#x503C;&#x4E3A;0&#x7684;&#x5BF9;&#x8C61;&#x5C31;&#x662F;&#x4E0D;&#x53EF;&#x80FD;&#x518D;&#x88AB;&#x4F7F;&#x7528;&#x7684;&#x3002;</li>
+<li>java&#x4E0D;&#x7528;&#x6B64;&#x7B97;&#x6CD5;&#x539F;&#x56E0;&#xFF1A;&#x5F88;&#x96BE;&#x89E3;&#x51B3;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x76F8;&#x4E92;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x7684;&#x95EE;&#x9898;</li>
+<li>&#x5982;&#x4E0B;&#x4F8B;&#x5B50;&#xFF0C;<code>testGC()</code>
+&#x65B9;&#x6CD5;&#xFF0C;&#x5BF9;&#x8C61;objA&#x548C;objB&#x90FD;&#x6709;&#x5B57;&#x6BB5;instance&#xFF0C;&#x8D4B;&#x503C;&#x4EE4;objA.instance=objB&#x53CA;objB.instance=objA&#xFF0C;&#x9664;&#x6B64;&#x4E4B;&#x5916;&#xFF0C;&#x8FD9;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x518D;&#x65E0;&#x4EFB;&#x4F55;&#x5F15;&#x7528;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x8FD9;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x5DF2;&#x7ECF;&#x4E0D;&#x53EF;&#x80FD;&#x518D;&#x88AB;&#x8BBF;&#x95EE;&#xFF0C;&#x4F46;&#x662F;&#x5B83;&#x4EEC;&#x56E0;&#x4E3A;&#x4E92;&#x76F8;&#x5F15;&#x7528;&#x7740;&#x5BF9;&#x65B9;&#xFF0C;&#x5BFC;&#x81F4;&#x5B83;&#x4EEC;&#x7684;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x90FD;&#x4E0D;&#x4E3A;0&#xFF0C;&#x4E8E;&#x662F;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x7B97;&#x6CD5;&#x65E0;&#x6CD5;&#x901A;&#x77E5;GC&#x6536;&#x96C6;&#x5668;&#x56DE;&#x6536;&#x5B83;&#x4EEC;</li>
+</ul>
+<pre class="language-"><code class="lang-yaml"><span class="token punctuation">-</span>XX<span class="token punctuation">:</span>+PrintGCDetails
+</code></pre>
+<pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ReferenceCountingGC</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token class-name">Object</span> instance <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> _1MB <span class="token operator">=</span> <span class="token number">1024</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">;</span>
+    <span class="token comment">/**
+     * &#x8FD9;&#x4E2A;&#x6210;&#x5458;&#x5C5E;&#x6027;&#x7684;&#x552F;&#x4E00;&#x610F;&#x4E49;&#x5C31;&#x662F;&#x5360;&#x70B9;&#x5185;&#x5B58;&#xFF0C;&#x4EE5;&#x4FBF;&#x80FD;&#x5728;GC&#x65E5;&#x5FD7;&#x4E2D;&#x770B;&#x6E05;&#x695A;&#x662F;&#x5426;&#x88AB;&#x56DE;&#x6536;&#x8FC7;
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> bigSize <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token number">2</span> <span class="token operator">*</span> _1MB<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">testGC</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">ReferenceCountingGC</span> objA <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReferenceCountingGC</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">ReferenceCountingGC</span> objB <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReferenceCountingGC</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        objA<span class="token punctuation">.</span>instance <span class="token operator">=</span> objB<span class="token punctuation">;</span>
+        objB<span class="token punctuation">.</span>instance <span class="token operator">=</span> objA<span class="token punctuation">;</span>
+        objA <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        objB <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token comment">//&#x5047;&#x8BBE;&#x5728;&#x8FD9;&#x884C;&#x53D1;&#x751F;GC,objA&#x548C;objB&#x662F;&#x5426;&#x80FD;&#x88AB;&#x56DE;&#x6536;&#xFF1F;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">gc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">testGC</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;</p>
+<pre class="language-"><code class="lang-log"><span class="token punctuation">[</span>GC <span class="token operator">(</span>System<span class="token punctuation">.</span>gc<span class="token operator">(</span><span class="token operator">)</span><span class="token operator">)</span> <span class="token punctuation">[</span>PSYoungGen<span class="token operator">:</span> <span class="token number">7966K</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token number">824K</span><span class="token operator">(</span><span class="token number">75264K</span><span class="token operator">)</span><span class="token punctuation">]</span> <span class="token number">7966K</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token number">832K</span><span class="token operator">(</span><span class="token number">247296K</span><span class="token operator">)</span><span class="token punctuation">,</span> <span class="token number">0.0009400</span> secs<span class="token punctuation">]</span> <span class="token punctuation">[</span>Times<span class="token operator">:</span> user<span class="token operator">=</span><span class="token number">0.00</span> sys<span class="token operator">=</span><span class="token number">0.00</span><span class="token punctuation">,</span> real<span class="token operator">=</span><span class="token number">0.00</span> secs<span class="token punctuation">]</span> 
+<span class="token punctuation">[</span>Full GC <span class="token operator">(</span>System<span class="token punctuation">.</span>gc<span class="token operator">(</span><span class="token operator">)</span><span class="token operator">)</span> <span class="token punctuation">[</span>PSYoungGen<span class="token operator">:</span> <span class="token number">824K</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token number">0K</span><span class="token operator">(</span><span class="token number">75264K</span><span class="token operator">)</span><span class="token punctuation">]</span> <span class="token punctuation">[</span>ParOldGen<span class="token operator">:</span> <span class="token number">8K</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token number">688K</span><span class="token operator">(</span><span class="token number">172032K</span><span class="token operator">)</span><span class="token punctuation">]</span> <span class="token number">832K</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token number">688K</span><span class="token operator">(</span><span class="token number">247296K</span><span class="token operator">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>Metaspace<span class="token operator">:</span> <span class="token number">3111K</span><span class="token operator">-</span><span class="token operator">&gt;</span><span class="token number">3111K</span><span class="token operator">(</span><span class="token number">1056768K</span><span class="token operator">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0.0047815</span> secs<span class="token punctuation">]</span> <span class="token punctuation">[</span>Times<span class="token operator">:</span> user<span class="token operator">=</span><span class="token number">0.09</span> sys<span class="token operator">=</span><span class="token number">0.00</span><span class="token punctuation">,</span> real<span class="token operator">=</span><span class="token number">0.01</span> secs<span class="token punctuation">]</span> 
+Heap
+ PSYoungGen      total <span class="token number">75264K</span><span class="token punctuation">,</span> used <span class="token number">1935K</span> <span class="token punctuation">[</span><span class="token number">0x000000076ca00000</span><span class="token punctuation">,</span> <span class="token number">0x0000000771e00000</span><span class="token punctuation">,</span> <span class="token number">0x00000007c0000000</span><span class="token operator">)</span>
+  eden space <span class="token number">64512K</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token operator">%</span> used <span class="token punctuation">[</span><span class="token number">0x000000076ca00000</span><span class="token punctuation">,</span><span class="token number">0x000000076cbe3fb8</span><span class="token punctuation">,</span><span class="token number">0x0000000770900000</span><span class="token operator">)</span>
+  from space <span class="token number">10752K</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token operator">%</span> used <span class="token punctuation">[</span><span class="token number">0x0000000770900000</span><span class="token punctuation">,</span><span class="token number">0x0000000770900000</span><span class="token punctuation">,</span><span class="token number">0x0000000771380000</span><span class="token operator">)</span>
+  to   space <span class="token number">10752K</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token operator">%</span> used <span class="token punctuation">[</span><span class="token number">0x0000000771380000</span><span class="token punctuation">,</span><span class="token number">0x0000000771380000</span><span class="token punctuation">,</span><span class="token number">0x0000000771e00000</span><span class="token operator">)</span>
+ ParOldGen       total <span class="token number">172032K</span><span class="token punctuation">,</span> used <span class="token number">688K</span> <span class="token punctuation">[</span><span class="token number">0x00000006c5e00000</span><span class="token punctuation">,</span> <span class="token number">0x00000006d0600000</span><span class="token punctuation">,</span> <span class="token number">0x000000076ca00000</span><span class="token operator">)</span>
+  object space <span class="token number">172032K</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token operator">%</span> used <span class="token punctuation">[</span><span class="token number">0x00000006c5e00000</span><span class="token punctuation">,</span><span class="token number">0x00000006c5eac260</span><span class="token punctuation">,</span><span class="token number">0x00000006d0600000</span><span class="token operator">)</span>
+ Metaspace       used <span class="token number">3138K</span><span class="token punctuation">,</span> capacity <span class="token number">4496K</span><span class="token punctuation">,</span> committed <span class="token number">4864K</span><span class="token punctuation">,</span> reserved <span class="token number">1056768K</span>
+  class space    used <span class="token number">342K</span><span class="token punctuation">,</span> capacity <span class="token number">388K</span><span class="token punctuation">,</span> committed <span class="token number">512K</span><span class="token punctuation">,</span> reserved <span class="token number">1048576K</span>
+
+Process finished with exit code <span class="token number">0</span>
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x4E2D;&#x53EF;&#x4EE5;&#x6E05;&#x695A;&#x770B;&#x5230;&#xFF0C;GC&#x65E5;&#x5FD7;&#x4E2D;&#x5305;&#x542B;&#x201C;7966K-&gt;824K(75264K)&#x201D;&#xFF0C;&#x610F;&#x5473;&#x7740;&#x865A;&#x62DF;&#x673A;&#x5E76;&#x6CA1;&#x6709;&#x56E0;&#x4E3A;&#x8FD9;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x4E92;&#x76F8;&#x5F15;&#x7528;&#x5C31;&#x4E0D;&#x56DE;&#x6536;&#x5B83;&#x4EEC;&#xFF0C;&#x8FD9;&#x4E5F;&#x4ECE;&#x4FA7;&#x9762;&#x8BF4;&#x660E;&#x865A;&#x62DF;&#x673A;&#x5E76;&#x4E0D;&#x662F;&#x901A;&#x8FC7;&#x5F15;&#x7528;&#x8BA1;&#x6570;&#x7B97;&#x6CD5;&#x6765;&#x5224;&#x65AD;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x5B58;&#x6D3B;&#x7684;</p>
+<h4 id="&#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x7B97;&#x6CD5;"><a name="&#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x7B97;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x7B97;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x7B97;&#x6CD5;</h4>
+<ul>
+<li>&#x5728;&#x4E3B;&#x6D41;&#x7684;&#x5546;&#x7528;&#x7A0B;&#x5E8F;&#x8BED;&#x8A00;&#xFF08;Java&#x3001;C#&#xFF0C;&#x751A;&#x81F3;&#x5305;&#x62EC;&#x524D;&#x9762;&#x63D0;&#x5230;&#x7684;&#x53E4;&#x8001;&#x7684;Lisp&#xFF09;&#x7684;&#x4E3B;&#x6D41;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;&#x90FD;&#x662F;&#x79F0;&#x901A;&#x8FC7;&#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#xFF08;Reachability Analysis&#xFF09;&#x6765;&#x5224;&#x5B9A;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x5B58;&#x6D3B;&#x7684;</li>
+<li>&#x7B97;&#x6CD5;&#x601D;&#x8DEF;&#xFF1A;&#x901A;&#x8FC7;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x79F0;&#x4E3A;&#x201C;GC Roots&#x201D;&#x7684;&#x5BF9;&#x8C61;&#x4F5C;&#x4E3A;&#x8D77;&#x59CB;&#x70B9;&#xFF0C;&#x4ECE;&#x8FD9;&#x4E9B;&#x8282;&#x70B9;&#x5F00;&#x59CB;&#x5411;&#x4E0B;&#x641C;&#x7D22;&#xFF0C;&#x641C;&#x7D22;&#x6240;&#x8D70;&#x8FC7;&#x7684;&#x8DEF;&#x5F84;&#x79F0;&#x4E3A;&#x5F15;&#x7528;&#x94FE;&#xFF08;Reference Chain&#xFF09;&#xFF0C;&#x5F53;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5230;GC Roots&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x5F15;&#x7528;&#x94FE;&#x76F8;&#x8FDE;&#xFF08;&#x7528;&#x56FE;&#x8BBA;&#x7684;&#x8BDD;&#x6765;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#x4ECE;GC
+Roots&#x5230;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x4E0D;&#x53EF;&#x8FBE;&#xFF09;&#x65F6;&#xFF0C;&#x5219;&#x8BC1;&#x660E;&#x6B64;&#x5BF9;&#x8C61;&#x662F;&#x4E0D;&#x53EF;&#x7528;&#x7684;&#x3002;
+<img src="https://llhyoudao.oss-cn-shenzhen.aliyuncs.com/%E6%9C%89%E9%81%93%E4%BA%91/106.jpg?Expires=1609233366&amp;OSSAccessKeyId=TMP.3KdAS4j2HLPJTzeZThLwmYWWmXqZpVTtrBJBW141Yw8hq9seU6CunAF9cFjcEmYuaWK5ZXNvi7sMB79LDKrhRsEXd4gEwP&amp;Signature=hxwUQsFIofjV%2BuUcyWgr%2BWrETl0%3D" alt="">
+&#x5982;&#x56FE;&#xFF0C;object5&#x3001;object6&#x3001;object7&#x867D;&#x6709;&#x5173;&#x8054;&#xFF0C;&#x4F46;&#x662F;&#x5B83;&#x4EEC;&#x5230;GC roots&#x65F6;&#x4E0D;&#x53EF;&#x8FBE;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x88AB;&#x5224;&#x5B9A;&#x662F;&#x53EF;&#x56DE;&#x6536;&#x7684;&#x5BF9;&#x8C61;</li>
+<li>Java&#x8BED;&#x8A00;&#x4E2D;&#xFF0C;&#x53EF;&#x4F5C;&#x4E3A;GC Roots&#x7684;&#x5BF9;&#x8C61;&#x5305;&#x62EC;&#xFF1A;<ul>
+<li>&#x865A;&#x62DF;&#x673A;&#x6808;&#xFF08;&#x6808;&#x5E27;&#x4E2D;&#x7684;&#x672C;&#x5730;&#x53D8;&#x91CF;&#x8868;&#xFF09;&#x4E2D;&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;</li>
+<li>&#x65B9;&#x6CD5;&#x533A;&#x4E2D;&#x7C7B;&#x9759;&#x6001;&#x5C5E;&#x6027;&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;</li>
+<li>&#x65B9;&#x6CD5;&#x533A;&#x4E2D;&#x5E38;&#x91CF;&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;</li>
+<li>&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x4E2D;JNI(Native&#x65B9;&#x6CD5;)&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;</li>
+</ul>
+</li>
+</ul>
+<h4 id="&#x518D;&#x8C08;&#x5F15;&#x7528;"><a name="&#x518D;&#x8C08;&#x5F15;&#x7528;" class="anchor-navigation-ex-anchor" href="#&#x518D;&#x8C08;&#x5F15;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x518D;&#x8C08;&#x5F15;&#x7528;</h4>
+<p>Java&#x5BF9;&#x5F15;&#x7528;&#x7684;&#x6982;&#x5FF5;&#x5206;&#x4E3A;&#x5F3A;&#x5F15;&#x7528;&#xFF08;Strong Reference&#xFF09;&#xFF0C;&#x8F6F;&#x5F15;&#x7528;&#xFF08;Soft Reference&#xFF09;&#xFF0C;&#x5F31;&#x5F15;&#x7528;&#xFF08;Weak Reference&#xFF09;&#xFF0C;&#x865A;&#x5F15;&#x7528;&#xFF08;Phantom Reference&#xFF09;4&#x79CD;&#x3002;
+SoftReference&#xFF0C;WeakReference&#xFF0C;PhantomReference</p>
+<ul>
+<li>&#x5F3A;&#x5F15;&#x7528;&#x5728;&#x7A0B;&#x5E8F;&#x4EE3;&#x7801;&#x4E2D;&#x666E;&#x904D;&#x5B58;&#x5728;&#x7684;&#xFF0C;&#x7C7B;&#x4F3C;&#x201C;Object obj=new Object()&#x201D;&#x8FD9;&#x7C7B;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x53EA;&#x8981;&#x5F3A;&#x5F15;&#x7528;&#x8FD8;&#x5728;&#xFF0C;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x6C38;&#x8FDC;&#x4E0D;&#x4F1A;&#x56DE;&#x6536;&#x6389;&#x88AB;&#x5F15;&#x7528;&#x7684;&#x5BF9;&#x8C61;</li>
+<li>&#x8F6F;&#x5F15;&#x7528;&#x63CF;&#x8FF0;&#x4E00;&#x4E9B;&#x6709;&#x7528;&#x4F46;&#x662F;&#x975E;&#x5FC5;&#x9700;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x8F6F;&#x5F15;&#x7528;&#x5173;&#x8054;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x7CFB;&#x7EDF;&#x5C06;&#x8981;&#x53D1;&#x751F;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x5F02;&#x5E38;&#x4E4B;&#x524D;&#xFF0C;&#x5C06;&#x4F1A;&#x628A;&#x8FD9;&#x4E9B;&#x5BF9;&#x8C61;&#x5217;&#x8FDB;&#x56DE;&#x6536;&#x8303;&#x56F4;&#x8FDB;&#x884C;&#x7B2C;&#x4E8C;&#x6B21;&#x56DE;&#x6536;&#x3002;&#x5982;&#x679C;&#x8FD9;&#x6B21;&#x56DE;&#x6536;&#x8FD8;&#x6CA1;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x624D;&#x4F1A;&#x629B;&#x51FA;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x5F02;&#x5E38;&#x3002;</li>
+<li>&#x5F31;&#x5F15;&#x7528;&#x4E5F;&#x662F;&#x7528;&#x6765;&#x63CF;&#x8FF0;&#x975E;&#x5FC5;&#x987B;&#x5BF9;&#x8C61;&#xFF0C;&#x4F46;&#x662F;&#x5B83;&#x7684;&#x5F3A;&#x5EA6;&#x6BD4;&#x8F6F;&#x5F15;&#x7528;&#x66F4;&#x5F31;&#x4E00;&#x4E9B;&#xFF0C;&#x88AB;&#x5F31;&#x5F15;&#x7528;&#x5173;&#x8054;&#x7684;&#x5BF9;&#x8C61;&#x53EA;&#x80FD;&#x751F;&#x5B58;&#x5230;&#x4E0B;&#x4E00;&#x6B21;&#x5783;&#x573E;&#x6536;&#x96C6;&#x53D1;&#x751F;&#x4E4B;&#x524D;&#x3002;&#x5F53;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x5DE5;&#x4F5C;&#x65F6;&#xFF0C;&#x65E0;&#x8BBA;&#x5F53;&#x524D;&#x5185;&#x5B58;&#x662F;&#x5426;&#x8DB3;&#x591F;&#xFF0C;&#x90FD;&#x4F1A;&#x56DE;&#x6536;&#x6389;&#x53EA;&#x88AB;&#x5F31;&#x5F15;&#x7528;&#x5173;&#x8054;&#x7684;&#x5BF9;&#x8C61;&#x3002;</li>
+<li>&#x865A;&#x5F15;&#x7528;&#x4E5F;&#x79F0;&#x4E3A;&#x5E7D;&#x7075;&#x5F15;&#x7528;&#x6216;&#x8005;&#x5E7B;&#x5F71;&#x5F15;&#x7528;&#xFF0C;&#x5B83;&#x662F;&#x6700;&#x5F31;&#x7684;&#x4E00;&#x79CD;&#x5F15;&#x7528;&#x5173;&#x7CFB;&#x3002;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x6709;&#x865A;&#x5F15;&#x7528;&#x7684;&#x5B58;&#x5728;&#xFF0C;&#x5B8C;&#x5168;&#x4E0D;&#x4F1A;&#x5BF9;&#x5176;&#x751F;&#x5B58;&#x65F6;&#x95F4;&#x6784;&#x6210;&#x5F71;&#x54CD;&#xFF0C;&#x4E5F;&#x65E0;&#x6CD5;&#x901A;&#x8FC7;&#x865A;&#x5F15;&#x7528;&#x6765;&#x53D6;&#x5F97;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;&#x3002;&#x4E3A;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x8BBE;&#x7F6E;&#x865A;&#x5F15;&#x7528;&#x5173;&#x8054;&#x7684;&#x552F;&#x4E00;&#x76EE;&#x7684;&#x5C31;&#x662F;&#x80FD;&#x5728;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x88AB;&#x6536;&#x96C6;&#x5668;&#x56DE;&#x6536;&#x65F6;&#x6536;&#x5230;&#x4E00;&#x4E2A;&#x7CFB;&#x7EDF;&#x901A;&#x77E5;</li>
+</ul>
+<h4 id="&#x751F;&#x5B58;&#x8FD8;&#x662F;&#x6B7B;&#x4EA1;"><a name="&#x751F;&#x5B58;&#x8FD8;&#x662F;&#x6B7B;&#x4EA1;" class="anchor-navigation-ex-anchor" href="#&#x751F;&#x5B58;&#x8FD8;&#x662F;&#x6B7B;&#x4EA1;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x751F;&#x5B58;&#x8FD8;&#x662F;&#x6B7B;&#x4EA1;</h4>
+<p>&#x5373;&#x4F7F;&#x5728;&#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x7B97;&#x6CD5;&#x4E2D;&#x4E0D;&#x53EF;&#x8FBE;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x8981;&#x771F;&#x6B63;&#x5BA3;&#x544A;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x6B7B;&#x4EA1;&#xFF0C;&#x81F3;&#x5C11;&#x8981;&#x7ECF;&#x5386;&#x4E24;&#x6B21;&#x6807;&#x8BB0;&#x8FC7;&#x7A0B;&#xFF1A;&#x5982;&#x679C;&#x5BF9;&#x8C61;&#x5728;&#x8FDB;&#x884C;&#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x540E;&#x53D1;&#x73B0;&#x6CA1;&#x6709;&#x4E0E;GC
+Roots&#x76F8;&#x8FDE;&#x63A5;&#x7684;&#x5F15;&#x7528;&#x94FE;&#xFF0C;&#x90A3;&#x5B83;&#x5C06;&#x4F1A;&#x88AB;&#x7B2C;&#x4E00;&#x6B21;&#x6807;&#x8BB0;&#x5E76;&#x4E14;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x7B5B;&#x9009;&#xFF0C;&#x7B5B;&#x9009;&#x7684;&#x6761;&#x4EF6;&#x662F;&#x6B64;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x6709;&#x5FC5;&#x8981;&#x6267;&#x884C;finalize&#xFF08;&#xFF09;&#x65B9;&#x6CD5;&#xFF0C;&#x5F53;&#x5BF9;&#x8C61;&#x6CA1;&#x6709;&#x8986;&#x76D6;finalize&#xFF08;&#xFF09;&#x65B9;&#x6CD5;&#xFF0C;&#x6216;&#x8005;finalize&#xFF08;&#xFF09;&#x65B9;&#x6CD5;&#x5DF2;&#x7ECF;&#x88AB;&#x865A;&#x62DF;&#x673A;&#x8C03;&#x7528;&#x8FC7;&#xFF0C;&#x865A;&#x62DF;&#x673A;&#x5C06;&#x8FD9;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#x90FD;&#x89C6;&#x4E3A;&#x201C;&#x6CA1;&#x6709;&#x5FC5;&#x8981;&#x6267;&#x884C;&#x201D;&#x3002;</p>
+<ul>
+<li>&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x88AB;&#x5224;&#x5B9A;&#x6709;&#x5FC5;&#x8981;&#x6267;&#x884C;finalize()&#x65B9;&#x6CD5;&#xFF0C;&#x90A3;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x5C06;&#x4F1A;&#x653E;&#x7F6E;&#x5728;&#x4E00;&#x4E2A;F-Queue&#x7684;&#x961F;&#x5217;&#x4E2D;&#xFF0C;&#x5E76;&#x5728;&#x7A0D;&#x540E;&#x7531;&#x4E00;&#x4E2A;&#x7531;&#x865A;&#x62DF;&#x673A;&#x81EA;&#x52A8;&#x5EFA;&#x7ACB;&#x7684;&#x3001;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x7684;Finalizer&#x7EBF;&#x7A0B;&#x53BB;&#x6267;&#x884C;&#x5B83;&#x3002;
+-
+finalize&#xFF08;&#xFF09;&#x65B9;&#x6CD5;&#x662F;&#x5BF9;&#x8C61;&#x9003;&#x8131;&#x6B7B;&#x4EA1;&#x547D;&#x8FD0;&#x7684;&#x6700;&#x540E;&#x4E00;&#x6B21;&#x673A;&#x4F1A;&#xFF0C;&#x7A0D;&#x540E;GC&#x5C06;&#x5BF9;F-Queue&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x7B2C;&#x4E8C;&#x6B21;&#x5C0F;&#x89C4;&#x6A21;&#x7684;&#x6807;&#x8BB0;&#xFF0C;&#x5982;&#x679C;&#x5BF9;&#x8C61;&#x8981;&#x5728;finalize&#xFF08;&#xFF09;&#x4E2D;&#x6210;&#x529F;&#x62EF;&#x6551;&#x81EA;&#x5DF1;&#x2014;&#x2014;&#x53EA;&#x8981;&#x91CD;&#x65B0;&#x4E0E;&#x5F15;&#x7528;&#x94FE;&#x4E0A;&#x7684;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x5EFA;&#x7ACB;&#x5173;&#x8054;&#x5373;&#x53EF;&#xFF0C;&#x8B6C;&#x5982;&#x628A;&#x81EA;&#x5DF1;&#xFF08;this&#x5173;&#x952E;&#x5B57;&#xFF09;&#x8D4B;&#x503C;&#x7ED9;&#x67D0;&#x4E2A;&#x7C7B;&#x53D8;&#x91CF;&#x6216;&#x8005;&#x5BF9;&#x8C61;&#x7684;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x90A3;&#x5728;&#x7B2C;&#x4E8C;&#x6B21;&#x6807;&#x8BB0;&#x65F6;&#x5B83;&#x5C06;&#x88AB;&#x79FB;&#x9664;&#x51FA;&#x201C;&#x5373;&#x5C06;&#x56DE;&#x6536;&#x201D;&#x7684;&#x96C6;&#x5408;&#xFF1B;&#x5982;&#x679C;&#x5BF9;&#x8C61;&#x8FD9;&#x65F6;&#x5019;&#x8FD8;&#x6CA1;&#x6709;&#x9003;&#x8131;&#xFF0C;&#x90A3;&#x57FA;&#x672C;&#x4E0A;&#x5B83;&#x5C31;&#x771F;&#x7684;&#x88AB;&#x56DE;&#x6536;&#x4E86;&#x3002;</li>
+<li>&#x4E00;&#x6B21;&#x5BF9;&#x8C61;&#x81EA;&#x6211;&#x62EF;&#x6551;&#x6F14;&#x793A;</li>
+</ul>
+<pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FinalizeEscapeGC</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">FinalizeEscapeGC</span> <span class="token constant">SAVE_HOOK</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">isAlive</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;yes,i am still alive&#xFF1A;)&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">finalize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Throwable</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">finalize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;finalize mehtod executed!&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">FinalizeEscapeGC</span><span class="token punctuation">.</span><span class="token constant">SAVE_HOOK</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Throwable</span> <span class="token punctuation">{</span>
+        <span class="token constant">SAVE_HOOK</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FinalizeEscapeGC</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//&#x5BF9;&#x8C61;&#x7B2C;&#x4E00;&#x6B21;&#x6210;&#x529F;&#x62EF;&#x6551;&#x81EA;&#x5DF1;</span>
+        <span class="token constant">SAVE_HOOK</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">gc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//&#x56E0;&#x4E3A;finalize&#x65B9;&#x6CD5;&#x4F18;&#x5148;&#x7EA7;&#x5F88;&#x4F4E;&#xFF0C;&#x6240;&#x4EE5;&#x6682;&#x505C;0.5&#x79D2;&#x4EE5;&#x7B49;&#x5F85;&#x5B83;</span>
+        <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token constant">SAVE_HOOK</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token constant">SAVE_HOOK</span><span class="token punctuation">.</span><span class="token function">isAlive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;no,i am dead&#xFF1A;(&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">//&#x4E0B;&#x9762;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x4E0E;&#x4E0A;&#x9762;&#x7684;&#x5B8C;&#x5168;&#x76F8;&#x540C;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x6B21;&#x81EA;&#x6551;&#x5374;&#x5931;&#x8D25;&#x4E86;</span>
+        <span class="token constant">SAVE_HOOK</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span><span class="token function">gc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//&#x56E0;&#x4E3A;finalize&#x65B9;&#x6CD5;&#x4F18;&#x5148;&#x7EA7;&#x5F88;&#x4F4E;&#xFF0C;&#x6240;&#x4EE5;&#x6682;&#x505C;0.5&#x79D2;&#x4EE5;&#x7B49;&#x5F85;&#x5B83;</span>
+        <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token constant">SAVE_HOOK</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token constant">SAVE_HOOK</span><span class="token punctuation">.</span><span class="token function">isAlive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;no,i am dead&#xFF1A;(&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre class="language-"><code class="lang-log"><span class="token string">&quot;C:\Program Files\Java\jdk1.8.0_261\bin\java.exe&quot;</span> <span class="token string">&quot;-javaagent:E:\IntelliJ IDEA 2020.1.3\lib\idea_rt.jar=52343:E:\IntelliJ IDEA 2020.1.3\bin&quot;</span> <span class="token operator">-</span>Dfile<span class="token punctuation">.</span>encoding<span class="token operator">=</span>UTF<span class="token operator">-</span><span class="token number">8</span> <span class="token operator">-</span>classpath <span class="token string">&quot;C:\Program Files\Java\jdk1.8.0_261\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_261\jre\lib\rt.jar;F:\data\play-jdk\target\classes;C:\Users\Administrator\.m2\repository\org\springframework\boot\spring-boot-starter\2.4.0\spring-boot-starter-2.4.0.jar;C:\Users\Administrator\.m2\repository\org\springframework\boot\spring-boot\2.4.0\spring-boot-2.4.0.jar;C:\Users\Administrator\.m2\repository\org\springframework\spring-context\5.3.1\spring-context-5.3.1.jar;C:\Users\Administrator\.m2\repository\org\springframework\spring-aop\5.3.1\spring-aop-5.3.1.jar;C:\Users\Administrator\.m2\repository\org\springframework\spring-beans\5.3.1\spring-beans-5.3.1.jar;C:\Users\Administrator\.m2\repository\org\springframework\spring-expression\5.3.1\spring-expression-5.3.1.jar;C:\Users\Administrator\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\2.4.0\spring-boot-autoconfigure-2.4.0.jar;C:\Users\Administrator\.m2\repository\org\springframework\boot\spring-boot-starter-logging\2.4.0\spring-boot-starter-logging-2.4.0.jar;C:\Users\Administrator\.m2\repository\ch\qos\logback\logback-classic\1.2.3\logback-classic-1.2.3.jar;C:\Users\Administrator\.m2\repository\ch\qos\logback\logback-core\1.2.3\logback-core-1.2.3.jar;C:\Users\Administrator\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.13.3\log4j-to-slf4j-2.13.3.jar;C:\Users\Administrator\.m2\repository\org\apache\logging\log4j\log4j-api\2.13.3\log4j-api-2.13.3.jar;C:\Users\Administrator\.m2\repository\org\slf4j\jul-to-slf4j\1.7.30\jul-to-slf4j-1.7.30.jar;C:\Users\Administrator\.m2\repository\jakarta\annotation\jakarta.annotation-api\1.3.5\jakarta.annotation-api-1.3.5.jar;C:\Users\Administrator\.m2\repository\org\springframework\spring-core\5.3.1\spring-core-5.3.1.jar;C:\Users\Administrator\.m2\repository\org\springframework\spring-jcl\5.3.1\spring-jcl-5.3.1.jar;C:\Users\Administrator\.m2\repository\org\yaml\snakeyaml\1.27\snakeyaml-1.27.jar;C:\Users\Administrator\.m2\repository\org\slf4j\slf4j-api\1.7.30\slf4j-api-1.7.30.jar&quot;</span> com<span class="token punctuation">.</span>llh<span class="token punctuation">.</span>jdk<span class="token punctuation">.</span>map<span class="token punctuation">.</span>FinalizeEscapeGC
+finalize mehtod executed<span class="token operator">!</span>
+yes<span class="token punctuation">,</span>i am still alive&#xFF1A;<span class="token operator">)</span>
+no<span class="token punctuation">,</span>i am dead&#xFF1A;<span class="token operator">(</span>
+Process finished with exit code <span class="token number">0</span>
+</code></pre>
+<p>&#x4EE3;&#x7801;&#x7406;&#x89E3;&#xFF1A;&#x5C06;&#x5BF9;&#x8C61;&#x8D4B;&#x503C;&#x4E3A;&#x7A7A;&#x5E76;&#x4E14;&#x8C03;&#x7528;gc&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7EBF;&#x7A0B;&#x7B49;&#x5F85;&#x7531;&#x865A;&#x62DF;&#x673A;&#x81EA;&#x52A8;&#x5EFA;&#x7ACB;&#x7684;&#x3001;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x7684;finalizer&#x7EBF;&#x7A0B;&#x53BB;&#x6267;&#x884C;&#xFF0C;&#x6267;&#x884C;&#x65F6;&#x627E;&#x5230;finalize()
+&#x65B9;&#x6CD5;&#xFF0C;&#x5BF9;&#x8C61;&#x6210;&#x529F;&#x62EF;&#x6551;&#x81EA;&#x5DF1;&#xFF0C;&#x6240;&#x4EE5;&#x5BF9;&#x8C61;&#x4E0D;&#x4E3A;&#x7A7A;&#xFF1B;&#x518D;&#x6B21;gc&#x56DE;&#x6536;&#xFF0C;finalize&#xFF08;&#xFF09;&#x65B9;&#x6CD5;&#x5DF2;&#x7ECF;&#x88AB;&#x865A;&#x62DF;&#x673A;&#x8C03;&#x7528;&#x8FC7;&#xFF0C;&#x6240;&#x4EE5;&#x5224;&#x5B9A;&#x4E3A;&#x65B9;&#x6CD5;&#x4E0D;&#x4F1A;&#x518D;&#x6B21;&#x6267;&#x884C;&#xFF0C;&#x5DF2;&#x88AB;&#x5F7B;&#x5E95;&#x56DE;&#x6536;&#x3002;</p>
+<p>-
+&#x4EE3;&#x7801;&#x4E2D;&#x6709;&#x4E24;&#x6BB5;&#x5B8C;&#x5168;&#x4E00;&#x6837;&#x7684;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#xFF0C;&#x6267;&#x884C;&#x7ED3;&#x679C;&#x5374;&#x662F;&#x4E00;&#x6B21;&#x9003;&#x8131;&#x6210;&#x529F;&#xFF0C;&#x4E00;&#x6B21;&#x5931;&#x8D25;&#xFF0C;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;finalize&#xFF08;&#xFF09;&#x65B9;&#x6CD5;&#x90FD;&#x53EA;&#x4F1A;&#x88AB;&#x7CFB;&#x7EDF;&#x81EA;&#x52A8;&#x8C03;&#x7528;&#x4E00;&#x6B21;&#xFF0C;&#x5982;&#x679C;&#x5BF9;&#x8C61;&#x9762;&#x4E34;&#x4E0B;&#x4E00;&#x6B21;&#x56DE;&#x6536;&#xFF0C;&#x5B83;&#x7684;finalize&#xFF08;&#xFF09;&#x65B9;&#x6CD5;&#x4E0D;&#x4F1A;&#x88AB;&#x518D;&#x6B21;&#x6267;&#x884C;&#xFF0C;&#x56E0;&#x6B64;&#x7B2C;&#x4E8C;&#x6BB5;&#x4EE3;&#x7801;&#x7684;&#x81EA;&#x6551;&#x884C;&#x52A8;&#x5931;&#x8D25;&#x4E86;&#x3002;</p>
+<h4 id="&#x56DE;&#x6536;&#x65B9;&#x6CD5;&#x533A;"><a name="&#x56DE;&#x6536;&#x65B9;&#x6CD5;&#x533A;" class="anchor-navigation-ex-anchor" href="#&#x56DE;&#x6536;&#x65B9;&#x6CD5;&#x533A;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x56DE;&#x6536;&#x65B9;&#x6CD5;&#x533A;</h4>
+<ul>
+<li>Java&#x865A;&#x62DF;&#x673A;&#x89C4;&#x8303;&#x4E2D;&#x53EF;&#x4EE5;&#x4E0D;&#x8981;&#x6C42;&#x865A;&#x62DF;&#x673A;&#x5728;&#x65B9;&#x6CD5;&#x533A;&#x5B9E;&#x73B0;&#x5783;&#x573E;&#x6536;&#x96C6;&#xFF0C;&#x800C;&#x4E14;&#x5728;&#x65B9;&#x6CD5;&#x533A;&#x5185;&#x8FDB;&#x884C;&#x5783;&#x573E;&#x6536;&#x96C6;&#x7684;&#x201C;&#x6027;&#x4EF7;&#x6BD4;&#x201D;&#x4E00;&#x822C;&#x6BD4;&#x8F83;&#x4F4E;&#xFF1A;&#x5728;&#x5806;&#x4E2D;&#xFF0C;&#x5C24;&#x5176;&#x662F;&#x5728;&#x65B0;&#x751F;&#x4EE3;&#x4E2D;&#xFF0C;&#x5E38;&#x89C4;&#x5E94;&#x7528;&#x8FDB;&#x884C;&#x4E00;&#x6B21;&#x5783;&#x573E;&#x6536;&#x96C6;&#x4E00;&#x822C;&#x53EF;&#x4EE5;&#x56DE;&#x6536;70%&#xFF5E;95%&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x800C;&#x6C38;&#x4E45;&#x4EE3;&#x7684;&#x5783;&#x573E;&#x6536;&#x96C6;&#x6548;&#x7387;&#x8FDC;&#x4F4E;&#x4E8E;&#x6B64;</li>
+<li>&#x6C38;&#x4E45;&#x4EE3;&#x7684;&#x5783;&#x573E;&#x6536;&#x96C6;&#x4E3B;&#x8981;&#x56DE;&#x6536;&#x4E24;&#x90E8;&#x5206;&#x5185;&#x5BB9;&#xFF1A;
+  -
+  &#x5E9F;&#x5F03;&#x5E38;&#x91CF;&#xFF1A;&#x4EE5;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x5B57;&#x9762;&#x91CF;&#x7684;&#x56DE;&#x6536;&#x4E3A;&#x4F8B;&#xFF0C;&#x5047;&#x5982;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x201C;abc&#x201D;&#x5DF2;&#x7ECF;&#x8FDB;&#x5165;&#x4E86;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#xFF0C;&#x4F46;&#x662F;&#x5F53;&#x524D;&#x7CFB;&#x7EDF;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A;String&#x5BF9;&#x8C61;&#x662F;&#x53EB;&#x505A;&#x201C;abc&#x201D;&#x7684;&#xFF0C;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;String&#x5BF9;&#x8C61;&#x5F15;&#x7528;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x7684;&#x201C;abc&#x201D;&#x5E38;&#x91CF;&#xFF0C;&#x4E5F;&#x6CA1;&#x6709;&#x5176;&#x4ED6;&#x5730;&#x65B9;&#x5F15;&#x7528;&#x4E86;&#x8FD9;&#x4E2A;&#x5B57;&#x9762;&#x91CF;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x65F6;&#x53D1;&#x751F;&#x5185;&#x5B58;&#x56DE;&#x6536;&#xFF0C;&#x800C;&#x4E14;&#x5FC5;&#x8981;&#x7684;&#x8BDD;&#xFF0C;&#x8FD9;&#x4E2A;&#x201C;abc&#x201D;&#x5E38;&#x91CF;&#x5C31;&#x4F1A;&#x88AB;&#x7CFB;&#x7EDF;&#x6E05;&#x7406;&#x51FA;&#x5E38;&#x91CF;&#x6C60;<ul>
+<li>&#x65E0;&#x7528;&#x7684;&#x7C7B;&#xFF1A;<ol>
+<li>&#x8BE5;&#x7C7B;&#x6240;&#x6709;&#x7684;&#x5B9E;&#x4F8B;&#x90FD;&#x5DF2;&#x7ECF;&#x88AB;&#x56DE;&#x6536;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;Java&#x5806;&#x4E2D;&#x4E0D;&#x5B58;&#x5728;&#x8BE5;&#x7C7B;&#x7684;&#x4EFB;&#x4F55;&#x5B9E;&#x4F8B;</li>
+<li>&#x52A0;&#x8F7D;&#x8BE5;&#x7C7B;&#x7684;ClassLoader&#x5DF2;&#x7ECF;&#x88AB;&#x56DE;&#x6536;</li>
+<li>&#x8BE5;&#x7C7B;&#x5BF9;&#x5E94;&#x7684;java.lang.Class&#x5BF9;&#x8C61;&#x6CA1;&#x6709;&#x5728;&#x4EFB;&#x4F55;&#x5730;&#x65B9;&#x88AB;&#x5F15;&#x7528;&#xFF0C;&#x65E0;&#x6CD5;&#x5728;&#x4EFB;&#x4F55;&#x5730;&#x65B9;&#x901A;&#x8FC7;&#x53CD;&#x5C04;&#x8BBF;&#x95EE;&#x8BE5;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;
+-
+&#x865A;&#x62DF;&#x673A;&#x53EF;&#x4EE5;&#x5BF9;&#x6EE1;&#x8DB3;&#x4E0A;&#x8FF0;3&#x4E2A;&#x6761;&#x4EF6;&#x7684;&#x65E0;&#x7528;&#x7C7B;&#x8FDB;&#x884C;&#x56DE;&#x6536;&#xFF0C;&#x8FD9;&#x91CC;&#x8BF4;&#x7684;&#x4EC5;&#x4EC5;&#x662F;&#x201C;&#x53EF;&#x4EE5;&#x201D;&#xFF0C;&#x800C;&#x5E76;&#x4E0D;&#x662F;&#x548C;&#x5BF9;&#x8C61;&#x4E00;&#x6837;&#xFF0C;&#x4E0D;&#x4F7F;&#x7528;&#x4E86;&#x5C31;&#x5FC5;&#x7136;&#x4F1A;&#x56DE;&#x6536;&#x3002;&#x662F;&#x5426;&#x5BF9;&#x7C7B;&#x8FDB;&#x884C;&#x56DE;&#x6536;&#xFF0C;HotSpot&#x865A;&#x62DF;&#x673A;&#x63D0;&#x4F9B;&#x4E86;-Xnoclassgc&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x63A7;&#x5236;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;-verbose&#xFF1A;class&#x4EE5;&#x53CA;-XX&#xFF1A;+TraceClassLoading&#x3001;-XX&#xFF1A;+TraceClassUnLoading&#x67E5;&#x770B;&#x7C7B;&#x52A0;&#x8F7D;&#x548C;&#x5378;&#x8F7D;&#x4FE1;&#x606F;&#xFF0C;&#x5176;&#x4E2D;-verbose&#xFF1A;class&#x548C;-XX&#xFF1A;+TraceClassLoading&#x53EF;&#x4EE5;&#x5728;Product&#x7248;&#x7684;&#x865A;&#x62DF;&#x673A;&#x4E2D;&#x4F7F;&#x7528;&#xFF0C;-XX&#xFF1A;+TraceClassUnLoading&#x53C2;&#x6570;&#x9700;&#x8981;FastDebug&#x7248;&#x7684;&#x865A;&#x62DF;&#x673A;&#x652F;&#x6301;&#x3002;</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="&#x5783;&#x573E;&#x6536;&#x96C6;&#x7B97;&#x6CD5;"><a name="&#x5783;&#x573E;&#x6536;&#x96C6;&#x7B97;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x5783;&#x573E;&#x6536;&#x96C6;&#x7B97;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.3. &#x5783;&#x573E;&#x6536;&#x96C6;&#x7B97;&#x6CD5;</h3>
+<h4 id="&#x6807;&#x8BB0;-&#x6E05;&#x9664;&#x7B97;&#x6CD5;"><a name="&#x6807;&#x8BB0;-&#x6E05;&#x9664;&#x7B97;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x6807;&#x8BB0;-&#x6E05;&#x9664;&#x7B97;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6807;&#x8BB0;-&#x6E05;&#x9664;&#x7B97;&#x6CD5;</h4>
+<p>&#x6700;&#x57FA;&#x7840;&#x7684;&#x6536;&#x96C6;&#x7B97;&#x6CD5;&#x662F;&#x201C;&#x6807;&#x8BB0;-&#x6E05;&#x9664;&#x201D;&#xFF08;Mark-Sweep&#xFF09;&#x7B97;&#x6CD5;&#x3002;</p>
+<ul>
+<li>&#x9996;&#x5148;&#x6807;&#x8BB0;&#x51FA;&#x6240;&#x6709;&#x9700;&#x8981;&#x56DE;&#x6536;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x6807;&#x8BB0;&#x5B8C;&#x6210;&#x540E;&#x7EDF;&#x4E00;&#x56DE;&#x6536;&#x6240;&#x6709;&#x88AB;&#x6807;&#x8BB0;&#x7684;&#x5BF9;&#x8C61;&#x3002;<ul>
+<li>&#x6807;&#x8BB0;-&#x6E05;&#x9664;&#x7B97;&#x6CD5;&#x4E3B;&#x8981;&#x7531;&#x4E24;&#x4E2A;&#x4E0D;&#x8DB3;&#xFF1A;<ul>
+<li>&#x4E00;&#x4E2A;&#x662F;&#x6548;&#x7387;&#x95EE;&#x9898;&#xFF0C;&#x6807;&#x8BB0;&#x548C;&#x6E05;&#x9664;&#x4E24;&#x4E2A;&#x8FC7;&#x7A0B;&#x7684;&#x6548;&#x7387;&#x90FD;&#x4E0D;&#x9AD8;&#xFF1B;</li>
+<li>&#x53E6;&#x4E00;&#x4E2A;&#x662F;&#x7A7A;&#x95F4;&#x95EE;&#x9898;&#xFF0C;&#x6807;&#x8BB0;&#x6E05;&#x9664;&#x540E;&#x4F1A;&#x4EA7;&#x751F;&#x5927;&#x91CF;&#x4E0D;&#x8FDE;&#x7EED;&#x7684;&#x5185;&#x5B58;&#x788E;&#x7247;&#xFF0C;&#x7A7A;&#x95F4;&#x788E;&#x7247;&#x592A;&#x591A;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x4EE5;&#x540E;&#x5728;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x9700;&#x8981;&#x5206;&#x914D;&#x8F83;&#x5927;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x65E0;&#x6CD5;&#x627E;&#x5230;&#x8DB3;&#x591F;&#x7684;&#x8FDE;&#x7EED;&#x5185;&#x5B58;&#x800C;&#x4E0D;&#x5F97;&#x4E0D;&#x63D0;&#x524D;&#x51FA;&#x53D1;&#x4E00;&#x6B21;&#x5783;&#x573E;&#x6536;&#x96C6;&#x7684;&#x52A8;&#x4F5C;&#x3002;
+<img src="https://llhyoudao.oss-cn-shenzhen.aliyuncs.com/%E6%9C%89%E9%81%93%E4%BA%91/107.jpg" alt=""></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="&#x590D;&#x5236;&#x7B97;&#x6CD5;"><a name="&#x590D;&#x5236;&#x7B97;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x590D;&#x5236;&#x7B97;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x590D;&#x5236;&#x7B97;&#x6CD5;</h4>
+<p>&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x6548;&#x7387;&#x95EE;&#x9898;&#xFF0C;&#x4E00;&#x79CD;&#x79F0;&#x4E3A;&#x201C;&#x590D;&#x5236;&#x201D;&#xFF08;Copying&#xFF09;&#x7684;&#x6536;&#x96C6;&#x7B97;&#x6CD5;&#x51FA;&#x73B0;&#x4E86;&#xFF0C;&#x5B83;&#x5C06;&#x53EF;&#x7528;&#x5185;&#x5B58;&#x6309;&#x5BB9;&#x91CF;&#x5212;&#x5206;&#x4E3A;&#x5927;&#x5C0F;&#x76F8;&#x7B49;&#x7684;&#x4E24;&#x5757;&#xFF0C;&#x6BCF;&#x6B21;&#x53EA;&#x4F7F;&#x7528;&#x5176;&#x4E2D;&#x7684;&#x4E00;&#x5757;&#x3002;&#x5F53;&#x8FD9;&#x4E00;&#x5757;&#x7684;&#x5185;&#x5B58;&#x7528;&#x5B8C;&#x4E86;&#xFF0C;&#x5C31;&#x5C06;&#x8FD8;&#x5B58;&#x6D3B;&#x7740;&#x7684;&#x5BF9;&#x8C61;&#x590D;&#x5236;&#x5230;&#x53E6;&#x5916;&#x4E00;&#x5757;&#x4E0A;&#x9762;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x628A;&#x5DF2;&#x4F7F;&#x7528;&#x8FC7;&#x7684;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x4E00;&#x6B21;&#x6E05;&#x7406;&#x6389;&#x3002;&#x8FD9;&#x6837;&#x4F7F;&#x5F97;&#x6BCF;&#x6B21;&#x90FD;&#x662F;&#x5BF9;&#x6574;&#x4E2A;&#x534A;&#x533A;&#x8FDB;&#x884C;&#x5185;&#x5B58;&#x56DE;&#x6536;&#xFF0C;&#x5185;&#x5B58;&#x5206;&#x914D;&#x65F6;&#x4E5F;&#x5C31;&#x4E0D;&#x7528;&#x8003;&#x8651;&#x5185;&#x5B58;&#x788E;&#x7247;&#x7B49;&#x590D;&#x6742;&#x60C5;&#x51B5;&#xFF0C;&#x53EA;&#x8981;&#x79FB;&#x52A8;&#x5806;&#x9876;&#x6307;&#x9488;&#xFF0C;&#x6309;&#x987A;&#x5E8F;&#x5206;&#x914D;&#x5185;&#x5B58;&#x5373;&#x53EF;&#xFF0C;&#x5B9E;&#x73B0;&#x7B80;&#x5355;&#xFF0C;&#x8FD0;&#x884C;&#x9AD8;&#x6548;&#x3002;&#x53EA;&#x662F;&#x8FD9;&#x79CD;&#x7B97;&#x6CD5;&#x7684;&#x4EE3;&#x4EF7;&#x662F;&#x5C06;&#x5185;&#x5B58;&#x7F29;&#x5C0F;&#x4E3A;&#x4E86;&#x539F;&#x6765;&#x7684;&#x4E00;&#x534A;&#xFF0C;&#x672A;&#x514D;&#x592A;&#x9AD8;&#x4E86;&#x4E00;&#x70B9;&#x3002;
+<img src="https://llhyoudao.oss-cn-shenzhen.aliyuncs.com/%E6%9C%89%E9%81%93%E4%BA%91/108.jpg" alt=""></p>
+<ul>
+<li>&#x65B0;&#x751F;&#x4EE3;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;98%&#x662F;&#x201C;&#x671D;&#x751F;&#x5915;&#x6B7B;&#x201D;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x5E76;&#x4E0D;&#x9700;&#x8981;&#x6309;&#x7167;1&#xFF1A;1&#x7684;&#x6BD4;&#x4F8B;&#x6765;&#x5212;&#x5206;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x800C;&#x662F;&#x5C06;&#x5185;&#x5B58;&#x5206;&#x4E3A;&#x4E00;&#x5757;&#x6BD4;&#x8F83;&#x5927;&#x7684;Eden&#x7A7A;&#x95F4;&#x548C;&#x4E24;&#x5757;&#x8F83;&#x5C0F;&#x7684;Survivor&#x7A7A;&#x95F4;,&#x6BCF;&#x6B21;&#x4F7F;&#x7528;Eden&#x548C;&#x5176;&#x4E2D;&#x4E00;&#x5757;Survivor&#x3002;&#x5F53;&#x53D1;&#x751F;&#x56DE;&#x6536;&#x65F6;&#xFF0C;&#x5C06;Eden&#x548C;Survivor&#x4E2D;&#x8FD8;&#x5B58;&#x6D3B;&#x7740;&#x7684;&#x5BF9;&#x8C61;&#x4E00;&#x6B21;&#x6027;&#x590D;&#x5236;&#x5230;&#x53E6;&#x4E00;&#x5757;Survivor&#x7A7A;&#x95F4;&#x4E0A;&#xFF0C;&#x6700;&#x540E;&#x6E05;&#x7406;&#x6389;Eden&#x548C;&#x521A;&#x624D;&#x7528;&#x8FC7;&#x7684;Survivor&#x7A7A;&#x95F4;&#x3002;</li>
+<li>HotSpot&#x865A;&#x62DF;&#x673A;&#x9ED8;&#x8BA4;Eden&#x548C;Survivor&#x7684;&#x5927;&#x5C0F;&#x6BD4;&#x4F8B;&#x662F;8&#xFF1A;1&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6BCF;&#x6B21;&#x65B0;&#x751F;&#x4EE3;&#x4E2D;&#x53EF;&#x7528;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x4E3A;&#x6574;&#x4E2A;&#x65B0;&#x751F;&#x4EE3;&#x5BB9;&#x91CF;&#x7684;90%&#xFF08;80%+10%&#xFF09;&#x3002;&#x5F53;&#x7136;&#xFF0C;98%&#x7684;&#x5BF9;&#x8C61;&#x53EF;&#x56DE;&#x6536;&#x53EA;&#x662F;&#x4E00;&#x822C;&#x573A;&#x666F;&#x4E0B;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x6211;&#x4EEC;&#x6CA1;&#x6709;&#x529E;&#x6CD5;&#x4FDD;&#x8BC1;&#x6BCF;&#x6B21;&#x56DE;&#x6536;&#x90FD;&#x53EA;&#x6709;&#x4E0D;&#x591A;&#x4E8E;10%&#x7684;&#x5BF9;&#x8C61;&#x5B58;&#x6D3B;&#xFF0C;&#x5F53;Survivor&#x7A7A;&#x95F4;&#x4E0D;&#x591F;&#x7528;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x4F9D;&#x8D56;&#x5176;&#x4ED6;&#x5185;&#x5B58;&#xFF08;&#x8FD9;&#x91CC;&#x6307;&#x8001;&#x5E74;&#x4EE3;&#xFF09;&#x8FDB;&#x884C;&#x5206;&#x914D;&#x62C5;&#x4FDD;&#xFF08;Handle
+Promotion&#xFF09;&#x3002;</li>
+<li>&#x5185;&#x5B58;&#x7684;&#x5206;&#x914D;&#x62C5;&#x4FDD;&#x5C31;&#x597D;&#x6BD4;&#x6211;&#x4EEC;&#x53BB;&#x94F6;&#x884C;&#x501F;&#x6B3E;&#xFF0C;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x4FE1;&#x8A89;&#x5F88;&#x597D;&#xFF0C;&#x5728;98%&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x90FD;&#x80FD;&#x6309;&#x65F6;&#x507F;&#x8FD8;&#xFF0C;&#x4E8E;&#x662F;&#x94F6;&#x884C;&#x53EF;&#x80FD;&#x4F1A;&#x9ED8;&#x8BA4;&#x6211;&#x4EEC;&#x4E0B;&#x4E00;&#x6B21;&#x4E5F;&#x80FD;&#x6309;&#x65F6;&#x6309;&#x91CF;&#x5730;&#x507F;&#x8FD8;&#x8D37;&#x6B3E;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x6709;&#x4E00;&#x4E2A;&#x62C5;&#x4FDD;&#x4EBA;&#x80FD;&#x4FDD;&#x8BC1;&#x5982;&#x679C;&#x6211;&#x4E0D;&#x80FD;&#x8FD8;&#x6B3E;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;&#x4ED6;&#x7684;&#x8D26;&#x6237;&#x6263;&#x94B1;&#xFF0C;&#x90A3;&#x94F6;&#x884C;&#x5C31;&#x8BA4;&#x4E3A;&#x6CA1;&#x6709;&#x98CE;&#x9669;&#x4E86;&#x3002;&#x5185;&#x5B58;&#x7684;&#x5206;&#x914D;&#x62C5;&#x4FDD;&#x4E5F;&#x4E00;&#x6837;&#xFF0C;&#x5982;&#x679C;&#x53E6;&#x5916;&#x4E00;&#x5757;Survivor&#x7A7A;&#x95F4;&#x6CA1;&#x6709;&#x8DB3;&#x591F;&#x7A7A;&#x95F4;&#x5B58;&#x653E;&#x4E0A;&#x4E00;&#x6B21;&#x65B0;&#x751F;&#x4EE3;&#x6536;&#x96C6;&#x4E0B;&#x6765;&#x7684;&#x5B58;&#x6D3B;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x8FD9;&#x4E9B;&#x5BF9;&#x8C61;&#x5C06;&#x76F4;&#x63A5;&#x901A;&#x8FC7;&#x5206;&#x914D;&#x62C5;&#x4FDD;&#x673A;&#x5236;&#x8FDB;&#x5165;&#x8001;&#x5E74;&#x4EE3;&#x3002;</li>
+</ul>
+<h4 id="&#x6807;&#x8BB0;-&#x6574;&#x7406;&#x7B97;&#x6CD5;"><a name="&#x6807;&#x8BB0;-&#x6574;&#x7406;&#x7B97;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x6807;&#x8BB0;-&#x6574;&#x7406;&#x7B97;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6807;&#x8BB0;-&#x6574;&#x7406;&#x7B97;&#x6CD5;</h4>
+<ul>
+<li>&#x590D;&#x5236;&#x6536;&#x96C6;&#x7B97;&#x6CD5;&#x5728;&#x5BF9;&#x8C61;&#x5B58;&#x6D3B;&#x7387;&#x8F83;&#x9AD8;&#x65F6;&#x5C31;&#x8981;&#x8FDB;&#x884C;&#x8F83;&#x591A;&#x7684;&#x590D;&#x5236;&#x64CD;&#x4F5C;&#xFF0C;&#x6548;&#x7387;&#x5C31;&#x4F1A;&#x53D8;&#x4F4E;&#x3002;&#x66F4;&#x5173;&#x952E;&#x7684;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x60F3;&#x6D6A;&#x8D39;50%&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x6709;&#x989D;&#x5916;&#x7684;&#x7A7A;&#x95F4;&#x8FDB;&#x884C;&#x5206;&#x914D;&#x62C5;&#x4FDD;&#xFF0C;&#x4EE5;&#x5E94;&#x5BF9;&#x88AB;&#x4F7F;&#x7528;&#x7684;&#x5185;&#x5B58;&#x4E2D;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#x90FD;100%&#x5B58;&#x6D3B;&#x7684;&#x6781;&#x7AEF;&#x60C5;&#x51B5;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x8001;&#x5E74;&#x4EE3;&#x4E00;&#x822C;&#x4E0D;&#x80FD;&#x76F4;&#x63A5;&#x9009;&#x7528;&#x8FD9;&#x79CD;&#x7B97;&#x6CD5;&#x3002;</li>
+<li>&#x6839;&#x636E;&#x8001;&#x5E74;&#x4EE3;&#x7684;&#x7279;&#x70B9;&#xFF0C;&#x6709;&#x4EBA;&#x63D0;&#x51FA;&#x4E86;&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x201C;&#x6807;&#x8BB0;-&#x6574;&#x7406;&#x201D;&#xFF08;Mark-Compact&#xFF09;&#x7B97;&#x6CD5;&#xFF0C;&#x6807;&#x8BB0;&#x8FC7;&#x7A0B;&#x4ECD;&#x7136;&#x4E0E;&#x201C;&#x6807;&#x8BB0;-&#x6E05;&#x9664;&#x201D;&#x7B97;&#x6CD5;&#x4E00;&#x6837;&#xFF0C;&#x4F46;&#x540E;&#x7EED;&#x6B65;&#x9AA4;&#x4E0D;&#x662F;&#x76F4;&#x63A5;&#x5BF9;&#x53EF;&#x56DE;&#x6536;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x6E05;&#x7406;&#xFF0C;&#x800C;&#x662F;&#x8BA9;&#x6240;&#x6709;&#x5B58;&#x6D3B;&#x7684;&#x5BF9;&#x8C61;&#x90FD;&#x5411;&#x4E00;&#x7AEF;&#x79FB;&#x52A8;&#xFF0C;&#x7136;&#x540E;&#x76F4;&#x63A5;&#x6E05;&#x7406;&#x6389;&#x7AEF;&#x8FB9;&#x754C;&#x4EE5;&#x5916;&#x7684;&#x5185;&#x5B58;&#x3002;
+<img src="https://llhyoudao.oss-cn-shenzhen.aliyuncs.com/%E6%9C%89%E9%81%93%E4%BA%91/109.jpg" alt=""></li>
+</ul>
+<h4 id="&#x5206;&#x4EE3;&#x6536;&#x96C6;&#x7B97;&#x6CD5;"><a name="&#x5206;&#x4EE3;&#x6536;&#x96C6;&#x7B97;&#x6CD5;" class="anchor-navigation-ex-anchor" href="#&#x5206;&#x4EE3;&#x6536;&#x96C6;&#x7B97;&#x6CD5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5206;&#x4EE3;&#x6536;&#x96C6;&#x7B97;&#x6CD5;</h4>
+<ul>
+<li>&#x5F53;&#x524D;&#x5546;&#x4E1A;&#x865A;&#x62DF;&#x673A;&#x7684;&#x5783;&#x573E;&#x6536;&#x96C6;&#x90FD;&#x91C7;&#x7528;&#x2018;&#x5206;&#x4EE3;&#x6536;&#x96C6;&#x2019;&#xFF08;Generational Collection&#xFF09;&#x7B97;&#x6CD5;&#x3002;</li>
+<li>&#x5206;&#x4EE3;&#x6536;&#x96C6;&#x7B97;&#x6CD5;&#x6839;&#x636E;&#x5BF9;&#x8C61;&#x5B58;&#x6D3B;&#x5468;&#x671F;&#x7684;&#x4E0D;&#x540C;&#x5C06;&#x5185;&#x5B58;&#x5212;&#x5206;&#x4E3A;&#x51E0;&#x5757;&#x3002;</li>
+<li>&#x628A;Java&#x5806;&#x5206;&#x4E3A;&#x65B0;&#x751F;&#x4EE3;&#x548C;&#x8001;&#x5E74;&#x4EE3;<ul>
+<li>&#x65B0;&#x751F;&#x4EE3;&#x4E2D;&#xFF0C;&#x6BCF;&#x6B21;&#x5783;&#x573E;&#x6536;&#x96C6;&#x65F6;&#x90FD;&#x6709;&#x5927;&#x6279;&#x5BF9;&#x8C61;&#x6B7B;&#x53BB;&#xFF0C;&#x53EA;&#x6709;&#x5C11;&#x91CF;&#x5B58;&#x6D3B;&#xFF0C;&#x90A3;&#x5C31;&#x9009;&#x7528;&#x590D;&#x5236;&#x7B97;&#x6CD5;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x4ED8;&#x51FA;&#x5C11;&#x91CF;&#x5B58;&#x6D3B;&#x5BF9;&#x8C61;&#x7684;&#x590D;&#x5236;&#x6210;&#x672C;&#x5C31;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x6536;&#x96C6;&#x3002;</li>
+<li>&#x8001;&#x5E74;&#x4EE3;&#x4E2D;&#xFF0C;&#x56E0;&#x4E3A;&#x5BF9;&#x8C61;&#x5B58;&#x6D3B;&#x7387;&#x9AD8;&#x3001;&#x6CA1;&#x6709;&#x989D;&#x5916;&#x7A7A;&#x95F4;&#x5BF9;&#x5B83;&#x8FDB;&#x884C;&#x5206;&#x914D;&#x62C5;&#x4FDD;&#xFF0C;&#x5C31;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x201C;&#x6807;&#x8BB0;-&#x6E05;&#x7406;&#x201D;&#x6216;&#x8005;&#x201C;&#x6807;&#x8BB0;-&#x6574;&#x7406;&#x201D;&#x7B97;&#x6CD5;&#x6765;&#x8FDB;&#x884C;&#x56DE;&#x6536;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<h3 id="hotspot&#x7684;&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;"><a name="hotspot&#x7684;&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;" class="anchor-navigation-ex-anchor" href="#hotspot&#x7684;&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.4. HotSpot&#x7684;&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;</h3>
+<p>&#x4E0A;&#x9762;&#x4ECB;&#x7ECD;&#x4E86;&#x5BF9;&#x8C61;&#x5B58;&#x6D3B;&#x5224;&#x5B9A;&#x7B97;&#x6CD5;&#x548C;&#x5783;&#x573E;&#x6536;&#x96C6;&#x7B97;&#x6CD5;&#xFF0C;&#x800C;&#x5728;HotSpot&#x865A;&#x62DF;&#x673A;&#x4E0A;&#x5B9E;&#x73B0;&#x8FD9;&#x4E9B;&#x7B97;&#x6CD5;&#x65F6;&#xFF0C;&#x5FC5;&#x987B;&#x5BF9;&#x7B97;&#x6CD5;&#x7684;&#x6267;&#x884C;&#x6548;&#x7387;&#x6709;&#x4E25;&#x683C;&#x7684;&#x8003;&#x91CF;&#xFF0C;&#x624D;&#x80FD;&#x4FDD;&#x8BC1;&#x865A;&#x62DF;&#x673A;&#x9AD8;&#x6548;&#x8FD0;&#x884C;&#x3002;</p>
+<h4 id="&#x679A;&#x4E3E;&#x6839;&#x8282;&#x70B9;"><a name="&#x679A;&#x4E3E;&#x6839;&#x8282;&#x70B9;" class="anchor-navigation-ex-anchor" href="#&#x679A;&#x4E3E;&#x6839;&#x8282;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x679A;&#x4E3E;&#x6839;&#x8282;&#x70B9;</h4>
+<ul>
+<li>&#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x4E2D;&#x4ECE;GC Roots&#x8282;&#x70B9;&#x627E;&#x5F15;&#x7528;&#x94FE;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x4E3A;&#x4F8B;&#xFF0C;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;GC Roots&#x7684;&#x8282;&#x70B9;&#x4E3B;&#x8981;&#x5728;&#x5168;&#x5C40;&#x6027;&#x7684;&#x5F15;&#x7528;&#xFF08;&#x5E38;&#x91CF;&#x6216;&#x9759;&#x6001;&#x5C5E;&#x6027;&#xFF09;&#x4E0E;&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;&#xFF08;&#x6808;&#x5E27;&#x4E2D;&#x7684;&#x672C;&#x5730;&#x53D8;&#x91CF;&#x8868;&#xFF09;&#x4E2D;&#xFF0C;&#x5F88;&#x591A;&#x5E94;&#x7528;&#x5728;&#x65B9;&#x6CD5;&#x533A;&#x5C31;&#x6709;&#x6570;&#x767E;&#x5146;&#xFF0C;&#x9010;&#x4E2A;&#x68C0;&#x67E5;&#x8FD9;&#x4E2A;&#x91CC;&#x9762;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x4F1A;&#x6D88;&#x8017;&#x5F88;&#x591A;&#x65F6;&#x95F4;
+-
+&#x53EF;&#x8FBE;&#x6027;&#x5206;&#x6790;&#x5BF9;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x7684;&#x654F;&#x611F;&#x8FD8;&#x4F53;&#x73B0;&#x5728;GC&#x505C;&#x987F;&#x4E0A;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x9879;&#x5206;&#x6790;&#x5DE5;&#x4F5C;&#x5FC5;&#x987B;&#x5728;&#x4E00;&#x4E2A;&#x80FD;&#x786E;&#x4FDD;&#x4E00;&#x81F4;&#x6027;&#x7684;&#x5FEB;&#x7167;&#x4E2D;&#x8FDB;&#x884C;----&#x8FD9;&#x91CC;&#x201C;&#x4E00;&#x81F4;&#x6027;&#x201D;&#x7684;&#x610F;&#x601D;&#x662F;&#x6307;&#x5728;&#x6574;&#x4E2A;&#x5206;&#x6790;&#x671F;&#x95F4;&#x6574;&#x4E2A;&#x6267;&#x884C;&#x7CFB;&#x7EDF;&#x770B;&#x8D77;&#x6765;&#x5C31;&#x50CF;&#x88AB;&#x51BB;&#x7ED3;&#x5728;&#x67D0;&#x4E2A;&#x65F6;&#x95F4;&#x70B9;&#x4E0A;&#xFF0C;&#x4E0D;&#x53EF;&#x4EE5;&#x51FA;&#x73B0;&#x5206;&#x6790;&#x8FC7;&#x7A0B;&#x4E2D;&#x5BF9;&#x8C61;&#x5F15;&#x7528;&#x5173;&#x7CFB;&#x8FD8;&#x5728;&#x4E0D;&#x65AD;&#x53D8;&#x5316;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x8BE5;&#x70B9;&#x4E0D;&#x6EE1;&#x8DB3;&#x7684;&#x8BDD;&#x5206;&#x6790;&#x7ED3;&#x679C;&#x51C6;&#x786E;&#x6027;&#x5C31;&#x65E0;&#x6CD5;&#x5F97;&#x5230;&#x4FDD;&#x8BC1;&#x3002;&#x8FD9;&#x70B9;&#x662F;&#x5BFC;&#x81F4;GC&#x8FDB;&#x884C;&#x65F6;&#x5FC5;&#x987B;&#x505C;&#x987F;&#x6240;&#x6709;Java&#x6267;&#x884C;&#x7EBF;&#x7A0B;&#xFF08;Sun&#x5C06;&#x8FD9;&#x4EF6;&#x4E8B;&#x60C5;&#x79F0;&#x4E3A;&#x201C;Stop
+The World&#x201D;&#xFF09;&#x7684;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x91CD;&#x8981;&#x539F;&#x56E0;&#xFF0C;&#x5373;&#x4F7F;&#x662F;&#x5728;&#x53F7;&#x79F0;&#xFF08;&#x51E0;&#x4E4E;&#xFF09;&#x4E0D;&#x4F1A;&#x53D1;&#x751F;&#x505C;&#x987F;&#x7684;CMS&#x6536;&#x96C6;&#x5668;&#x4E2D;&#xFF0C;&#x679A;&#x4E3E;&#x6839;&#x8282;&#x70B9;&#x65F6;&#x4E5F;&#x662F;&#x5FC5;&#x987B;&#x8981;&#x505C;&#x987F;&#x7684;&#x3002;</li>
+<li>&#x76EE;&#x524D;&#x4E3B;&#x6D41;&#x7684;Java&#x865A;&#x62DF;&#x673A;&#x90FD;&#x662F;&#x51C6;&#x786E;&#x5F0F;GC,&#x6240;&#x4EE5;&#x5F53;&#x6267;&#x884C;&#x7CFB;&#x7EDF;&#x505C;&#x987F;&#x4E0B;&#x6765;&#x540E;&#xFF0C;&#x5E76;&#x4E0D;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x4E0D;&#x6F0F;&#x5730;&#x68C0;&#x67E5;&#x5B8C;&#x6240;&#x6709;&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;&#x548C;&#x5168;&#x5C40;&#x7684;&#x5F15;&#x7528;&#x4F4D;&#x7F6E;&#xFF0C;&#x865A;&#x62DF;&#x673A;&#x5E94;&#x5F53;&#x662F;&#x6709;&#x529E;&#x6CD5;&#x76F4;&#x63A5;&#x5F97;&#x77E5;&#x54EA;&#x4E9B;&#x5730;&#x65B9;&#x5B58;&#x653E;&#x7740;&#x5BF9;&#x8C61;&#x5F15;&#x7528;
+-
+HotSpot&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;&#x662F;&#x4F7F;&#x7528;&#x4E00;&#x7EC4;OopMap&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x6765;&#x8FBE;&#x5230;&#x8FD9;&#x4E2A;&#x76EE;&#x7684;&#x7684;,&#x5728;&#x7C7B;&#x52A0;&#x8F7D;&#x5B8C;&#x6210;&#x7684;&#x65F6;&#x5019;&#xFF0C;HotSpot&#x5C31;&#x628A;&#x5BF9;&#x8C61;&#x5185;&#x4EC0;&#x4E48;&#x504F;&#x79FB;&#x91CF;&#x4E0A;&#x662F;&#x4EC0;&#x4E48;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x8BA1;&#x7B97;&#x51FA;&#x6765;&#xFF0C;&#x5728;JIT&#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4E5F;&#x4F1A;&#x5728;&#x7279;&#x5B9A;&#x7684;&#x4F4D;&#x7F6E;&#x8BB0;&#x5F55;&#x4E0B;&#x6808;&#x548C;&#x5BC4;&#x5B58;&#x5668;&#x4E2D;&#x54EA;&#x4E9B;&#x4F4D;&#x7F6E;&#x662F;&#x5F15;&#x7528;&#x3002;&#x8FD9;&#x6837;&#xFF0C;GC&#x5728;&#x626B;&#x63CF;&#x65F6;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5F97;&#x77E5;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x4E86;&#x3002;</li>
+</ul>
+<h4 id="&#x5B89;&#x5168;&#x70B9;&#xFF08;safepoint&#xFF09;"><a name="&#x5B89;&#x5168;&#x70B9;&#xFF08;safepoint&#xFF09;" class="anchor-navigation-ex-anchor" href="#&#x5B89;&#x5168;&#x70B9;&#xFF08;safepoint&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B89;&#x5168;&#x70B9;&#xFF08;Safepoint&#xFF09;</h4>
+<ul>
+<li>HotSpot&#x6CA1;&#x6709;&#x4E3A;&#x6BCF;&#x6761;&#x6307;&#x4EE4;&#x90FD;&#x751F;&#x6210;OopMap,&#x53EA;&#x662F;&#x5728;&#x7279;&#x5B9A;&#x7684;&#x4F4D;&#x7F6E;&#x8BB0;&#x5F55;&#x4E86;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#xFF0C;&#x8FD9;&#x4E9B;&#x4F4D;&#x7F6E;&#x79F0;&#x4E3A;&#x201C;&#x5B89;&#x5168;&#x70B9;&#x201D;&#xFF0C;&#x5373;&#x7A0B;&#x5E8F;&#x6267;&#x884C;&#x65F6;&#x5E76;&#x975E;&#x5728;&#x6240;&#x6709;&#x5730;&#x65B9;&#x90FD;&#x80FD;&#x505C;&#x987F;&#x4E0B;&#x6765;&#x5F00;&#x59CB;GC&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x5230;&#x8FBE;&#x5B89;&#x5168;&#x70B9;&#x65F6;&#x624D;&#x80FD;&#x6682;&#x505C;&#x3002;</li>
+<li>safepoint&#x7684;&#x9009;&#x5B9A;&#x65E2;&#x4E0D;&#x80FD;&#x592A;&#x5C11;&#x4EE5;&#x81F4;&#x4E8E;&#x8BA9;GC&#x7B49;&#x5F85;&#x65F6;&#x95F4;&#x592A;&#x957F;&#xFF0C;&#x4E5F;&#x4E0D;&#x80FD;&#x8FC7;&#x4E8E;&#x9891;&#x7E41;&#x4EE5;&#x81F4;&#x4E8E;&#x8FC7;&#x5206;&#x589E;&#x5927;&#x8FD0;&#x884C;&#x65F6;&#x7684;&#x8D1F;&#x8377;&#x3002;&#x5982;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x3001;&#x5FAA;&#x73AF;&#x8DF3;&#x8F6C;&#x3001;&#x5F02;&#x5E38;&#x8DF3;&#x8F6C;&#xFF0C;&#x6240;&#x4EE5;&#x5177;&#x6709;&#x8FD9;&#x4E9B;&#x529F;&#x80FD;&#x7684;&#x6307;&#x4EE4;&#x624D;&#x4F1A;&#x4EA7;&#x751F;SafePoint</li>
+<li>&#x5982;&#x4F55;&#x5728;GC&#x53D1;&#x751F;&#x65F6;&#x8BA9;&#x6240;&#x6709;&#x7EBF;&#x7A0B;&#xFF08;&#x8FD9;&#x91CC;&#x4E0D;&#x5305;&#x62EC;&#x6267;&#x884C;JNI&#x8C03;&#x7528;&#x7684;&#x7EBF;&#x7A0B;&#xFF09;&#x90FD;&#x201C;&#x8DD1;&#x201D;&#x5230;&#x6700;&#x8FD1;&#x7684;&#x5B89;&#x5168;&#x70B9;&#x4E0A;&#x518D;&#x505C;&#x987F;&#x4E0B;&#x6765;&#x3002;<ul>
+<li>&#x62A2;&#x5148;&#x5F0F;&#x4E2D;&#x65AD;&#xFF08;Preemptive
+Suspension&#xFF09;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x7EBF;&#x7A0B;&#x7684;&#x6267;&#x884C;&#x4EE3;&#x7801;&#x4E3B;&#x52A8;&#x53BB;&#x914D;&#x5408;&#xFF0C;GC&#x53D1;&#x751F;&#x65F6;&#xFF0C;&#x9996;&#x5148;&#x628A;&#x6240;&#x6709;&#x7684;&#x7EBF;&#x7A0B;&#x5168;&#x90E8;&#x4E2D;&#x65AD;&#xFF0C;&#x5982;&#x679C;&#x53D1;&#x73B0;&#x6709;&#x4E2D;&#x65AD;&#x7684;&#x5730;&#x65B9;&#x4E0D;&#x5728;&#x5B89;&#x5168;&#x70B9;&#x4E0A;&#xFF0C;&#x5C31;&#x6062;&#x590D;&#x7EBF;&#x7A0B;&#xFF0C;&#x8BA9;&#x5B83;&#x201C;&#x8DD1;&#x201D;&#x5230;&#x5B89;&#x5168;&#x70B9;&#x4E0A;&#x3002;&#x73B0;&#x5728;&#x51E0;&#x4E4E;&#x6CA1;&#x6709;&#x865A;&#x62DF;&#x673A;&#x5B9E;&#x73B0;&#x91C7;&#x7528;&#x62A2;&#x5148;&#x5F0F;&#x4E2D;&#x65AD;&#x6765;&#x6682;&#x505C;&#x7EBF;&#x7A0B;&#x4ECE;&#x800C;&#x54CD;&#x5E94;GC&#x4E8B;&#x4EF6;</li>
+<li>&#x4E3B;&#x52A8;&#x5F0F;&#x4E2D;&#x65AD;&#xFF08;Voluntary
+Suspension&#xFF09;&#x5F53;GC&#x9700;&#x8981;&#x4E2D;&#x65AD;&#x7EBF;&#x7A0B;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E0D;&#x76F4;&#x63A5;&#x5BF9;&#x7EBF;&#x7A0B;&#x64CD;&#x4F5C;&#xFF0C;&#x4EC5;&#x4EC5;&#x7B80;&#x5355;&#x5730;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x6807;&#x5FD7;&#xFF0C;&#x5404;&#x4E2A;&#x7EBF;&#x7A0B;&#x6267;&#x884C;&#x65F6;&#x4E3B;&#x52A8;&#x53BB;&#x8F6E;&#x8BE2;&#x8FD9;&#x4E2A;&#x6807;&#x5FD7;&#xFF0C;&#x53D1;&#x73B0;&#x4E2D;&#x65AD;&#x6807;&#x5FD7;&#x4E3A;&#x771F;&#x65F6;&#x5C31;&#x81EA;&#x5DF1;&#x4E2D;&#x65AD;&#x6302;&#x8D77;&#xFF0C;&#x8F6E;&#x8BE2;&#x6807;&#x5FD7;&#x7684;&#x5730;&#x65B9;&#x548C;&#x5B89;&#x5168;&#x70B9;&#x662F;&#x91CD;&#x5408;&#x7684;&#xFF0C;&#x53E6;&#x5916;&#x518D;&#x52A0;&#x4E0A;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x9700;&#x8981;&#x5206;&#x914D;&#x5185;&#x5B58;&#x7684;&#x5730;&#x65B9;</li>
+</ul>
+</li>
+</ul>
+<h4 id="&#x5B89;&#x5168;&#x533A;&#x57DF;&#xFF08;safe-region&#xFF09;"><a name="&#x5B89;&#x5168;&#x533A;&#x57DF;&#xFF08;safe-region&#xFF09;" class="anchor-navigation-ex-anchor" href="#&#x5B89;&#x5168;&#x533A;&#x57DF;&#xFF08;safe-region&#xFF09;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B89;&#x5168;&#x533A;&#x57DF;&#xFF08;Safe Region&#xFF09;</h4>
+<ul>
+<li>Safepoint&#x673A;&#x5236;&#x4FDD;&#x8BC1;&#x4E86;&#x7A0B;&#x5E8F;&#x6267;&#x884C;&#x65F6;&#xFF0C;&#x5728;&#x4E0D;&#x592A;&#x957F;&#x7684;&#x65F6;&#x95F4;&#x5185;&#x5C31;&#x4F1A;&#x9047;&#x5230;&#x53EF;&#x8FDB;&#x5165;GC&#x7684;Safepoint&#xFF0C;</li>
+</ul>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> Copyright &amp; copy lviter@163.com </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> <i>updated</i> 2024-08-01 09:49:44 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="OutOfMemoryError异常.html" class="navigation navigation-prev " aria-label="Previous page: OutOfMemoryError异常">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="自动内存管理机制.html" class="navigation navigation-next " aria-label="Next page: 自动内存管理机制">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"垃圾收集器与内存分配策略","level":"1.2.2.1.4","depth":4,"next":{"title":"自动内存管理机制","level":"1.2.2.1.5","depth":4,"path":"Java-技能/JVM/深入理解JVM-jdk1.7/自动内存管理机制.md","ref":"Java-技能/JVM/深入理解JVM-jdk1.7/自动内存管理机制.md","articles":[]},"previous":{"title":"OutOfMemoryError异常","level":"1.2.2.1.3","depth":4,"path":"Java-技能/JVM/深入理解JVM-jdk1.7/OutOfMemoryError异常.md","ref":"Java-技能/JVM/深入理解JVM-jdk1.7/OutOfMemoryError异常.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","copy-code-button","page-footer-ex","anchor-navigation-ex","expandable-chapters-small","prism","-highlight","-lunr","-search","theme-comscore","search-pro","splitter","back-to-top-button","advanced-emoji","pageview-count","-sharing","sharing-plus","insert-logo"],"ignores":["_book","node_modules"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-solarizedlight.css"],"lang":{"flow":"typescript"}},"page-footer-ex":{"copyright":"Copyright & copy lviter@163.com","markdown":true,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"<i>updated</i>"},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"fontsettings":{"theme":"white","family":"sans","size":2},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"theme-comscore":{},"back-to-top-button":{},"pageview-count":{},"expandable-chapters-small":{},"copy-code-button":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"qq":false,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","weibo","messenger","whatsapp"],"douban":false,"facebook":false,"weibo":true,"whatsapp":false,"line":true,"google":true,"qzone":true},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"style":"background: none; max-height: 30px; min-height: 30px","url":"static/images/qrcode_lviter.png"},"expandable-chapters":{}},"theme":"default","author":"lviter","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"越过山丘","language":"zh-hans","links":{"sidebar":{"GitHub":"https://github.com/lviter/professional"}},"gitbook":"*","description":"关注点分离"},"file":{"path":"Java-技能/JVM/深入理解JVM-jdk1.7/垃圾收集器与内存分配策略.md","mtime":"2024-08-01T09:49:44.335Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-08-01T09:50:34.181Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    </body>
+</html>
+

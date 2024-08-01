@@ -1,0 +1,3273 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>es复杂统计-绝对值 · 越过山丘</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="lviter">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism-solarizedlight.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-insert-logo/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="es通用查询.html" />
+    
+    
+    <link rel="prev" href="Es基础语法.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://github.com/lviter/professional" target="_blank" class="custom-link">GitHub</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../Java-技能/">
+            
+                <a href="../../Java-技能/">
+            
+                    
+                    Java-技能
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../Java-技能/IO模型/">
+            
+                <a href="../../Java-技能/IO模型/">
+            
+                    
+                    IO模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../Java-技能/JVM/">
+            
+                <a href="../../Java-技能/JVM/">
+            
+                    
+                    JVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="../../Java-技能/JVM/深入理解JVM-jdk1.7/">
+            
+                <a href="../../Java-技能/JVM/深入理解JVM-jdk1.7/">
+            
+                    
+                    深入理解JVM-jdk1.7
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1.1" data-path="../../Java-技能/JVM/深入理解JVM-jdk1.7/HotSpot虚拟机对象探秘.html">
+            
+                <a href="../../Java-技能/JVM/深入理解JVM-jdk1.7/HotSpot虚拟机对象探秘.html">
+            
+                    
+                    HotSpot虚拟机对象探秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.2" data-path="../../Java-技能/JVM/深入理解JVM-jdk1.7/JVM调优-jdk1.8.html">
+            
+                <a href="../../Java-技能/JVM/深入理解JVM-jdk1.7/JVM调优-jdk1.8.html">
+            
+                    
+                    JVM调优-jdk1.8
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.3" data-path="../../Java-技能/JVM/深入理解JVM-jdk1.7/OutOfMemoryError异常.html">
+            
+                <a href="../../Java-技能/JVM/深入理解JVM-jdk1.7/OutOfMemoryError异常.html">
+            
+                    
+                    OutOfMemoryError异常
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.4" data-path="../../Java-技能/JVM/深入理解JVM-jdk1.7/垃圾收集器与内存分配策略.html">
+            
+                <a href="../../Java-技能/JVM/深入理解JVM-jdk1.7/垃圾收集器与内存分配策略.html">
+            
+                    
+                    垃圾收集器与内存分配策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.5" data-path="../../Java-技能/JVM/深入理解JVM-jdk1.7/自动内存管理机制.html">
+            
+                <a href="../../Java-技能/JVM/深入理解JVM-jdk1.7/自动内存管理机制.html">
+            
+                    
+                    自动内存管理机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" >
+            
+                <span>
+            
+                    
+                    多线程
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1" data-path="../../Java-技能/多线程/AQS.html">
+            
+                <a href="../../Java-技能/多线程/AQS.html">
+            
+                    
+                    AQS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.2" data-path="../../Java-技能/多线程/CAS自旋锁.html">
+            
+                <a href="../../Java-技能/多线程/CAS自旋锁.html">
+            
+                    
+                    CAS自旋锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.3" data-path="../../Java-技能/多线程/Java锁.html">
+            
+                <a href="../../Java-技能/多线程/Java锁.html">
+            
+                    
+                    Java锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.4" data-path="../../Java-技能/多线程/JMM内存模型Volatile关键字.html">
+            
+                <a href="../../Java-技能/多线程/JMM内存模型Volatile关键字.html">
+            
+                    
+                    JMM内存模型Volatile关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.5" data-path="../../Java-技能/多线程/Synchronized锁详解.html">
+            
+                <a href="../../Java-技能/多线程/Synchronized锁详解.html">
+            
+                    
+                    Synchronized锁详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.6" data-path="../../Java-技能/多线程/ThreadLocal详解.html">
+            
+                <a href="../../Java-技能/多线程/ThreadLocal详解.html">
+            
+                    
+                    ThreadLocal详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.7" data-path="../../Java-技能/多线程/一部分并发理论基础.html">
+            
+                <a href="../../Java-技能/多线程/一部分并发理论基础.html">
+            
+                    
+                    一部分并发理论基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.8" data-path="../../Java-技能/多线程/二部分并发工具类详解.html">
+            
+                <a href="../../Java-技能/多线程/二部分并发工具类详解.html">
+            
+                    
+                    二部分并发工具类详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.9" data-path="../../Java-技能/多线程/多线程面试题总结.html">
+            
+                <a href="../../Java-技能/多线程/多线程面试题总结.html">
+            
+                    
+                    多线程面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" >
+            
+                <span>
+            
+                    
+                    数据处理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="../../Java-技能/数据处理/json.html">
+            
+                <a href="../../Java-技能/数据处理/json.html">
+            
+                    
+                    Json
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" >
+            
+                <span>
+            
+                    
+                    网络
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.5.1" >
+            
+                <span>
+            
+                    
+                    Http
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.5.1.1" data-path="../../Java-技能/网络/http/HTTP常见错误码.html">
+            
+                <a href="../../Java-技能/网络/http/HTTP常见错误码.html">
+            
+                    
+                    HTTP常见错误码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.1.2" data-path="../../Java-技能/网络/http/HTTP常见面试.html">
+            
+                <a href="../../Java-技能/网络/http/HTTP常见面试.html">
+            
+                    
+                    HTTP常见面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.2" data-path="../../Java-技能/网络/TCP协议.html">
+            
+                <a href="../../Java-技能/网络/TCP协议.html">
+            
+                    
+                    TCP协议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.3" data-path="../../Java-技能/网络/计算机网络.html">
+            
+                <a href="../../Java-技能/网络/计算机网络.html">
+            
+                    
+                    计算机网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../../Java-技能/设计模式/">
+            
+                <a href="../../Java-技能/设计模式/">
+            
+                    
+                    设计模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.6.1" data-path="../../Java-技能/设计模式/创建型模型/">
+            
+                <a href="../../Java-技能/设计模式/创建型模型/">
+            
+                    
+                    创建型模型
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.6.1.1" data-path="../../Java-技能/设计模式/创建型模型/单例模式.html">
+            
+                <a href="../../Java-技能/设计模式/创建型模型/单例模式.html">
+            
+                    
+                    单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.1.2" data-path="../../Java-技能/设计模式/创建型模型/简单工厂模式.html">
+            
+                <a href="../../Java-技能/设计模式/创建型模型/简单工厂模式.html">
+            
+                    
+                    简单工厂模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.2" data-path="../../Java-技能/设计模式/行为模型/">
+            
+                <a href="../../Java-技能/设计模式/行为模型/">
+            
+                    
+                    行为模型
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.6.2.1" data-path="../../Java-技能/设计模式/行为模型/命令模式.html">
+            
+                <a href="../../Java-技能/设计模式/行为模型/命令模式.html">
+            
+                    
+                    命令模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.2.2" data-path="../../Java-技能/设计模式/行为模型/模板方法设计模式.html">
+            
+                <a href="../../Java-技能/设计模式/行为模型/模板方法设计模式.html">
+            
+                    
+                    模板方法设计模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.2.3" data-path="../../Java-技能/设计模式/行为模型/策略模式.html">
+            
+                <a href="../../Java-技能/设计模式/行为模型/策略模式.html">
+            
+                    
+                    策略模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.2.4" data-path="../../Java-技能/设计模式/行为模型/责任链模式.html">
+            
+                <a href="../../Java-技能/设计模式/行为模型/责任链模式.html">
+            
+                    
+                    责任链模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.3" data-path="../../Java-技能/设计模式/设计模式基础概念.html">
+            
+                <a href="../../Java-技能/设计模式/设计模式基础概念.html">
+            
+                    
+                    设计模式基础概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../../Java-技能/集合/">
+            
+                <a href="../../Java-技能/集合/">
+            
+                    
+                    集合
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.7.1" data-path="../../Java-技能/集合/Collection/">
+            
+                <a href="../../Java-技能/集合/Collection/">
+            
+                    
+                    Collection
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.7.1.1" data-path="../../Java-技能/集合/Collection/ArrayList详解.html">
+            
+                <a href="../../Java-技能/集合/Collection/ArrayList详解.html">
+            
+                    
+                    ArrayList详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.2" data-path="../../Java-技能/集合/Collection/CopyOnWriteArrayList详解.html">
+            
+                <a href="../../Java-技能/集合/Collection/CopyOnWriteArrayList详解.html">
+            
+                    
+                    CopyOnWriteArrayList详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.3" data-path="../../Java-技能/集合/Collection/HashSet详解.html">
+            
+                <a href="../../Java-技能/集合/Collection/HashSet详解.html">
+            
+                    
+                    HashSet详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.4" data-path="../../Java-技能/集合/Collection/Java集合面试.html">
+            
+                <a href="../../Java-技能/集合/Collection/Java集合面试.html">
+            
+                    
+                    Java集合面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.5" data-path="../../Java-技能/集合/Collection/Map详解.html">
+            
+                <a href="../../Java-技能/集合/Collection/Map详解.html">
+            
+                    
+                    Map详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.6" data-path="../../Java-技能/集合/Collection/Queue.html">
+            
+                <a href="../../Java-技能/集合/Collection/Queue.html">
+            
+                    
+                    Queue
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.2" data-path="../../Java-技能/集合/Fail-Fast.html">
+            
+                <a href="../../Java-技能/集合/Fail-Fast.html">
+            
+                    
+                    Fail Fast
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../../Java-技能/常用lambda表达式.html">
+            
+                <a href="../../Java-技能/常用lambda表达式.html">
+            
+                    
+                    常用lambda表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../linux/">
+            
+                <a href="../../linux/">
+            
+                    
+                    Linux
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" >
+            
+                <span>
+            
+                    
+                    Centos
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../../linux/centos/基础操作命令.html">
+            
+                <a href="../../linux/centos/基础操作命令.html">
+            
+                    
+                    基础操作命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    中间件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" >
+            
+                <span>
+            
+                    
+                    Elastic Search
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="Es-Nested嵌套查询.html">
+            
+                <a href="Es-Nested嵌套查询.html">
+            
+                    
+                    Es-Nested嵌套查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="Es7.4.2-RestHighLevelClient增删改查.html">
+            
+                <a href="Es7.4.2-RestHighLevelClient增删改查.html">
+            
+                    
+                    Es7.4.2-RestHighLevelClient增删改查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.3" data-path="Es基础查询.html">
+            
+                <a href="Es基础查询.html">
+            
+                    
+                    Es基础查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.4" data-path="Es基础语法.html">
+            
+                <a href="Es基础语法.html">
+            
+                    
+                    Es基础语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.1.5" data-path="es复杂统计-绝对值.html">
+            
+                <a href="es复杂统计-绝对值.html">
+            
+                    
+                    es复杂统计-绝对值
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.6" data-path="es通用查询.html">
+            
+                <a href="es通用查询.html">
+            
+                    
+                    es通用查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7" data-path="安装ELK.html">
+            
+                <a href="安装ELK.html">
+            
+                    
+                    安装ELK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.8" data-path="搜索引擎.html">
+            
+                <a href="搜索引擎.html">
+            
+                    
+                    搜索引擎
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    Postgressql
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../Postgressql/初始Psql.html">
+            
+                <a href="../Postgressql/初始Psql.html">
+            
+                    
+                    初始Psql
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../redis/">
+            
+                <a href="../redis/">
+            
+                    
+                    Redis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="../redis/Redis实现延迟队列.html">
+            
+                <a href="../redis/Redis实现延迟队列.html">
+            
+                    
+                    Redis实现延迟队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="../redis/Redis数据结构.html">
+            
+                <a href="../redis/Redis数据结构.html">
+            
+                    
+                    Redis数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="../redis/Redis核心1-11基础篇.html">
+            
+                <a href="../redis/Redis核心1-11基础篇.html">
+            
+                    
+                    Redis核心1-11基础篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4" data-path="../redis/Redis核心12-21高级篇.html">
+            
+                <a href="../redis/Redis核心12-21高级篇.html">
+            
+                    
+                    Redis核心12-21高级篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../消息队列/消息队列.html">
+            
+                <a href="../消息队列/消息队列.html">
+            
+                    
+                    消息队列
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.1" >
+            
+                <span>
+            
+                    
+                    Kafka
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.1.1" data-path="../消息队列/Kafka/Kafka入门.html">
+            
+                <a href="../消息队列/Kafka/Kafka入门.html">
+            
+                    
+                    Kafka入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.1.2" data-path="../消息队列/Kafka/Kafka消费超时导致重复消费.html">
+            
+                <a href="../消息队列/Kafka/Kafka消费超时导致重复消费.html">
+            
+                    
+                    Kafka消费超时导致重复消费
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.2" >
+            
+                <span>
+            
+                    
+                    Rabbit Mq
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.2.1" data-path="../消息队列/RabbitMq/RabbitMQ安装及使用.html">
+            
+                <a href="../消息队列/RabbitMq/RabbitMQ安装及使用.html">
+            
+                    
+                    RabbitMQ安装及使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../企业项目框架/">
+            
+                <a href="../../企业项目框架/">
+            
+                    
+                    企业项目框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" >
+            
+                <span>
+            
+                    
+                    DDD领域
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="../../企业项目框架/DDD领域/日常使用遇到的.html">
+            
+                <a href="../../企业项目框架/DDD领域/日常使用遇到的.html">
+            
+                    
+                    日常使用遇到的
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../企业项目框架/dubbo/">
+            
+                <a href="../../企业项目框架/dubbo/">
+            
+                    
+                    Dubbo
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="../../企业项目框架/dubbo/Dubbo.html">
+            
+                <a href="../../企业项目框架/dubbo/Dubbo.html">
+            
+                    
+                    Dubbo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.2" data-path="../../企业项目框架/dubbo/分布式服务框架.html">
+            
+                <a href="../../企业项目框架/dubbo/分布式服务框架.html">
+            
+                    
+                    分布式服务框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../../企业项目框架/ORM框架/">
+            
+                <a href="../../企业项目框架/ORM框架/">
+            
+                    
+                    ORM框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.1" data-path="../../企业项目框架/ORM框架/Mybatis详解.html">
+            
+                <a href="../../企业项目框架/ORM框架/Mybatis详解.html">
+            
+                    
+                    Mybatis详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../../企业项目框架/Spring/">
+            
+                <a href="../../企业项目框架/Spring/">
+            
+                    
+                    Spring
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.4.1" data-path="../../企业项目框架/Spring/InitillizingBean.html">
+            
+                <a href="../../企业项目框架/Spring/InitillizingBean.html">
+            
+                    
+                    Initillizing Bean
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2" data-path="../../企业项目框架/Spring/SpringAOP.html">
+            
+                <a href="../../企业项目框架/Spring/SpringAOP.html">
+            
+                    
+                    Spring AOP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.3" data-path="../../企业项目框架/Spring/Spring事务.html">
+            
+                <a href="../../企业项目框架/Spring/Spring事务.html">
+            
+                    
+                    Spring事务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.4" data-path="../../企业项目框架/Spring/TransactionSynchronizationManager.html">
+            
+                <a href="../../企业项目框架/Spring/TransactionSynchronizationManager.html">
+            
+                    
+                    Transaction Synchronization Manager
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.5" data-path="../../企业项目框架/Spring/大事务处理优化.html">
+            
+                <a href="../../企业项目框架/Spring/大事务处理优化.html">
+            
+                    
+                    大事务处理优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.6" data-path="../../企业项目框架/Spring/很老的东西.html">
+            
+                <a href="../../企业项目框架/Spring/很老的东西.html">
+            
+                    
+                    很老的东西
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.7" data-path="../../企业项目框架/Spring/循环依赖.html">
+            
+                <a href="../../企业项目框架/Spring/循环依赖.html">
+            
+                    
+                    循环依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" >
+            
+                <span>
+            
+                    
+                    Spring Boot
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.5.1" data-path="../../企业项目框架/SpringBoot/SpringApplication解析.html">
+            
+                <a href="../../企业项目框架/SpringBoot/SpringApplication解析.html">
+            
+                    
+                    SpringApplication解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5.2" data-path="../../企业项目框架/SpringBoot/SpringBoot-Arthas.html">
+            
+                <a href="../../企业项目框架/SpringBoot/SpringBoot-Arthas.html">
+            
+                    
+                    Spring Boot Arthas
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" >
+            
+                <span>
+            
+                    
+                    Spring Cloud
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.6.1" data-path="../../企业项目框架/SpringCloud/Eureka.html">
+            
+                <a href="../../企业项目框架/SpringCloud/Eureka.html">
+            
+                    
+                    Eureka
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6.2" data-path="../../企业项目框架/SpringCloud/Feign.html">
+            
+                <a href="../../企业项目框架/SpringCloud/Feign.html">
+            
+                    
+                    Feign
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6.3" data-path="../../企业项目框架/SpringCloud/Hystrix.html">
+            
+                <a href="../../企业项目框架/SpringCloud/Hystrix.html">
+            
+                    
+                    Hystrix
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6.4" data-path="../../企业项目框架/SpringCloud/微服务SpringCloud.html">
+            
+                <a href="../../企业项目框架/SpringCloud/微服务SpringCloud.html">
+            
+                    
+                    微服务SpringCloud
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../../企业项目框架/SpringFramework/">
+            
+                <a href="../../企业项目框架/SpringFramework/">
+            
+                    
+                    Spring Framework
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.7.1" data-path="../../企业项目框架/SpringFramework/源码解析之ApplicationContext.html">
+            
+                <a href="../../企业项目框架/SpringFramework/源码解析之ApplicationContext.html">
+            
+                    
+                    源码解析之ApplicationContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    偏门但研究过的东西
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../偏门但研究过的东西/Apache%20CXF.md">
+            
+                <span>
+            
+                    
+                    Apache CXF
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../偏门但研究过的东西/SpringSecurity.html">
+            
+                <a href="../../偏门但研究过的东西/SpringSecurity.html">
+            
+                    
+                    Spring Security
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    大数据组件
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" >
+            
+                <span>
+            
+                    
+                    Groovy
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1.1" data-path="../../大数据组件/Groovy/Groovy基础语法.html">
+            
+                <a href="../../大数据组件/Groovy/Groovy基础语法.html">
+            
+                    
+                    Groovy基础语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" >
+            
+                <span>
+            
+                    
+                    Hadoop
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.1" data-path="../../大数据组件/hadoop/初识.html">
+            
+                <a href="../../大数据组件/hadoop/初识.html">
+            
+                    
+                    初识
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" >
+            
+                <span>
+            
+                    
+                    Hive
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.3.1" data-path="../../大数据组件/hive/hive基础语法DDL.html">
+            
+                <a href="../../大数据组件/hive/hive基础语法DDL.html">
+            
+                    
+                    hive基础语法DDL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3.2" data-path="../../大数据组件/hive/hive语法.html">
+            
+                <a href="../../大数据组件/hive/hive语法.html">
+            
+                    
+                    hive语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" >
+            
+                <span>
+            
+                    
+                    Member
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.4.1" data-path="../../大数据组件/member/会员大数据相关.html">
+            
+                <a href="../../大数据组件/member/会员大数据相关.html">
+            
+                    
+                    会员大数据相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" >
+            
+                <span>
+            
+                    
+                    Presto
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.5.1" data-path="../../大数据组件/Presto/PrestoSQL原理分析.html">
+            
+                <a href="../../大数据组件/Presto/PrestoSQL原理分析.html">
+            
+                    
+                    PrestoSQL原理分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../../大数据组件/StarRocks-DorisDB/">
+            
+                <a href="../../大数据组件/StarRocks-DorisDB/">
+            
+                    
+                    Star Rocks Doris DB
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.6.1" data-path="../../大数据组件/StarRocks-DorisDB/DorisDB了解.html">
+            
+                <a href="../../大数据组件/StarRocks-DorisDB/DorisDB了解.html">
+            
+                    
+                    DorisDB了解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.2" data-path="../../大数据组件/StarRocks-DorisDB/DorisDB语法.html">
+            
+                <a href="../../大数据组件/StarRocks-DorisDB/DorisDB语法.html">
+            
+                    
+                    DorisDB语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" >
+            
+                <span>
+            
+                    
+                    调度
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.7.1" >
+            
+                <span>
+            
+                    
+                    Az Kaban
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.7.1.1" data-path="../../大数据组件/调度/AzKaban/多任务流并行.html">
+            
+                <a href="../../大数据组件/调度/AzKaban/多任务流并行.html">
+            
+                    
+                    多任务流并行
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.8" data-path="../../大数据组件/ClickHouse集群安装.html">
+            
+                <a href="../../大数据组件/ClickHouse集群安装.html">
+            
+                    
+                    ClickHouse集群安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="../../大数据组件/数据研发流程.html">
+            
+                <a href="../../大数据组件/数据研发流程.html">
+            
+                    
+                    数据研发流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    工具类
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" >
+            
+                <span>
+            
+                    
+                    加解密类
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1.1" data-path="../../工具类/加解密类/加解密操作.html">
+            
+                <a href="../../工具类/加解密类/加解密操作.html">
+            
+                    
+                    加解密操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../../数据库/">
+            
+                <a href="../../数据库/">
+            
+                    
+                    数据库
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <span>
+            
+                    
+                    Mysql
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1.1" data-path="../../数据库/mysql/ACID与事务隔离级别.html">
+            
+                <a href="../../数据库/mysql/ACID与事务隔离级别.html">
+            
+                    
+                    ACID与事务隔离级别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.2" data-path="../../数据库/mysql/MVCC.html">
+            
+                <a href="../../数据库/mysql/MVCC.html">
+            
+                    
+                    MVCC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.3" data-path="../../数据库/mysql/Mysql实战-基础篇.html">
+            
+                <a href="../../数据库/mysql/Mysql实战-基础篇.html">
+            
+                    
+                    Mysql实战-基础篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.4" data-path="../../数据库/mysql/Mysql实战-实践篇.html">
+            
+                <a href="../../数据库/mysql/Mysql实战-实践篇.html">
+            
+                    
+                    Mysql实战-实践篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.5" data-path="../../数据库/mysql/常用SQL聚合.html">
+            
+                <a href="../../数据库/mysql/常用SQL聚合.html">
+            
+                    
+                    常用SQL聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.6" data-path="../../数据库/mysql/系统学习Mysql.html">
+            
+                <a href="../../数据库/mysql/系统学习Mysql.html">
+            
+                    
+                    系统学习Mysql
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" >
+            
+                <span>
+            
+                    
+                    Sharding Sphere
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.2.1" data-path="../../数据库/ShardingSphere/ShardingSphere简介及使用.html">
+            
+                <a href="../../数据库/ShardingSphere/ShardingSphere简介及使用.html">
+            
+                    
+                    ShardingSphere简介及使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../../数据结构/">
+            
+                <a href="../../数据结构/">
+            
+                    
+                    数据结构
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../../数据结构/算法/">
+            
+                <a href="../../数据结构/算法/">
+            
+                    
+                    算法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1.1" data-path="../../数据结构/算法/限流算法.html">
+            
+                <a href="../../数据结构/算法/限流算法.html">
+            
+                    
+                    限流算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../../数据结构/线性表.html">
+            
+                <a href="../../数据结构/线性表.html">
+            
+                    
+                    线性表
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    编程基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../../编程基础/与、或、异或.html">
+            
+                <a href="../../编程基础/与、或、异或.html">
+            
+                    
+                    与、或、异或
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../../解决方案/">
+            
+                <a href="../../解决方案/">
+            
+                    
+                    解决方案
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" >
+            
+                <span>
+            
+                    
+                    异常问题排查
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1.1" data-path="../../解决方案/异常问题排查/Transaction-rollback-only.html">
+            
+                <a href="../../解决方案/异常问题排查/Transaction-rollback-only.html">
+            
+                    
+                    Transaction Rollback Only
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../../解决方案/7千万+用户数据分库分表.html">
+            
+                <a href="../../解决方案/7千万+用户数据分库分表.html">
+            
+                    
+                    7千万+用户数据分库分表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../../解决方案/AppleId第三方授权登录流程调研.html">
+            
+                <a href="../../解决方案/AppleId第三方授权登录流程调研.html">
+            
+                    
+                    AppleId第三方授权登录流程调研
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="../../解决方案/Idea远程调试监控端口.html">
+            
+                <a href="../../解决方案/Idea远程调试监控端口.html">
+            
+                    
+                    Idea远程调试监控端口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5" data-path="../../解决方案/Java获取真实ip地址.html">
+            
+                <a href="../../解决方案/Java获取真实ip地址.html">
+            
+                    
+                    Java获取真实ip地址
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.6" data-path="../../解决方案/Jenkins脚本实例.html">
+            
+                <a href="../../解决方案/Jenkins脚本实例.html">
+            
+                    
+                    Jenkins脚本实例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.7" data-path="../../解决方案/MybatisPlus多数据源.html">
+            
+                <a href="../../解决方案/MybatisPlus多数据源.html">
+            
+                    
+                    MybatisPlus多数据源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.8" data-path="../../解决方案/Mysql分库分表.html">
+            
+                <a href="../../解决方案/Mysql分库分表.html">
+            
+                    
+                    Mysql分库分表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.9" data-path="../../解决方案/nacos使用文档说明简介.html">
+            
+                <a href="../../解决方案/nacos使用文档说明简介.html">
+            
+                    
+                    nacos使用文档说明简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.10" data-path="../../解决方案/OAuth2.0授权登录调研.html">
+            
+                <a href="../../解决方案/OAuth2.0授权登录调研.html">
+            
+                    
+                    OAuth2.0授权登录调研
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.11" data-path="../../解决方案/TiDB性能测试.html">
+            
+                <a href="../../解决方案/TiDB性能测试.html">
+            
+                    
+                    TiDB性能测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.12" data-path="../../解决方案/延迟队列解决方案.html">
+            
+                <a href="../../解决方案/延迟队列解决方案.html">
+            
+                    
+                    延迟队列解决方案
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../../计算机网络原理/">
+            
+                <a href="../../计算机网络原理/">
+            
+                    
+                    计算机网络原理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../../计算机网络原理/计算机网络概述.html">
+            
+                <a href="../../计算机网络原理/计算机网络概述.html">
+            
+                    
+                    计算机网络概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >es复杂统计-绝对值</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#&#x590D;&#x6742;&#x7EDF;&#x8BA1;&#x793A;&#x4F8B;"><b>1.1. </b>&#x590D;&#x6742;&#x7EDF;&#x8BA1;&#x793A;&#x4F8B;</a></li><li><span class="title-icon "></span><a href="#java&#x4EE3;&#x7801;&#x793A;&#x4F8B;"><b>1.2. </b>java&#x4EE3;&#x7801;&#x793A;&#x4F8B;</a></li><li><span class="title-icon "></span><a href="#&#x6838;&#x5FC3;&#x70B9;"><b>1.3. </b>&#x6838;&#x5FC3;&#x70B9;</a></li></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="&#x590D;&#x6742;&#x7EDF;&#x8BA1;&#x793A;&#x4F8B;"><a name="&#x590D;&#x6742;&#x7EDF;&#x8BA1;&#x793A;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#&#x590D;&#x6742;&#x7EDF;&#x8BA1;&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. &#x590D;&#x6742;&#x7EDF;&#x8BA1;&#x793A;&#x4F8B;</h2>
+<p>POST /vts_finance_insurance_policy/_search</p>
+<pre class="language-"><code class="lang-json"><span class="token punctuation">{</span>
+  <span class="token property">&quot;query&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;bool&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;filter&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;bool&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;must&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token punctuation">{</span>
+                <span class="token property">&quot;bool&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                  <span class="token property">&quot;must&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                    <span class="token punctuation">{</span>
+                      <span class="token property">&quot;term&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                        <span class="token property">&quot;enabledFlag&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                          <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">,</span>
+                          <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+                        <span class="token punctuation">}</span>
+                      <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                      <span class="token property">&quot;term&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                        <span class="token property">&quot;tmsBatchNumber&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                          <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;PC24041600006&quot;</span><span class="token punctuation">,</span>
+                          <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+                        <span class="token punctuation">}</span>
+                      <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                      <span class="token property">&quot;range&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                        <span class="token property">&quot;bidTime&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                          <span class="token property">&quot;from&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+                          <span class="token property">&quot;to&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1715737414000&quot;</span><span class="token punctuation">,</span>
+                          <span class="token property">&quot;include_lower&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                          <span class="token property">&quot;include_upper&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                          <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+                        <span class="token punctuation">}</span>
+                      <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    <span class="token punctuation">{</span>
+                      <span class="token property">&quot;bool&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                        <span class="token property">&quot;must_not&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                          <span class="token punctuation">{</span>
+                            <span class="token property">&quot;term&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                              <span class="token property">&quot;bidTime&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                                <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;-62167420800000&quot;</span><span class="token punctuation">,</span>
+                                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+                              <span class="token punctuation">}</span>
+                            <span class="token punctuation">}</span>
+                          <span class="token punctuation">}</span>
+                        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;adjust_pure_negative&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                        <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+                      <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span>
+                  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                  <span class="token property">&quot;adjust_pure_negative&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                  <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+                <span class="token punctuation">}</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;adjust_pure_negative&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;adjust_pure_negative&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;_source&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;includes&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;excludes&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;totalInsureAmount&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;sum&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;script&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;source&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Math.abs(doc[&apos;premiumAmount&apos;].value)&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;lang&quot;</span><span class="token operator">:</span> <span class="token string">&quot;painless&quot;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;totalDeductionAmount&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;sum&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;script&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;source&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Math.abs(doc[&apos;deductionAmount&apos;].value)&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;lang&quot;</span><span class="token operator">:</span> <span class="token string">&quot;painless&quot;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;unInsuredNum&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;filter&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;bool&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;must&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;policyStatus&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;10&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;enabledFlag&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;1&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;adjust_pure_negative&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;insuranceOrderNumber&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;value_count&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;field&quot;</span><span class="token operator">:</span> <span class="token string">&quot;id&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;insuredNum&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;filter&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;bool&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;must&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;policyStatus&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;20&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;enabledFlag&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;1&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;adjust_pure_negative&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;insuranceOrderNumber&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;value_count&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;field&quot;</span><span class="token operator">:</span> <span class="token string">&quot;id&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;insureCancelNum&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;filter&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;bool&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;must&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;policyStatus&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;30&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;enabledFlag&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;1&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;adjust_pure_negative&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;insuranceOrderNumber&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;value_count&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;field&quot;</span><span class="token operator">:</span> <span class="token string">&quot;id&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;insureFailNum&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;filter&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;bool&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;must&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;policyStatus&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;40&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;enabledFlag&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;1&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;adjust_pure_negative&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;insuranceOrderNumber&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;value_count&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;field&quot;</span><span class="token operator">:</span> <span class="token string">&quot;id&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;insureCancelFailNum&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;filter&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;bool&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;must&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;policyStatus&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;50&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;enabledFlag&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;1&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;adjust_pure_negative&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;insuranceOrderNumber&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;value_count&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;field&quot;</span><span class="token operator">:</span> <span class="token string">&quot;id&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;pendingPusNum&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;filter&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;bool&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;must&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;tmsBillStatus&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;100&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;enabledFlag&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;1&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;adjust_pure_negative&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;insuranceOrderNumber&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;value_count&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;field&quot;</span><span class="token operator">:</span> <span class="token string">&quot;id&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;tmsApproveNum&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;filter&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;bool&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;must&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;tmsBillStatus&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;200&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;enabledFlag&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;1&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;adjust_pure_negative&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;insuranceOrderNumber&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;value_count&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;field&quot;</span><span class="token operator">:</span> <span class="token string">&quot;id&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;tmsConfirmNum&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;filter&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;bool&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;must&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;tmsBillStatus&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;300&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;enabledFlag&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;1&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;adjust_pure_negative&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;insuranceOrderNumber&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;value_count&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;field&quot;</span><span class="token operator">:</span> <span class="token string">&quot;id&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;tmsPaiNum&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;filter&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;bool&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;must&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;tmsBillStatus&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;400&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+              <span class="token property">&quot;terms&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                <span class="token property">&quot;enabledFlag&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+                  <span class="token string">&quot;1&quot;</span>
+                <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+              <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;adjust_pure_negative&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;boost&quot;</span><span class="token operator">:</span> <span class="token number">1.0</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;aggregations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;insuranceOrderNumber&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">&quot;value_count&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;field&quot;</span><span class="token operator">:</span> <span class="token string">&quot;id&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="java&#x4EE3;&#x7801;&#x793A;&#x4F8B;"><a name="java&#x4EE3;&#x7801;&#x793A;&#x4F8B;" class="anchor-navigation-ex-anchor" href="#java&#x4EE3;&#x7801;&#x793A;&#x4F8B;"><i class="fa fa-link" aria-hidden="true"></i></a>1.2. java&#x4EE3;&#x7801;&#x793A;&#x4F8B;</h2>
+<pre class="language-"><code class="lang-Java">import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.script.Script;
+import org.elasticsearch.script.ScriptType;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.metrics.scripted.ScriptedMetricAggregationBuilder;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
+
+import java.util.Collections;
+
+/**
+ * @Description:
+ * @author: 582401
+ * @date: 2022/4/1
+ */
+public class InsurancePolicyPreSearch extends BaseGSPreSearch {
+
+    /**
+     * &#x5F85;&#x6295;&#x4FDD;&#x6570;&#x91CF;
+     */
+    public static final String UN_INSURED_NUM = &quot;unInsuredNum&quot;;
+
+
+    /**
+     * &#x5DF2;&#x6295;&#x4FDD;&#x6570;&#x91CF;
+     */
+    public static final String INSURED_NUM = &quot;insuredNum&quot;;
+
+    /**
+     * &#x53D6;&#x6D88;&#x6295;&#x4FDD;&#x6570;&#x91CF;
+     */
+    public static final String INSURED_CANCEL_NUM = &quot;insureCancelNum&quot;;
+
+    /**
+     * &#x6295;&#x4FDD;&#x5931;&#x8D25;&#x6570;&#x91CF;
+     */
+    public static final String INSURE_FAIL_NUM = &quot;insureFailNum&quot;;
+
+    /**
+     * &#x9000;&#x4FDD;&#x5931;&#x8D25;&#x6570;&#x91CF;
+     */
+    public static final String INSURE_CANCEL_FAIL_NUM = &quot;insureCancelFailNum&quot;;
+
+    /**
+     * &#x5F85;&#x63A8;&#x9001;TMS&#x6570;&#x91CF;
+     */
+    public static final String PENDING_PUS_NUM = &quot;pendingPusNum&quot;;
+
+    /**
+     * &#x5F85;&#x5BF9;&#x8D26;&#x6570;&#x91CF;
+     */
+    public static final String TMS_APPROVE_NUM = &quot;tmsApproveNum&quot;;
+
+    /**
+     * &#x5DF2;&#x5BF9;&#x8D26;&#x6570;&#x91CF;
+     */
+    public static final String TMS_CONFIRM_NUM = &quot;tmsConfirmNum&quot;;
+
+    /**
+     * &#x5DF2;&#x652F;&#x4ED8;&#x6570;&#x91CF;
+     */
+    public static final String TMS_PAI_NUM = &quot;tmsPaiNum&quot;;
+
+    /**
+     * &#x8BA2;&#x5355;&#x6570;&#x91CF;
+     */
+    public static final String ORDER_NUMBER = &quot;insuranceOrderNumber&quot;;
+
+
+    /**
+     * &#x4FDD;&#x5355;&#x72B6;&#x6001;&#x5206;&#x7EC4;
+     */
+    public static final String POLICY_STATUS_GROUP = &quot;policyStatusGroup&quot;;
+
+    /**
+     * &#x6295;&#x4FDD;&#x603B;&#x91D1;&#x989D;
+     */
+    public static final String TOTAL_INSURE_AMOUNT = &quot;totalInsureAmount&quot;;
+
+    /**
+     * &#x6263;&#x6B3E;&#x603B;&#x91D1;&#x989D;
+     */
+    public static final String TOTAL_DEDUCTION_AMOUNT = &quot;totalDeductionAmount&quot;;
+
+    @Override
+    public void buildAggregation(SearchSourceBuilder sourceBuilder) {
+
+        //&#x5F85;&#x6295;&#x4FDD;&#x8BA2;&#x5355;&#x6570;
+        QueryBuilder unInsuredNumQuery = QueryBuilders.boolQuery()
+                .must(QueryBuilders.termsQuery(&quot;policyStatus&quot;, &quot;10&quot;))
+                .must(QueryBuilders.termsQuery(&quot;enabledFlag&quot;, EnabledFlagEnum.YES.getCode()));
+        AggregationBuilder unInsuredNumBuilder = AggregationBuilders.filter(InsurancePolicyPreSearch.UN_INSURED_NUM, unInsuredNumQuery)
+                .subAggregation(AggregationBuilders.count(InsurancePolicyPreSearch.ORDER_NUMBER).field(&quot;id&quot;));
+
+        //&#x5DF2;&#x6295;&#x4FDD;&#x8BA2;&#x5355;&#x6570;
+        QueryBuilder insuredNumQuery = QueryBuilders.boolQuery()
+                .must(QueryBuilders.termsQuery(&quot;policyStatus&quot;, &quot;20&quot;))
+                .must(QueryBuilders.termsQuery(&quot;enabledFlag&quot;, EnabledFlagEnum.YES.getCode()));
+        AggregationBuilder insuredNumBuilder = AggregationBuilders.filter(InsurancePolicyPreSearch.INSURED_NUM, insuredNumQuery)
+                .subAggregation(AggregationBuilders.count(InsurancePolicyPreSearch.ORDER_NUMBER).field(&quot;id&quot;));
+
+        //&#x53D6;&#x6D88;&#x6295;&#x4FDD;&#x6570;&#x91CF;
+        QueryBuilder insureCancelNumQuery = QueryBuilders.boolQuery()
+                .must(QueryBuilders.termsQuery(&quot;policyStatus&quot;, &quot;30&quot;))
+                .must(QueryBuilders.termsQuery(&quot;enabledFlag&quot;, EnabledFlagEnum.YES.getCode()));
+        AggregationBuilder insureCancelNumBuilder = AggregationBuilders.filter(InsurancePolicyPreSearch.INSURED_CANCEL_NUM, insureCancelNumQuery)
+                .subAggregation(AggregationBuilders.count(InsurancePolicyPreSearch.ORDER_NUMBER).field(&quot;id&quot;));
+
+        //&#x6295;&#x4FDD;&#x5931;&#x8D25;&#x6570;&#x91CF;insureFailNum
+        QueryBuilder insureFailNumQuery = QueryBuilders.boolQuery()
+                .must(QueryBuilders.termsQuery(&quot;policyStatus&quot;, &quot;40&quot;))
+                .must(QueryBuilders.termsQuery(&quot;enabledFlag&quot;, EnabledFlagEnum.YES.getCode()));
+        AggregationBuilder insureFailNumBuilder = AggregationBuilders.filter(InsurancePolicyPreSearch.INSURE_FAIL_NUM, insureFailNumQuery)
+                .subAggregation(AggregationBuilders.count(InsurancePolicyPreSearch.ORDER_NUMBER).field(&quot;id&quot;));
+
+        //&#x9000;&#x4FDD;&#x5931;&#x8D25;&#x6570;&#x91CF;insureCancelFailNum
+        QueryBuilder insureCancelFailNumQuery = QueryBuilders.boolQuery()
+                .must(QueryBuilders.termsQuery(&quot;policyStatus&quot;, &quot;50&quot;))
+                .must(QueryBuilders.termsQuery(&quot;enabledFlag&quot;, EnabledFlagEnum.YES.getCode()));
+        AggregationBuilder insureCancelFailNumBuilder = AggregationBuilders.filter(InsurancePolicyPreSearch.INSURE_CANCEL_FAIL_NUM, insureCancelFailNumQuery)
+                .subAggregation(AggregationBuilders.count(InsurancePolicyPreSearch.ORDER_NUMBER).field(&quot;id&quot;));
+
+        //&#x5F85;&#x63A8;&#x9001;TMS&#x6570;&#x91CF;pendingPusNum
+        QueryBuilder pendingPusNumQuery = QueryBuilders.boolQuery()
+                .must(QueryBuilders.termsQuery(&quot;tmsBillStatus&quot;, TmsBillStatusEnum.PENDING_PUSH.getCode()))
+                .must(QueryBuilders.termsQuery(&quot;enabledFlag&quot;, EnabledFlagEnum.YES.getCode()));
+        AggregationBuilder pendingPusNumBuilder = AggregationBuilders.filter(InsurancePolicyPreSearch.PENDING_PUS_NUM, pendingPusNumQuery)
+                .subAggregation(AggregationBuilders.count(InsurancePolicyPreSearch.ORDER_NUMBER).field(&quot;id&quot;));
+
+        //&#x5F85;&#x5BF9;&#x8D26;&#x6570;&#x91CF;tmsApproveNum
+        QueryBuilder tmsApproveNumQuery = QueryBuilders.boolQuery()
+                .must(QueryBuilders.termsQuery(&quot;tmsBillStatus&quot;, TmsBillStatusEnum.TMS_APPROVE.getCode()))
+                .must(QueryBuilders.termsQuery(&quot;enabledFlag&quot;, EnabledFlagEnum.YES.getCode()));
+        AggregationBuilder tmsApproveNumBuilder = AggregationBuilders.filter(InsurancePolicyPreSearch.TMS_APPROVE_NUM, tmsApproveNumQuery)
+                .subAggregation(AggregationBuilders.count(InsurancePolicyPreSearch.ORDER_NUMBER).field(&quot;id&quot;));
+
+        //&#x5DF2;&#x5BF9;&#x8D26;&#x6570;&#x91CF;tmsConfirmNum
+        QueryBuilder tmsConfirmNumQuery = QueryBuilders.boolQuery()
+                .must(QueryBuilders.termsQuery(&quot;tmsBillStatus&quot;, TmsBillStatusEnum.TMS_CONFIRM.getCode()))
+                .must(QueryBuilders.termsQuery(&quot;enabledFlag&quot;, EnabledFlagEnum.YES.getCode()));
+        AggregationBuilder tmsConfirmNumBuilder = AggregationBuilders.filter(InsurancePolicyPreSearch.TMS_CONFIRM_NUM, tmsConfirmNumQuery)
+                .subAggregation(AggregationBuilders.count(InsurancePolicyPreSearch.ORDER_NUMBER).field(&quot;id&quot;));
+
+        //&#x5DF2;&#x652F;&#x4ED8;&#x6570;&#x91CF;tmsPaiNum
+        QueryBuilder tmsPaiNumQuery = QueryBuilders.boolQuery()
+                .must(QueryBuilders.termsQuery(&quot;tmsBillStatus&quot;, TmsBillStatusEnum.TMS_PAID.getCode()))
+                .must(QueryBuilders.termsQuery(&quot;enabledFlag&quot;, EnabledFlagEnum.YES.getCode()));
+        AggregationBuilder tmsPaiNumBuilder = AggregationBuilders.filter(InsurancePolicyPreSearch.TMS_PAI_NUM, tmsPaiNumQuery)
+                .subAggregation(AggregationBuilders.count(InsurancePolicyPreSearch.ORDER_NUMBER).field(&quot;id&quot;));
+        sourceBuilder
+                .aggregation(AggregationBuilders.sum(InsurancePolicyPreSearch.TOTAL_INSURE_AMOUNT)
+                        .script(new Script(ScriptType.INLINE, &quot;painless&quot;, &quot;Math.abs(doc[&apos;premiumAmount&apos;].value)&quot;, Collections.emptyMap()))
+                        )
+                .aggregation(AggregationBuilders.sum(InsurancePolicyPreSearch.TOTAL_DEDUCTION_AMOUNT)
+                        .script(new Script(ScriptType.INLINE, &quot;painless&quot;, &quot;Math.abs(doc[&apos;deductionAmount&apos;].value)&quot;, Collections.emptyMap()))
+                        )
+                .aggregation(unInsuredNumBuilder)
+                .aggregation(insuredNumBuilder)
+                .aggregation(insureCancelNumBuilder)
+                .aggregation(insureFailNumBuilder)
+                .aggregation(insureCancelFailNumBuilder)
+                .aggregation(pendingPusNumBuilder)
+                .aggregation(tmsApproveNumBuilder)
+                .aggregation(tmsConfirmNumBuilder)
+                .aggregation(tmsPaiNumBuilder);
+    }
+}
+</code></pre>
+<p>&#x67E5;&#x8BE2;&#x53D6;&#x503C;&#x4EE3;&#x7801;</p>
+<pre class="language-"><code class="lang-Java"> public InsurancePolicyStatisticsDTO statisticsInsurancePolicy(InsurancePolicyBO insurancePolicyBO) {
+        Pagination<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>InsurancePolicy</span><span class="token punctuation">&gt;</span></span> pagination = (Pagination<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>InsurancePolicy</span><span class="token punctuation">&gt;</span></span>) esPreHandleUtils.newPagination(insurancePolicyBO);
+        //&#x7EC4;&#x88C5;es&#x901A;&#x7528;&#x67E5;&#x8BE2;&#x6761;&#x4EF6;
+        String authCode = KeyValueConfigClient.getValue(VtsBaseConfigConstant.INSURANCE_STATISTICS_AUTH_CODE, EsConstant.INSURANCE_POLICY_AUTH_CODE);
+        SimpleQuery simpleQuery = getSimpleQuery(pagination, authCode);
+        SearchResponse searchResponse = esPreHandleUtils.getEsGroupStatisticsClient().searchResult(simpleQuery, new InsurancePolicyPreSearch());
+        InsurancePolicyStatisticsDTO insurancePolicyStatisticsDTO = new InsurancePolicyStatisticsDTO();
+
+        //&#x5F85;&#x6295;&#x4FDD;&#x6570;&#x91CF;
+        ParsedFilter unInsuredNum = searchResponse.getAggregations().get(InsurancePolicyPreSearch.UN_INSURED_NUM);
+        insurancePolicyStatisticsDTO.setUnInsuredNum(Objects.nonNull(unInsuredNum) ? Integer.parseInt(String.valueOf(unInsuredNum.getDocCount())) : 0);
+
+        //&#x5DF2;&#x6295;&#x4FDD;&#x6570;&#x91CF;
+        ParsedFilter insuredNum = searchResponse.getAggregations().get(InsurancePolicyPreSearch.INSURED_NUM);
+        insurancePolicyStatisticsDTO.setInsuredNum(Objects.nonNull(insuredNum) ? Integer.parseInt(String.valueOf(insuredNum.getDocCount())) : 0);
+
+        //&#x53D6;&#x6D88;&#x6295;&#x4FDD;&#x6570;&#x91CF;
+        ParsedFilter insureCancelNum = searchResponse.getAggregations().get(InsurancePolicyPreSearch.INSURED_CANCEL_NUM);
+        insurancePolicyStatisticsDTO.setInsureCancelNum(Objects.nonNull(insureCancelNum) ? Integer.parseInt(String.valueOf(insureCancelNum.getDocCount())) : 0);
+
+        //&#x6295;&#x4FDD;&#x5931;&#x8D25;&#x6570;&#x91CF;
+        ParsedFilter insureFailNum = searchResponse.getAggregations().get(InsurancePolicyPreSearch.INSURE_FAIL_NUM);
+        insurancePolicyStatisticsDTO.setInsureFailNum(Objects.nonNull(insureFailNum) ? Integer.parseInt(String.valueOf(insureFailNum.getDocCount())) : 0);
+
+        //&#x9000;&#x4FDD;&#x5931;&#x8D25;&#x6570;&#x91CF;
+        ParsedFilter insureCancelFailNum = searchResponse.getAggregations().get(InsurancePolicyPreSearch.INSURE_CANCEL_FAIL_NUM);
+        insurancePolicyStatisticsDTO.setInsureCancelFailNum(Objects.nonNull(insureCancelFailNum) ? Integer.parseInt(String.valueOf(insureCancelFailNum.getDocCount())) : 0);
+
+        //&#x5F85;&#x63A8;&#x9001;TMS&#x6570;&#x91CF;
+        ParsedFilter pendingPusNum = searchResponse.getAggregations().get(InsurancePolicyPreSearch.PENDING_PUS_NUM);
+        insurancePolicyStatisticsDTO.setPendingPusNum(Objects.nonNull(pendingPusNum) ? Integer.parseInt(String.valueOf(pendingPusNum.getDocCount())) : 0);
+
+        //&#x5F85;&#x5BF9;&#x8D26;&#x6570;&#x91CF;
+        ParsedFilter tmsApproveNum = searchResponse.getAggregations().get(InsurancePolicyPreSearch.TMS_APPROVE_NUM);
+        insurancePolicyStatisticsDTO.setTmsApproveNum(Objects.nonNull(tmsApproveNum) ? Integer.parseInt(String.valueOf(tmsApproveNum.getDocCount())) : 0);
+
+        //&#x5DF2;&#x5BF9;&#x8D26;&#x6570;&#x91CF;
+        ParsedFilter tmsConfirmNum = searchResponse.getAggregations().get(InsurancePolicyPreSearch.TMS_CONFIRM_NUM);
+        insurancePolicyStatisticsDTO.setTmsConfirmNum(Objects.nonNull(tmsConfirmNum) ? Integer.parseInt(String.valueOf(tmsConfirmNum.getDocCount())) : 0);
+
+        //&#x5DF2;&#x652F;&#x4ED8;&#x6570;&#x91CF;
+        ParsedFilter tmsPaiNum = searchResponse.getAggregations().get(InsurancePolicyPreSearch.TMS_PAI_NUM);
+        insurancePolicyStatisticsDTO.setTmsPaiNum(Objects.nonNull(tmsPaiNum) ? Integer.parseInt(String.valueOf(tmsPaiNum.getDocCount())) : 0);
+
+        //&#x6295;&#x4FDD;&#x603B;&#x91D1;&#x989D;
+        ParsedSum totalInsureAmount = searchResponse.getAggregations().get(InsurancePolicyPreSearch.TOTAL_INSURE_AMOUNT);
+        BigDecimal policyTotalAmount = (Objects.nonNull(totalInsureAmount)) ?
+                BigDecimal.valueOf(Math.abs(totalInsureAmount.getValue())).setScale(2, RoundingMode.HALF_UP) : BigDecimal.ZERO;
+        insurancePolicyStatisticsDTO.setPolicyTotalAmount(policyTotalAmount);
+
+        //&#x6263;&#x6B3E;&#x603B;&#x91D1;&#x989D;
+        ParsedSum totalDeductionAmount = searchResponse.getAggregations().get(InsurancePolicyPreSearch.TOTAL_DEDUCTION_AMOUNT);
+        BigDecimal deductionTotalAmount = (Objects.nonNull(totalDeductionAmount)) ?
+                BigDecimal.valueOf(Math.abs(totalDeductionAmount.getValue())).setScale(2, RoundingMode.HALF_UP) : BigDecimal.ZERO;
+        insurancePolicyStatisticsDTO.setDeductionTotalAmount(deductionTotalAmount);
+        return insurancePolicyStatisticsDTO;
+    }
+</code></pre>
+<h2 id="&#x6838;&#x5FC3;&#x70B9;"><a name="&#x6838;&#x5FC3;&#x70B9;" class="anchor-navigation-ex-anchor" href="#&#x6838;&#x5FC3;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a>1.3. &#x6838;&#x5FC3;&#x70B9;</h2>
+<pre class="language-"><code class="lang-Java">sourceBuilder
+    .aggregation(AggregationBuilders.sum(InsurancePolicyPreSearch.TOTAL_INSURE_AMOUNT)
+        .script(new Script(ScriptType.INLINE, &quot;painless&quot;, &quot;Math.abs(doc[&apos;premiumAmount&apos;].value)&quot;, Collections.emptyMap()))
+    )
+    .aggregation(AggregationBuilders.sum(InsurancePolicyPreSearch.TOTAL_DEDUCTION_AMOUNT)
+        .script(new Script(ScriptType.INLINE, &quot;painless&quot;, &quot;Math.abs(doc[&apos;deductionAmount&apos;].value)&quot;, Collections.emptyMap()))
+    );
+</code></pre>
+<p>&#x5B57;&#x6BB5;&#x672A;double&#x7C7B;&#x578B;&#xFF0C;&#x7528;&#x811A;&#x672C;&#x7EDF;&#x8BA1;&#x7EDD;&#x5BF9;&#x503C;&#x7684;&#x805A;&#x5408;&#x503C;</p>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> Copyright &amp; copy lviter@163.com </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> <i>updated</i> 2024-08-01 09:49:44 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Es基础语法.html" class="navigation navigation-prev " aria-label="Previous page: Es基础语法">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="es通用查询.html" class="navigation navigation-next " aria-label="Next page: es通用查询">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"es复杂统计-绝对值","level":"1.4.1.5","depth":3,"next":{"title":"es通用查询","level":"1.4.1.6","depth":3,"path":"中间件/ElasticSearch/es通用查询.md","ref":"中间件/ElasticSearch/es通用查询.md","articles":[]},"previous":{"title":"Es基础语法","level":"1.4.1.4","depth":3,"path":"中间件/ElasticSearch/Es基础语法.md","ref":"中间件/ElasticSearch/Es基础语法.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","copy-code-button","page-footer-ex","anchor-navigation-ex","expandable-chapters-small","prism","-highlight","-lunr","-search","theme-comscore","search-pro","splitter","back-to-top-button","advanced-emoji","pageview-count","-sharing","sharing-plus","insert-logo"],"ignores":["_book","node_modules"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-solarizedlight.css"],"lang":{"flow":"typescript"}},"page-footer-ex":{"copyright":"Copyright & copy lviter@163.com","markdown":true,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"<i>updated</i>"},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"fontsettings":{"theme":"white","family":"sans","size":2},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"theme-comscore":{},"back-to-top-button":{},"pageview-count":{},"expandable-chapters-small":{},"copy-code-button":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"qq":false,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","weibo","messenger","whatsapp"],"douban":false,"facebook":false,"weibo":true,"whatsapp":false,"line":true,"google":true,"qzone":true},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"style":"background: none; max-height: 30px; min-height: 30px","url":"static/images/qrcode_lviter.png"},"expandable-chapters":{}},"theme":"default","author":"lviter","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"越过山丘","language":"zh-hans","links":{"sidebar":{"GitHub":"https://github.com/lviter/professional"}},"gitbook":"*","description":"关注点分离"},"file":{"path":"中间件/ElasticSearch/es复杂统计-绝对值.md","mtime":"2024-08-01T09:49:44.443Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-08-01T09:50:34.181Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,2885 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>OutOfMemoryError异常 · 越过山丘</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="lviter">
+        
+        
+    
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-prism/prism-solarizedlight.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-insert-logo/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="垃圾收集器与内存分配策略.html" />
+    
+    
+    <link rel="prev" href="JVM调优-jdk1.8.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://github.com/lviter/professional" target="_blank" class="custom-link">GitHub</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../../">
+            
+                <a href="../../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Java-技能
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../IO模型/">
+            
+                <a href="../../IO模型/">
+            
+                    
+                    IO模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    JVM
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    深入理解JVM-jdk1.7
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.2.1.1" data-path="HotSpot虚拟机对象探秘.html">
+            
+                <a href="HotSpot虚拟机对象探秘.html">
+            
+                    
+                    HotSpot虚拟机对象探秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.2" data-path="JVM调优-jdk1.8.html">
+            
+                <a href="JVM调优-jdk1.8.html">
+            
+                    
+                    JVM调优-jdk1.8
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2.1.3" data-path="OutOfMemoryError异常.html">
+            
+                <a href="OutOfMemoryError异常.html">
+            
+                    
+                    OutOfMemoryError异常
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.4" data-path="垃圾收集器与内存分配策略.html">
+            
+                <a href="垃圾收集器与内存分配策略.html">
+            
+                    
+                    垃圾收集器与内存分配策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2.1.5" data-path="自动内存管理机制.html">
+            
+                <a href="自动内存管理机制.html">
+            
+                    
+                    自动内存管理机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" >
+            
+                <span>
+            
+                    
+                    多线程
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1" data-path="../../多线程/AQS.html">
+            
+                <a href="../../多线程/AQS.html">
+            
+                    
+                    AQS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.2" data-path="../../多线程/CAS自旋锁.html">
+            
+                <a href="../../多线程/CAS自旋锁.html">
+            
+                    
+                    CAS自旋锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.3" data-path="../../多线程/Java锁.html">
+            
+                <a href="../../多线程/Java锁.html">
+            
+                    
+                    Java锁
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.4" data-path="../../多线程/JMM内存模型Volatile关键字.html">
+            
+                <a href="../../多线程/JMM内存模型Volatile关键字.html">
+            
+                    
+                    JMM内存模型Volatile关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.5" data-path="../../多线程/Synchronized锁详解.html">
+            
+                <a href="../../多线程/Synchronized锁详解.html">
+            
+                    
+                    Synchronized锁详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.6" data-path="../../多线程/ThreadLocal详解.html">
+            
+                <a href="../../多线程/ThreadLocal详解.html">
+            
+                    
+                    ThreadLocal详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.7" data-path="../../多线程/一部分并发理论基础.html">
+            
+                <a href="../../多线程/一部分并发理论基础.html">
+            
+                    
+                    一部分并发理论基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.8" data-path="../../多线程/二部分并发工具类详解.html">
+            
+                <a href="../../多线程/二部分并发工具类详解.html">
+            
+                    
+                    二部分并发工具类详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.9" data-path="../../多线程/多线程面试题总结.html">
+            
+                <a href="../../多线程/多线程面试题总结.html">
+            
+                    
+                    多线程面试题总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" >
+            
+                <span>
+            
+                    
+                    数据处理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="../../数据处理/json.html">
+            
+                <a href="../../数据处理/json.html">
+            
+                    
+                    Json
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" >
+            
+                <span>
+            
+                    
+                    网络
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.5.1" >
+            
+                <span>
+            
+                    
+                    Http
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.5.1.1" data-path="../../网络/http/HTTP常见错误码.html">
+            
+                <a href="../../网络/http/HTTP常见错误码.html">
+            
+                    
+                    HTTP常见错误码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.1.2" data-path="../../网络/http/HTTP常见面试.html">
+            
+                <a href="../../网络/http/HTTP常见面试.html">
+            
+                    
+                    HTTP常见面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.2" data-path="../../网络/TCP协议.html">
+            
+                <a href="../../网络/TCP协议.html">
+            
+                    
+                    TCP协议
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5.3" data-path="../../网络/计算机网络.html">
+            
+                <a href="../../网络/计算机网络.html">
+            
+                    
+                    计算机网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../../设计模式/">
+            
+                <a href="../../设计模式/">
+            
+                    
+                    设计模式
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.6.1" data-path="../../设计模式/创建型模型/">
+            
+                <a href="../../设计模式/创建型模型/">
+            
+                    
+                    创建型模型
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.6.1.1" data-path="../../设计模式/创建型模型/单例模式.html">
+            
+                <a href="../../设计模式/创建型模型/单例模式.html">
+            
+                    
+                    单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.1.2" data-path="../../设计模式/创建型模型/简单工厂模式.html">
+            
+                <a href="../../设计模式/创建型模型/简单工厂模式.html">
+            
+                    
+                    简单工厂模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.2" data-path="../../设计模式/行为模型/">
+            
+                <a href="../../设计模式/行为模型/">
+            
+                    
+                    行为模型
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.6.2.1" data-path="../../设计模式/行为模型/命令模式.html">
+            
+                <a href="../../设计模式/行为模型/命令模式.html">
+            
+                    
+                    命令模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.2.2" data-path="../../设计模式/行为模型/模板方法设计模式.html">
+            
+                <a href="../../设计模式/行为模型/模板方法设计模式.html">
+            
+                    
+                    模板方法设计模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.2.3" data-path="../../设计模式/行为模型/策略模式.html">
+            
+                <a href="../../设计模式/行为模型/策略模式.html">
+            
+                    
+                    策略模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.2.4" data-path="../../设计模式/行为模型/责任链模式.html">
+            
+                <a href="../../设计模式/行为模型/责任链模式.html">
+            
+                    
+                    责任链模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6.3" data-path="../../设计模式/设计模式基础概念.html">
+            
+                <a href="../../设计模式/设计模式基础概念.html">
+            
+                    
+                    设计模式基础概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../../集合/">
+            
+                <a href="../../集合/">
+            
+                    
+                    集合
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.7.1" data-path="../../集合/Collection/">
+            
+                <a href="../../集合/Collection/">
+            
+                    
+                    Collection
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.7.1.1" data-path="../../集合/Collection/ArrayList详解.html">
+            
+                <a href="../../集合/Collection/ArrayList详解.html">
+            
+                    
+                    ArrayList详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.2" data-path="../../集合/Collection/CopyOnWriteArrayList详解.html">
+            
+                <a href="../../集合/Collection/CopyOnWriteArrayList详解.html">
+            
+                    
+                    CopyOnWriteArrayList详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.3" data-path="../../集合/Collection/HashSet详解.html">
+            
+                <a href="../../集合/Collection/HashSet详解.html">
+            
+                    
+                    HashSet详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.4" data-path="../../集合/Collection/Java集合面试.html">
+            
+                <a href="../../集合/Collection/Java集合面试.html">
+            
+                    
+                    Java集合面试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.5" data-path="../../集合/Collection/Map详解.html">
+            
+                <a href="../../集合/Collection/Map详解.html">
+            
+                    
+                    Map详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.1.6" data-path="../../集合/Collection/Queue.html">
+            
+                <a href="../../集合/Collection/Queue.html">
+            
+                    
+                    Queue
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7.2" data-path="../../集合/Fail-Fast.html">
+            
+                <a href="../../集合/Fail-Fast.html">
+            
+                    
+                    Fail Fast
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../../常用lambda表达式.html">
+            
+                <a href="../../常用lambda表达式.html">
+            
+                    
+                    常用lambda表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../../linux/">
+            
+                <a href="../../../linux/">
+            
+                    
+                    Linux
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" >
+            
+                <span>
+            
+                    
+                    Centos
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../../../linux/centos/基础操作命令.html">
+            
+                <a href="../../../linux/centos/基础操作命令.html">
+            
+                    
+                    基础操作命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../../中间件/">
+            
+                <a href="../../../中间件/">
+            
+                    
+                    中间件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" >
+            
+                <span>
+            
+                    
+                    Elastic Search
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="../../../中间件/ElasticSearch/Es-Nested嵌套查询.html">
+            
+                <a href="../../../中间件/ElasticSearch/Es-Nested嵌套查询.html">
+            
+                    
+                    Es-Nested嵌套查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" data-path="../../../中间件/ElasticSearch/Es7.4.2-RestHighLevelClient增删改查.html">
+            
+                <a href="../../../中间件/ElasticSearch/Es7.4.2-RestHighLevelClient增删改查.html">
+            
+                    
+                    Es7.4.2-RestHighLevelClient增删改查
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.3" data-path="../../../中间件/ElasticSearch/Es基础查询.html">
+            
+                <a href="../../../中间件/ElasticSearch/Es基础查询.html">
+            
+                    
+                    Es基础查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.4" data-path="../../../中间件/ElasticSearch/Es基础语法.html">
+            
+                <a href="../../../中间件/ElasticSearch/Es基础语法.html">
+            
+                    
+                    Es基础语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.5" data-path="../../../中间件/ElasticSearch/es复杂统计-绝对值.html">
+            
+                <a href="../../../中间件/ElasticSearch/es复杂统计-绝对值.html">
+            
+                    
+                    es复杂统计-绝对值
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.6" data-path="../../../中间件/ElasticSearch/es通用查询.html">
+            
+                <a href="../../../中间件/ElasticSearch/es通用查询.html">
+            
+                    
+                    es通用查询
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.7" data-path="../../../中间件/ElasticSearch/安装ELK.html">
+            
+                <a href="../../../中间件/ElasticSearch/安装ELK.html">
+            
+                    
+                    安装ELK
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.8" data-path="../../../中间件/ElasticSearch/搜索引擎.html">
+            
+                <a href="../../../中间件/ElasticSearch/搜索引擎.html">
+            
+                    
+                    搜索引擎
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    Postgressql
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../../../中间件/Postgressql/初始Psql.html">
+            
+                <a href="../../../中间件/Postgressql/初始Psql.html">
+            
+                    
+                    初始Psql
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../../中间件/redis/">
+            
+                <a href="../../../中间件/redis/">
+            
+                    
+                    Redis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="../../../中间件/redis/Redis实现延迟队列.html">
+            
+                <a href="../../../中间件/redis/Redis实现延迟队列.html">
+            
+                    
+                    Redis实现延迟队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="../../../中间件/redis/Redis数据结构.html">
+            
+                <a href="../../../中间件/redis/Redis数据结构.html">
+            
+                    
+                    Redis数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="../../../中间件/redis/Redis核心1-11基础篇.html">
+            
+                <a href="../../../中间件/redis/Redis核心1-11基础篇.html">
+            
+                    
+                    Redis核心1-11基础篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4" data-path="../../../中间件/redis/Redis核心12-21高级篇.html">
+            
+                <a href="../../../中间件/redis/Redis核心12-21高级篇.html">
+            
+                    
+                    Redis核心12-21高级篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../../中间件/消息队列/消息队列.html">
+            
+                <a href="../../../中间件/消息队列/消息队列.html">
+            
+                    
+                    消息队列
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.1" >
+            
+                <span>
+            
+                    
+                    Kafka
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.1.1" data-path="../../../中间件/消息队列/Kafka/Kafka入门.html">
+            
+                <a href="../../../中间件/消息队列/Kafka/Kafka入门.html">
+            
+                    
+                    Kafka入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.1.2" data-path="../../../中间件/消息队列/Kafka/Kafka消费超时导致重复消费.html">
+            
+                <a href="../../../中间件/消息队列/Kafka/Kafka消费超时导致重复消费.html">
+            
+                    
+                    Kafka消费超时导致重复消费
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.2" >
+            
+                <span>
+            
+                    
+                    Rabbit Mq
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.2.1" data-path="../../../中间件/消息队列/RabbitMq/RabbitMQ安装及使用.html">
+            
+                <a href="../../../中间件/消息队列/RabbitMq/RabbitMQ安装及使用.html">
+            
+                    
+                    RabbitMQ安装及使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../../企业项目框架/">
+            
+                <a href="../../../企业项目框架/">
+            
+                    
+                    企业项目框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" >
+            
+                <span>
+            
+                    
+                    DDD领域
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1.1" data-path="../../../企业项目框架/DDD领域/日常使用遇到的.html">
+            
+                <a href="../../../企业项目框架/DDD领域/日常使用遇到的.html">
+            
+                    
+                    日常使用遇到的
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../../企业项目框架/dubbo/">
+            
+                <a href="../../../企业项目框架/dubbo/">
+            
+                    
+                    Dubbo
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.2.1" data-path="../../../企业项目框架/dubbo/Dubbo.html">
+            
+                <a href="../../../企业项目框架/dubbo/Dubbo.html">
+            
+                    
+                    Dubbo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2.2" data-path="../../../企业项目框架/dubbo/分布式服务框架.html">
+            
+                <a href="../../../企业项目框架/dubbo/分布式服务框架.html">
+            
+                    
+                    分布式服务框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../../../企业项目框架/ORM框架/">
+            
+                <a href="../../../企业项目框架/ORM框架/">
+            
+                    
+                    ORM框架
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.3.1" data-path="../../../企业项目框架/ORM框架/Mybatis详解.html">
+            
+                <a href="../../../企业项目框架/ORM框架/Mybatis详解.html">
+            
+                    
+                    Mybatis详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../../../企业项目框架/Spring/">
+            
+                <a href="../../../企业项目框架/Spring/">
+            
+                    
+                    Spring
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.4.1" data-path="../../../企业项目框架/Spring/InitillizingBean.html">
+            
+                <a href="../../../企业项目框架/Spring/InitillizingBean.html">
+            
+                    
+                    Initillizing Bean
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.2" data-path="../../../企业项目框架/Spring/SpringAOP.html">
+            
+                <a href="../../../企业项目框架/Spring/SpringAOP.html">
+            
+                    
+                    Spring AOP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.3" data-path="../../../企业项目框架/Spring/Spring事务.html">
+            
+                <a href="../../../企业项目框架/Spring/Spring事务.html">
+            
+                    
+                    Spring事务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.4" data-path="../../../企业项目框架/Spring/TransactionSynchronizationManager.html">
+            
+                <a href="../../../企业项目框架/Spring/TransactionSynchronizationManager.html">
+            
+                    
+                    Transaction Synchronization Manager
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.5" data-path="../../../企业项目框架/Spring/大事务处理优化.html">
+            
+                <a href="../../../企业项目框架/Spring/大事务处理优化.html">
+            
+                    
+                    大事务处理优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.6" data-path="../../../企业项目框架/Spring/很老的东西.html">
+            
+                <a href="../../../企业项目框架/Spring/很老的东西.html">
+            
+                    
+                    很老的东西
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4.7" data-path="../../../企业项目框架/Spring/循环依赖.html">
+            
+                <a href="../../../企业项目框架/Spring/循环依赖.html">
+            
+                    
+                    循环依赖
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" >
+            
+                <span>
+            
+                    
+                    Spring Boot
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.5.1" data-path="../../../企业项目框架/SpringBoot/SpringApplication解析.html">
+            
+                <a href="../../../企业项目框架/SpringBoot/SpringApplication解析.html">
+            
+                    
+                    SpringApplication解析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5.2" data-path="../../../企业项目框架/SpringBoot/SpringBoot-Arthas.html">
+            
+                <a href="../../../企业项目框架/SpringBoot/SpringBoot-Arthas.html">
+            
+                    
+                    Spring Boot Arthas
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" >
+            
+                <span>
+            
+                    
+                    Spring Cloud
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.6.1" data-path="../../../企业项目框架/SpringCloud/Eureka.html">
+            
+                <a href="../../../企业项目框架/SpringCloud/Eureka.html">
+            
+                    
+                    Eureka
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6.2" data-path="../../../企业项目框架/SpringCloud/Feign.html">
+            
+                <a href="../../../企业项目框架/SpringCloud/Feign.html">
+            
+                    
+                    Feign
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6.3" data-path="../../../企业项目框架/SpringCloud/Hystrix.html">
+            
+                <a href="../../../企业项目框架/SpringCloud/Hystrix.html">
+            
+                    
+                    Hystrix
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6.4" data-path="../../../企业项目框架/SpringCloud/微服务SpringCloud.html">
+            
+                <a href="../../../企业项目框架/SpringCloud/微服务SpringCloud.html">
+            
+                    
+                    微服务SpringCloud
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../../../企业项目框架/SpringFramework/">
+            
+                <a href="../../../企业项目框架/SpringFramework/">
+            
+                    
+                    Spring Framework
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.7.1" data-path="../../../企业项目框架/SpringFramework/源码解析之ApplicationContext.html">
+            
+                <a href="../../../企业项目框架/SpringFramework/源码解析之ApplicationContext.html">
+            
+                    
+                    源码解析之ApplicationContext
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    偏门但研究过的东西
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../../偏门但研究过的东西/Apache%20CXF.md">
+            
+                <span>
+            
+                    
+                    Apache CXF
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../../偏门但研究过的东西/SpringSecurity.html">
+            
+                <a href="../../../偏门但研究过的东西/SpringSecurity.html">
+            
+                    
+                    Spring Security
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    大数据组件
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" >
+            
+                <span>
+            
+                    
+                    Groovy
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1.1" data-path="../../../大数据组件/Groovy/Groovy基础语法.html">
+            
+                <a href="../../../大数据组件/Groovy/Groovy基础语法.html">
+            
+                    
+                    Groovy基础语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" >
+            
+                <span>
+            
+                    
+                    Hadoop
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.1" data-path="../../../大数据组件/hadoop/初识.html">
+            
+                <a href="../../../大数据组件/hadoop/初识.html">
+            
+                    
+                    初识
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" >
+            
+                <span>
+            
+                    
+                    Hive
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.3.1" data-path="../../../大数据组件/hive/hive基础语法DDL.html">
+            
+                <a href="../../../大数据组件/hive/hive基础语法DDL.html">
+            
+                    
+                    hive基础语法DDL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3.2" data-path="../../../大数据组件/hive/hive语法.html">
+            
+                <a href="../../../大数据组件/hive/hive语法.html">
+            
+                    
+                    hive语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" >
+            
+                <span>
+            
+                    
+                    Member
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.4.1" data-path="../../../大数据组件/member/会员大数据相关.html">
+            
+                <a href="../../../大数据组件/member/会员大数据相关.html">
+            
+                    
+                    会员大数据相关
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" >
+            
+                <span>
+            
+                    
+                    Presto
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.5.1" data-path="../../../大数据组件/Presto/PrestoSQL原理分析.html">
+            
+                <a href="../../../大数据组件/Presto/PrestoSQL原理分析.html">
+            
+                    
+                    PrestoSQL原理分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../../../大数据组件/StarRocks-DorisDB/">
+            
+                <a href="../../../大数据组件/StarRocks-DorisDB/">
+            
+                    
+                    Star Rocks Doris DB
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.6.1" data-path="../../../大数据组件/StarRocks-DorisDB/DorisDB了解.html">
+            
+                <a href="../../../大数据组件/StarRocks-DorisDB/DorisDB了解.html">
+            
+                    
+                    DorisDB了解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.2" data-path="../../../大数据组件/StarRocks-DorisDB/DorisDB语法.html">
+            
+                <a href="../../../大数据组件/StarRocks-DorisDB/DorisDB语法.html">
+            
+                    
+                    DorisDB语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" >
+            
+                <span>
+            
+                    
+                    调度
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.7.1" >
+            
+                <span>
+            
+                    
+                    Az Kaban
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.7.1.1" data-path="../../../大数据组件/调度/AzKaban/多任务流并行.html">
+            
+                <a href="../../../大数据组件/调度/AzKaban/多任务流并行.html">
+            
+                    
+                    多任务流并行
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.8" data-path="../../../大数据组件/ClickHouse集群安装.html">
+            
+                <a href="../../../大数据组件/ClickHouse集群安装.html">
+            
+                    
+                    ClickHouse集群安装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.9" data-path="../../../大数据组件/数据研发流程.html">
+            
+                <a href="../../../大数据组件/数据研发流程.html">
+            
+                    
+                    数据研发流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    工具类
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" >
+            
+                <span>
+            
+                    
+                    加解密类
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1.1" data-path="../../../工具类/加解密类/加解密操作.html">
+            
+                <a href="../../../工具类/加解密类/加解密操作.html">
+            
+                    
+                    加解密操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../../../数据库/">
+            
+                <a href="../../../数据库/">
+            
+                    
+                    数据库
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <span>
+            
+                    
+                    Mysql
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1.1" data-path="../../../数据库/mysql/ACID与事务隔离级别.html">
+            
+                <a href="../../../数据库/mysql/ACID与事务隔离级别.html">
+            
+                    
+                    ACID与事务隔离级别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.2" data-path="../../../数据库/mysql/MVCC.html">
+            
+                <a href="../../../数据库/mysql/MVCC.html">
+            
+                    
+                    MVCC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.3" data-path="../../../数据库/mysql/Mysql实战-基础篇.html">
+            
+                <a href="../../../数据库/mysql/Mysql实战-基础篇.html">
+            
+                    
+                    Mysql实战-基础篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.4" data-path="../../../数据库/mysql/Mysql实战-实践篇.html">
+            
+                <a href="../../../数据库/mysql/Mysql实战-实践篇.html">
+            
+                    
+                    Mysql实战-实践篇
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.5" data-path="../../../数据库/mysql/常用SQL聚合.html">
+            
+                <a href="../../../数据库/mysql/常用SQL聚合.html">
+            
+                    
+                    常用SQL聚合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.6" data-path="../../../数据库/mysql/系统学习Mysql.html">
+            
+                <a href="../../../数据库/mysql/系统学习Mysql.html">
+            
+                    
+                    系统学习Mysql
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" >
+            
+                <span>
+            
+                    
+                    Sharding Sphere
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.2.1" data-path="../../../数据库/ShardingSphere/ShardingSphere简介及使用.html">
+            
+                <a href="../../../数据库/ShardingSphere/ShardingSphere简介及使用.html">
+            
+                    
+                    ShardingSphere简介及使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../../../数据结构/">
+            
+                <a href="../../../数据结构/">
+            
+                    
+                    数据结构
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../../../数据结构/算法/">
+            
+                <a href="../../../数据结构/算法/">
+            
+                    
+                    算法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1.1" data-path="../../../数据结构/算法/限流算法.html">
+            
+                <a href="../../../数据结构/算法/限流算法.html">
+            
+                    
+                    限流算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../../../数据结构/线性表.html">
+            
+                <a href="../../../数据结构/线性表.html">
+            
+                    
+                    线性表
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    编程基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../../../编程基础/与、或、异或.html">
+            
+                <a href="../../../编程基础/与、或、异或.html">
+            
+                    
+                    与、或、异或
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../../../解决方案/">
+            
+                <a href="../../../解决方案/">
+            
+                    
+                    解决方案
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" >
+            
+                <span>
+            
+                    
+                    异常问题排查
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1.1" data-path="../../../解决方案/异常问题排查/Transaction-rollback-only.html">
+            
+                <a href="../../../解决方案/异常问题排查/Transaction-rollback-only.html">
+            
+                    
+                    Transaction Rollback Only
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../../../解决方案/7千万+用户数据分库分表.html">
+            
+                <a href="../../../解决方案/7千万+用户数据分库分表.html">
+            
+                    
+                    7千万+用户数据分库分表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../../../解决方案/AppleId第三方授权登录流程调研.html">
+            
+                <a href="../../../解决方案/AppleId第三方授权登录流程调研.html">
+            
+                    
+                    AppleId第三方授权登录流程调研
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="../../../解决方案/Idea远程调试监控端口.html">
+            
+                <a href="../../../解决方案/Idea远程调试监控端口.html">
+            
+                    
+                    Idea远程调试监控端口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5" data-path="../../../解决方案/Java获取真实ip地址.html">
+            
+                <a href="../../../解决方案/Java获取真实ip地址.html">
+            
+                    
+                    Java获取真实ip地址
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.6" data-path="../../../解决方案/Jenkins脚本实例.html">
+            
+                <a href="../../../解决方案/Jenkins脚本实例.html">
+            
+                    
+                    Jenkins脚本实例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.7" data-path="../../../解决方案/MybatisPlus多数据源.html">
+            
+                <a href="../../../解决方案/MybatisPlus多数据源.html">
+            
+                    
+                    MybatisPlus多数据源
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.8" data-path="../../../解决方案/Mysql分库分表.html">
+            
+                <a href="../../../解决方案/Mysql分库分表.html">
+            
+                    
+                    Mysql分库分表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.9" data-path="../../../解决方案/nacos使用文档说明简介.html">
+            
+                <a href="../../../解决方案/nacos使用文档说明简介.html">
+            
+                    
+                    nacos使用文档说明简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.10" data-path="../../../解决方案/OAuth2.0授权登录调研.html">
+            
+                <a href="../../../解决方案/OAuth2.0授权登录调研.html">
+            
+                    
+                    OAuth2.0授权登录调研
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.11" data-path="../../../解决方案/TiDB性能测试.html">
+            
+                <a href="../../../解决方案/TiDB性能测试.html">
+            
+                    
+                    TiDB性能测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.12" data-path="../../../解决方案/延迟队列解决方案.html">
+            
+                <a href="../../../解决方案/延迟队列解决方案.html">
+            
+                    
+                    延迟队列解决方案
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../../../计算机网络原理/">
+            
+                <a href="../../../计算机网络原理/">
+            
+                    
+                    计算机网络原理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../../../计算机网络原理/计算机网络概述.html">
+            
+                <a href="../../../计算机网络原理/计算机网络概述.html">
+            
+                    
+                    计算机网络概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../.." >OutOfMemoryError异常</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><li><span class="title-icon "></span><a href="#outofmemoryerror&#x5F02;&#x5E38;"><b>1.1. </b>OutOfMemoryError&#x5F02;&#x5E38;</a></li><ul><li><span class="title-icon "></span><a href="#java&#x5806;&#x6EA2;&#x51FA;"><b>1.1.1. </b>Java&#x5806;&#x6EA2;&#x51FA;</a></li><li><span class="title-icon "></span><a href="#&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;"><b>1.1.2. </b>&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;</a></li><li><span class="title-icon "></span><a href="#&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x5185;&#x5B58;&#x6EA2;&#x51FA;"><b>1.1.3. </b>&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x5185;&#x5B58;&#x6EA2;&#x51FA;</a></li><li><span class="title-icon "></span><a href="#&#x672C;&#x5730;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;"><b>1.1.4. </b>&#x672C;&#x5730;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h2 id="outofmemoryerror&#x5F02;&#x5E38;"><a name="outofmemoryerror&#x5F02;&#x5E38;" class="anchor-navigation-ex-anchor" href="#outofmemoryerror&#x5F02;&#x5E38;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. OutOfMemoryError&#x5F02;&#x5E38;</h2>
+<ul>
+<li>&#x6CE8;&#xFF1A;&#x672C;&#x4EBA;&#x6D4B;&#x8BD5;&#x57FA;&#x4E8E;jdk1.8&#x6D4B;&#x8BD5;&#xFF0C;&#x6709;&#x90E8;&#x5206;&#x4E0D;&#x540C;&#x4F46;&#x662F;&#x539F;&#x7406;&#x53EF;&#x4EE5;&#x4E86;&#x89E3;&#xFF0C;&#x611F;&#x5174;&#x8DA3;&#x53EF;&#x4EE5;&#x4E0B;&#x8F7D;jdk1.7&#x914D;&#x5957;&#x6D4B;&#x8BD5;</li>
+<li>Java&#x865A;&#x62DF;&#x673A;&#x89C4;&#x8303;&#x4E2D;&#x63CF;&#x8FF0;&#xFF0C;&#x9664;&#x4E86;&#x7A0B;&#x5E8F;&#x8BA1;&#x6570;&#x5668;&#xFF0C;&#x865A;&#x62DF;&#x673A;&#x7684;&#x5176;&#x4ED6;&#x51E0;&#x4E2A;&#x8FD0;&#x884C;&#x65F6;&#x533A;&#x57DF;&#x90FD;&#x6709;&#x53D1;&#x751F;OOM&#x5F02;&#x5E38;&#x7684;&#x53EF;&#x80FD;&#x3002; &#x4E0B;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x90FD;&#x57FA;&#x4E8E;HotSpot&#x865A;&#x62DF;&#x673A;&#x8FD0;&#x884C;&#xFF0C;&#x8BBE;&#x7F6E;VM&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x5728;IDE&#x7684;VM options&#x5185;&#x8BBE;&#x7F6E;,&#x5982;&#x56FE;
+<img src="https://llhyoudao.oss-cn-shenzhen.aliyuncs.com/%E6%9C%89%E9%81%93%E4%BA%91/103.jpg" alt=""></li>
+</ul>
+<h3 id="java&#x5806;&#x6EA2;&#x51FA;"><a name="java&#x5806;&#x6EA2;&#x51FA;" class="anchor-navigation-ex-anchor" href="#java&#x5806;&#x6EA2;&#x51FA;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.1. Java&#x5806;&#x6EA2;&#x51FA;</h3>
+<p>&#x5F15;&#x53D1;&#x601D;&#x8DEF;&#xFF1A;Java&#x5806;&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;&#xFF0C;&#x53EA;&#x8981;&#x4E0D;&#x65AD;&#x5730;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E14;&#x4FDD;&#x8BC1;GC Roots&#x5230;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x6709;&#x53EF;&#x8FBE;&#x8DEF;&#x5F84;&#x6765;&#x907F;&#x514D;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x6E05;&#x9664;&#x8FD9;&#x4E9B;&#x5BF9;&#x8C61;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x5BF9;&#x8C61;&#x6570;&#x91CF;&#x5230;&#x8FBE;&#x6700;&#x5927;&#x5806;&#x7684;&#x5BB9;&#x91CF;&#x9650;&#x5236;&#x540E;&#x5C31;&#x4F1A;&#x4EA7;&#x751F;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x5F02;&#x5E38;&#x3002;</p>
+<p>-
+&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x9700;&#x8981;&#x914D;&#x7F6E;VM&#xFF0C;&#x8BBE;&#x7F6E;java&#x5806;&#x5927;&#x5C0F;20MB,&#x4E0D;&#x53EF;&#x6269;&#x5C55;&#xFF08;&#x5C06;&#x5806;&#x7684;&#x6700;&#x5C0F;&#x503C;-Xms&#x53C2;&#x6570;&#x4E0E;&#x6700;&#x5927;&#x503C;-Xmx&#x53C2;&#x6570;&#x8BBE;&#x7F6E;&#x4E3A;&#x4E00;&#x6837;&#x5373;&#x53EF;&#x907F;&#x514D;&#x5806;&#x81EA;&#x52A8;&#x6269;&#x5C55;&#xFF09;&#xFF0C;-XX&#xFF1A;+HeapDumpOnOutOfMemoryError&#x53EF;&#x4EE5;&#x8BA9;&#x865A;&#x62DF;&#x673A;&#x5728;&#x51FA;&#x73B0;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x5F02;&#x5E38;&#x65F6;Dump&#x51FA;&#x5F53;&#x524D;&#x7684;&#x5185;&#x5B58;&#x5806;&#x8F6C;&#x50A8;&#x5FEB;&#x7167;&#x4EE5;&#x4FBF;&#x4E8B;&#x540E;&#x8FDB;&#x884C;&#x5206;&#x6790;
+-Xmx&#xFF1A;&#x6700;&#x5927;&#x5806;&#x5927;&#x5C0F;</p>
+<pre class="language-"><code class="lang-yaml"><span class="token punctuation">-</span>Xmx20M <span class="token punctuation">-</span>Xms20M <span class="token punctuation">-</span>XX<span class="token punctuation">:</span>+HeapDumpOnOutOfMemoryError <span class="token punctuation">-</span>XX<span class="token punctuation">:</span>HeapDumpPath=E<span class="token punctuation">:</span>\jvmlog\oom.hprof
+  ```z
+  &#x53EF;&#x4EE5;&#x6307;&#x5B9A;hprof&#x6587;&#x4EF6;&#x5B58;&#x653E;&#x4F4D;&#x7F6E;&#xFF0C;&#x4E4B;&#x540E;&#x4F7F;&#x7528;jdk&#x81EA;&#x5E26;&#x5DE5;&#x5177;jvisualvm.exe&#x6253;&#x5F00;&#x5206;&#x6790;&#x5373;&#x53EF;
+
+  ```java
+  import java.util.ArrayList;
+  import java.util.List;
+
+  public class HeapOOM <span class="token punctuation">{</span>
+  static class OOMObject <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+  public static void main(
+  String<span class="token punctuation">[</span><span class="token punctuation">]</span> args) <span class="token punctuation">{</span>
+  List&lt;OOMObject<span class="token punctuation">&gt;</span> list = new ArrayList&lt;OOMObject<span class="token punctuation">&gt;</span>();
+  while (true) <span class="token punctuation">{</span>
+  list.add(new OOMObject());
+  <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre class="language-"><code class="lang-log"><span class="token property">java.lang.OutOfMemoryError:</span> Java heap space
+Dumping heap to java_pid12092<span class="token punctuation">.</span>hprof <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+Heap dump file created <span class="token punctuation">[</span><span class="token number">28256955</span> bytes in <span class="token number">0.096</span> secs<span class="token punctuation">]</span>
+Exception in thread <span class="token string">&quot;main&quot;</span> <span class="token exception javastacktrace language-javastacktrace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>OutOfMemoryError<span class="token punctuation">:</span> Java heap space
+    <span class="token keyword">at</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Arrays<span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span>java<span class="token punctuation">:</span>3210<span class="token punctuation">)</span>
+    <span class="token keyword">at</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Arrays<span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span>java<span class="token punctuation">:</span>3181<span class="token punctuation">)</span>
+    <span class="token keyword">at</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">.</span><span class="token function">grow</span><span class="token punctuation">(</span>ArrayList<span class="token punctuation">.</span>java<span class="token punctuation">:</span>267<span class="token punctuation">)</span>
+    <span class="token keyword">at</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">.</span><span class="token function">ensureExplicitCapacity</span><span class="token punctuation">(</span>ArrayList<span class="token punctuation">.</span>java<span class="token punctuation">:</span>241<span class="token punctuation">)</span>
+    <span class="token keyword">at</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">.</span><span class="token function">ensureCapacityInternal</span><span class="token punctuation">(</span>ArrayList<span class="token punctuation">.</span>java<span class="token punctuation">:</span>233<span class="token punctuation">)</span>
+    <span class="token keyword">at</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>ArrayList<span class="token punctuation">.</span>java<span class="token punctuation">:</span>464<span class="token punctuation">)</span>
+    <span class="token keyword">at</span> com<span class="token punctuation">.</span>llh<span class="token punctuation">.</span>jdk<span class="token punctuation">.</span>map<span class="token punctuation">.</span>HeapOOM<span class="token punctuation">.</span><span class="token function">main</span><span class="token punctuation">(</span>HeapOOM<span class="token punctuation">.</span>java<span class="token punctuation">:</span>14<span class="token punctuation">)</span></span>
+</code></pre>
+<p>Java&#x5806;&#x5185;&#x5B58;&#x7684;OOM&#x5F02;&#x5E38;&#x662F;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x4E2D;&#x5E38;&#x89C1;&#x7684;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x5F02;&#x5E38;&#x60C5;&#x51B5;&#x3002;&#x5F53;&#x51FA;&#x73B0;Java&#x5806;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x65F6;&#xFF0C;&#x5F02;&#x5E38;&#x5806;&#x6808;&#x4FE1;&#x606F;&#x201C;java.lang.OutOfMemoryError&#x201D;&#x4F1A;&#x8DDF;&#x7740;&#x8FDB;&#x4E00;&#x6B65;&#x63D0;&#x793A;&#x201C;Java heap space&#x201D;&#x3002;</p>
+<p><img src="https://llhyoudao.oss-cn-shenzhen.aliyuncs.com/%E6%9C%89%E9%81%93%E4%BA%91/104.jpg" alt=""></p>
+<ul>
+<li>&#x5982;&#x679C;&#x662F;&#x5185;&#x5B58;&#x6CC4;&#x9732;&#xFF0C;&#x53EF;&#x8FDB;&#x4E00;&#x6B65;&#x901A;&#x8FC7;&#x5DE5;&#x5177;&#x67E5;&#x770B;&#x6CC4;&#x9732;&#x5BF9;&#x8C61;&#x5230;GC Roots&#x7684;&#x5F15;&#x7528;&#x94FE;&#x3002;&#x4E8E;&#x662F;&#x5C31;&#x80FD;&#x627E;&#x5230;&#x6CC4;&#x9732;&#x5BF9;&#x8C61;&#x662F;&#x901A;&#x8FC7;&#x600E;&#x6837;&#x7684;&#x8DEF;&#x5F84;&#x4E0E;GC Roots&#x76F8;&#x5173;&#x8054;&#x5E76;&#x5BFC;&#x81F4;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x65E0;&#x6CD5;&#x81EA;&#x52A8;&#x56DE;&#x6536;&#x5B83;&#x4EEC;&#x7684;&#x3002;&#x638C;&#x63E1;&#x4E86;&#x6CC4;&#x9732;&#x5BF9;&#x8C61;&#x7684;&#x7C7B;&#x578B;&#x4FE1;&#x606F;&#x53CA;GC
+Roots&#x5F15;&#x7528;&#x94FE;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x6BD4;&#x8F83;&#x51C6;&#x786E;&#x5730;&#x5B9A;&#x4F4D;&#x51FA;&#x6CC4;&#x9732;&#x4EE3;&#x7801;&#x7684;&#x4F4D;&#x7F6E;&#x3002;
+-</li>
+</ul>
+<p>&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#x6CC4;&#x9732;&#xFF0C;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x786E;&#x5B9E;&#x90FD;&#x8FD8;&#x5FC5;&#x987B;&#x5B58;&#x6D3B;&#x7740;&#xFF0C;&#x90A3;&#x5C31;&#x5E94;&#x5F53;&#x68C0;&#x67E5;&#x865A;&#x62DF;&#x673A;&#x7684;&#x5806;&#x53C2;&#x6570;&#xFF08;-Xmx&#x4E0E;-Xms&#xFF09;&#xFF0C;&#x4E0E;&#x673A;&#x5668;&#x7269;&#x7406;&#x5185;&#x5B58;&#x5BF9;&#x6BD4;&#x770B;&#x662F;&#x5426;&#x8FD8;&#x53EF;&#x4EE5;&#x8C03;&#x5927;&#xFF0C;&#x4ECE;&#x4EE3;&#x7801;&#x4E0A;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x5B58;&#x5728;&#x67D0;&#x4E9B;&#x5BF9;&#x8C61;&#x751F;&#x547D;&#x5468;&#x671F;&#x8FC7;&#x957F;&#x3001;&#x6301;&#x6709;&#x72B6;&#x6001;&#x65F6;&#x95F4;&#x8FC7;&#x957F;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5C1D;&#x8BD5;&#x51CF;&#x5C11;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x671F;&#x7684;&#x5185;&#x5B58;&#x6D88;&#x8017;&#x3002;</p>
+<h3 id="&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;"><a name="&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;" class="anchor-navigation-ex-anchor" href="#&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.2. &#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;</h3>
+<ol>
+<li>&#x5728;java&#x865A;&#x62DF;&#x673A;&#x6808;&#x4E2D;&#x63CF;&#x8FF0;&#x4E86;&#x4E24;&#x79CD;&#x5F02;&#x5E38;&#xFF1A;<ul>
+<li>&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x8BF7;&#x6C42;&#x7684;&#x6808;&#x6DF1;&#x5EA6;&#x5927;&#x4E8E;&#x865A;&#x62DF;&#x673A;&#x6240;&#x5141;&#x8BB8;&#x7684;&#x6700;&#x5927;&#x6DF1;&#x5EA6;&#xFF0C;&#x5C06;&#x629B;&#x51FA;StackOverflowError&#x5F02;&#x5E38;</li>
+<li>&#x5982;&#x679C;&#x865A;&#x62DF;&#x673A;&#x5728;&#x6269;&#x5C55;&#x6808;&#x65F6;&#x65E0;&#x6CD5;&#x7533;&#x8BF7;&#x5230;&#x8DB3;&#x591F;&#x7684;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;&#x5219;&#x629B;&#x51FA;OutOfMemoryError&#x5F02;&#x5E38;</li>
+</ul>
+</li>
+<li><p>&#x5B9A;&#x4E49;&#x5927;&#x91CF;&#x7684;&#x672C;&#x5730;&#x53D8;&#x91CF;&#xFF0C;&#x589E;&#x5927;&#x6B64;&#x65B9;&#x6CD5;&#x6808;&#x4E2D;&#x672C;&#x5730;&#x53D8;&#x91CF;&#x8868;&#x7684;&#x957F;&#x5EA6;&#xFF0C;&#x8BBE;&#x7F6E;-Xss&#x53C2;&#x6570;&#x51CF;&#x5C11;&#x6808;&#x5185;&#x5B58;&#x5BB9;&#x91CF;</p>
+<pre class="language-"><code class="lang-yaml"> <span class="token punctuation">-</span>Xss20M <span class="token punctuation">-</span>XX<span class="token punctuation">:</span>+HeapDumpOnOutOfMemoryError <span class="token punctuation">-</span>XX<span class="token punctuation">:</span>HeapDumpPath=E<span class="token punctuation">:</span>\jvmlog\sof.hprof
+</code></pre>
+<pre class="language-"><code class="lang-java"> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JavaVMStackSOF</span> <span class="token punctuation">{</span>
+     <span class="token keyword">private</span> <span class="token keyword">int</span> stackLength <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">stackLeak</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         stackLength<span class="token operator">++</span><span class="token punctuation">;</span>
+         <span class="token function">stackLeak</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Throwable</span> <span class="token punctuation">{</span>
+         <span class="token class-name">JavaVMStackSOF</span> oom <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JavaVMStackSOF</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token keyword">try</span> <span class="token punctuation">{</span>
+             oom<span class="token punctuation">.</span><span class="token function">stackLeak</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+             <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;stack length&#xFF1A;&quot;</span> <span class="token operator">+</span> oom<span class="token punctuation">.</span>stackLength<span class="token punctuation">)</span><span class="token punctuation">;</span>
+             <span class="token keyword">throw</span> e<span class="token punctuation">;</span>
+         <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;</p>
+<pre class="language-"><code> stack length&#xFF1A;1271382
+ Exception in thread &quot;main&quot; java.lang.StackOverflowError
+     at com.llh.jdk.map.JavaVMStackSOF.stackLeak(JavaVMStackSOF.java:8)
+     at com.llh.jdk.map.JavaVMStackSOF.stackLeak(JavaVMStackSOF.java:8)
+     at com.llh.jdk.map.JavaVMStackSOF.stackLeak(JavaVMStackSOF.java:8)
+     at com.llh.jdk.map.JavaVMStackSOF.stackLeak(JavaVMStackSOF.java:8)
+     at com.llh.jdk.map.JavaVMStackSOF.stackLeak(JavaVMStackSOF.java:8)
+     at com.llh.jdk.map.JavaVMStackSOF.stackLeak(JavaVMStackSOF.java:8)
+     at com.llh.jdk.map.JavaVMStackSOF.stackLeak(JavaVMStackSOF.java:8)
+     at com.llh.jdk.map.JavaVMStackSOF.stackLeak(JavaVMStackSOF.java:8)
+ &#xB7;&#xB7;&#xB7;
+</code></pre><p>&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#xFF1A; &#x5355;&#x7EBF;&#x7A0B;&#x4E0B;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;&#x7531;&#x4E8E;&#x6808;&#x5E27;&#x592A;&#x5927;&#x8FD8;&#x662F;&#x865A;&#x62DF;&#x673A;&#x6808;&#x5BB9;&#x91CF;&#x592A;&#x5C0F;&#xFF0C;&#x5F53;&#x5185;&#x5B58;&#x65E0;&#x6CD5;&#x5206;&#x914D;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x865A;&#x62DF;&#x673A;&#x629B;&#x51FA;&#x7684;&#x90FD;&#x662F;StackOverflowError&#x5F02;&#x5E38;&#x3002;</p>
+</li>
+</ol>
+<p>3.&#x5982;&#x679C;&#x4E0D;&#x9650;&#x4E8E;&#x5355;&#x7EBF;&#x7A0B;&#xFF0C;&#x901A;&#x8FC7;&#x4E0D;&#x65AD;&#x5EFA;&#x7ACB;&#x7EBF;&#x7A0B;&#x7684;&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x4EA7;&#x751F;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;&#x8FD9;&#x6837;&#x4EA7;&#x751F;&#x7684;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x5F02;&#x5E38;&#x4E0E;&#x6808;&#x7A7A;&#x95F4;&#x662F;&#x5426;&#x8DB3;&#x591F;&#x5927;&#x5E76;&#x4E0D;&#x5B58;&#x5728;&#x4EFB;&#x4F55;&#x8054;&#x7CFB;&#xFF0C;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4E3A;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x6808;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x8D8A;&#x5927;&#xFF0C;&#x53CD;&#x800C;&#x8D8A;&#x5BB9;&#x6613;&#x4EA7;&#x751F;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x5F02;&#x5E38;&#x3002;</p>
+<ul>
+<li>&#x539F;&#x56E0;&#xFF1A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5206;&#x914D;&#x7ED9;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x7684;&#x5185;&#x5B58;&#x662F;&#x6709;&#x9650;&#x5236;&#x7684;&#xFF0C;&#x865A;&#x62DF;&#x673A;&#x63D0;&#x4F9B;&#x53C2;&#x6570;&#x6765;&#x63A7;&#x5236;Java&#x5806;&#x548C;&#x65B9;&#x6CD5;&#x533A;&#x7684;&#x8FD9;&#x4E24;&#x90E8;&#x5206;&#x5185;&#x5B58;&#x7684;&#x6700;&#x5927;&#x503C;&#x3002;&#x5269;&#x4F59;&#x7684;&#x5185;&#x5B58;&#x4E3A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9650;&#x5236;&#x51CF;&#x53BB;Xmx(&#x6700;&#x5927;&#x5806;&#x5BB9;&#x91CF;)&#xFF0C;&#x518D;&#x51CF;&#x53BB;MaxPermSize(&#x6700;&#x5927;&#x65B9;&#x6CD5;&#x533A;&#x5BB9;&#x91CF;)
+&#x3002;&#x5982;&#x679C;&#x865A;&#x62DF;&#x673A;&#x8FDB;&#x7A0B;&#x672C;&#x8EAB;&#x8017;&#x8D39;&#x7684;&#x5185;&#x5B58;&#x4E0D;&#x8BA1;&#x7B97;&#x5728;&#x5185;&#xFF0C;&#x5269;&#x4E0B;&#x7684;&#x5185;&#x5B58;&#x7531;&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x74DC;&#x5206;&#x3002;<strong><em>&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x5206;&#x914D;&#x5230;&#x7684;&#x6808;&#x5BB9;&#x91CF;&#x8D8A;&#x5927;&#xFF0C;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x8D8A;&#x5C11;&#xFF0C;&#x5EFA;&#x7ACB;&#x7EBF;&#x7A0B;&#x65F6;&#x8D8A;&#x5BB9;&#x6613;&#x628A;&#x5269;&#x4E0B;&#x7684;&#x5185;&#x5B58;&#x8017;&#x5C3D;</em></strong></li>
+<li>&#x89E3;&#x51B3;&#xFF1A;&#x5982;&#x679C;&#x662F;&#x5EFA;&#x7ACB;&#x591A;&#x7EBF;&#x7A0B;&#x5BFC;&#x81F4;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#xFF0C;&#x5728;&#x4E0D;&#x80FD;&#x51CF;&#x5C11;&#x7EBF;&#x7A0B;&#x6570;&#x6216;&#x8005;&#x66F4;&#x6362;&#x865A;&#x62DF;&#x673A;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x901A;&#x8FC7;&#x51CF;&#x5C11;&#x5806;&#x7684;&#x6700;&#x5927;&#x5806;&#x548C;&#x51CF;&#x5C11;&#x6808;&#x5BB9;&#x91CF;&#x6765;&#x6362;&#x53D6;&#x66F4;&#x591A;&#x7684;&#x7EBF;&#x7A0B;&#x3002;</li>
+</ul>
+<p>&#x521B;&#x5EFA;&#x7EBF;&#x7A0B;&#x5BFC;&#x81F4;&#x5185;&#x5B58;&#x6EA2;&#x51FA;</p>
+<pre class="language-"><code class="lang-yaml"><span class="token punctuation">-</span>Xss20M
+</code></pre>
+<pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JavaVMStackOOM</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">dontStop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">stackLeakByThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Thread</span> thread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">::</span><span class="token function">dontStop</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            thread<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Throwable</span> <span class="token punctuation">{</span>
+        <span class="token class-name">JavaVMStackOOM</span> oom <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JavaVMStackOOM</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        oom<span class="token punctuation">.</span><span class="token function">stackLeakByThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;</p>
+<pre class="language-"><code class="lang-log">Exception in thread<span class="token string">&quot;main&quot;</span>java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>OutOfMemoryError&#xFF1A;unable to create new native thread
+</code></pre>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x5728;windows&#x4E0A;&#xFF0C;Java&#x7EBF;&#x7A0B;&#x662F;&#x6620;&#x5C04;&#x5230;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x5185;&#x6838;&#x7EBF;&#x7A0B;&#x4E0A;&#x7684;&#xFF0C;&#x6267;&#x884C;&#x6B64;&#x4EE3;&#x7801;&#x4F1A;&#x5BFC;&#x81F4;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5047;&#x6B7B;&#x3002;</p>
+<h3 id="&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x5185;&#x5B58;&#x6EA2;&#x51FA;"><a name="&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x5185;&#x5B58;&#x6EA2;&#x51FA;" class="anchor-navigation-ex-anchor" href="#&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x5185;&#x5B58;&#x6EA2;&#x51FA;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.3. &#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x5185;&#x5B58;&#x6EA2;&#x51FA;</h3>
+<ul>
+<li>String.intern&#xFF08;&#xFF09;&#x662F;&#x4E00;&#x4E2A;Native&#x65B9;&#x6CD5;<ul>
+<li>&#x4F5C;&#x7528;&#xFF1A;&#x5982;&#x679C;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x5DF2;&#x7ECF;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x7B49;&#x4E8E;&#x6B64;String&#x5BF9;&#x8C61;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x4EE3;&#x8868;&#x6C60;&#x4E2D;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x7684;String&#x5BF9;&#x8C61;&#xFF1B; &#x5426;&#x5219;&#xFF0C;&#x5C06;&#x6B64;String&#x5BF9;&#x8C61;&#x5305;&#x542B;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x6DFB;&#x52A0;&#x5230;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#xFF0C;&#x5E76;&#x4E14;&#x8FD4;&#x56DE;&#x6B64;String&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;&#x3002;</li>
+</ul>
+</li>
+<li><p>&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x5BFC;&#x81F4;&#x7684;&#x5185;&#x5B58;&#x6EA2;&#x51FA;(&#x56E0;&#x4E3A;&#x7B14;&#x8005;&#x4F7F;&#x7528;&#x7684;jdk1.8&#xFF0C;&#x6240;&#x4EE5;&#x8BBE;&#x7F6E;&#x5143;&#x7A7A;&#x95F4;&#x6765;&#x6D4B;&#x8BD5;&#x5E38;&#x91CF;&#x6C60;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x60C5;&#x51B5;)</p>
+<pre class="language-"><code class="lang-yaml">  <span class="token punctuation">-</span>XX<span class="token punctuation">:</span>MetaspaceSize=10M <span class="token punctuation">-</span>XX<span class="token punctuation">:</span>MaxMetaspaceSize=10M
+</code></pre>
+<pre class="language-"><code class="lang-java">  <span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">ArrayList</span></span><span class="token punctuation">;</span>
+  <span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RuntimeConstantPoolOOM</span> <span class="token punctuation">{</span>
+      <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//&#x4F7F;&#x7528;List&#x4FDD;&#x6301;&#x7740;&#x5E38;&#x91CF;&#x6C60;&#x5F15;&#x7528;&#xFF0C;&#x907F;&#x514D;Full GC&#x56DE;&#x6536;&#x5E38;&#x91CF;&#x6C60;&#x884C;&#x4E3A;</span>
+          <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">//10MB&#x7684;PermSize&#x5728;integer&#x8303;&#x56F4;&#x5185;&#x8DB3;&#x591F;&#x4EA7;&#x751F;OOM&#x4E86;</span>
+          <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+          <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">intern</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</code></pre>
+<p>&#x5728;jdk1.7&#x4E0B;&#x4F1A;&#x4E00;&#x76F4;&#x8FD0;&#x884C;&#x4E0B;&#x53BB;&#xFF0C;&#x5728;&#x770B;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#x6D4B;&#x8BD5;String.intern()&#x65B9;&#x6CD5;</p>
+<pre class="language-"><code class="lang-java">  <span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">ArrayList</span></span><span class="token punctuation">;</span>
+  <span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">List</span></span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RuntimeConstantPoolOOM</span> <span class="token punctuation">{</span>
+     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token class-name">String</span> str1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token string">&quot;&#x8BA1;&#x7B97;&#x673A;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">&quot;&#x8F6F;&#x4EF6;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str1<span class="token punctuation">.</span><span class="token function">intern</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> str1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token class-name">String</span> str2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token string">&quot;ja&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">&quot;va&quot;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str2<span class="token punctuation">.</span><span class="token function">intern</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> str2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</code></pre>
+<p>&#x5728;1.7&#x4E0E;1.8&#x7248;&#x672C;&#x7684;jdk&#x4E2D;&#xFF0C;&#x8FD9;&#x4E2A;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x4F1A;&#x5F97;&#x5230;&#x4E00;&#x4E2A;true,&#x4E00;&#x4E2A;false,jdk1.7&#x7684;intern()
+&#x65B9;&#x6CD5;&#x4F1A;&#x5728;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x8BB0;&#x5F55;&#x9996;&#x5148;&#x51FA;&#x73B0;&#x7684;&#x5B9E;&#x4F8B;&#x5F15;&#x7528;&#xFF0C;&#x56E0;&#x6B64;intern&#xFF08;&#xFF09;&#x8FD4;&#x56DE;&#x7684;&#x5F15;&#x7528;&#x548C;&#x7531;StringBuilder&#x521B;&#x5EFA;&#x7684;&#x90A3;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5B9E;&#x4F8B;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x3002;&#x5BF9;str2&#x6BD4;&#x8F83;&#x8FD4;&#x56DE;false&#x662F;&#x56E0;&#x4E3A;&#x201C;java&#x201D;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5728;&#x6267;&#x884C;StringBuilder.toString&#xFF08;&#xFF09;&#x4E4B;&#x524D;&#x5DF2;&#x7ECF;&#x51FA;&#x73B0;&#x8FC7;&#xFF0C;&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x5DF2;&#x7ECF;&#x6709;&#x5B83;&#x7684;&#x5F15;&#x7528;&#x4E86;&#xFF0C;&#x4E0D;&#x7B26;&#x5408;&#x201C;&#x9996;&#x6B21;&#x51FA;&#x73B0;&#x201D;&#x7684;&#x539F;&#x5219;&#xFF0C;&#x800C;&#x201C;&#x8BA1;&#x7B97;&#x673A;&#x8F6F;&#x4EF6;&#x201D;&#x8FD9;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5219;&#x662F;&#x9996;&#x6B21;&#x51FA;&#x73B0;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x8FD4;&#x56DE;true&#x3002;</p>
+</li>
+<li><p>&#x65B9;&#x6CD5;&#x533A;&#x7528;&#x4E8E;&#x5B58;&#x653E;Class&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF0C;&#x5982;&#x7C7B;&#x540D;&#x3001;&#x8BBF;&#x95EE;&#x4FEE;&#x9970;&#x7B26;&#x3001;&#x5E38;&#x91CF;&#x6C60;&#x3001;&#x5B57;&#x6BB5;&#x63CF;&#x8FF0;&#x3001;&#x65B9;&#x6CD5;&#x63CF;&#x8FF0;&#x7B49;&#xFF0C;&#x8FD9;&#x4E2A;&#x533A;&#x57DF;&#x7684;&#x6D4B;&#x8BD5;&#x601D;&#x8DEF;&#x662F;&#xFF1A;&#x8FD0;&#x884C;&#x65F6;&#x4EA7;&#x751F;&#x5927;&#x91CF;&#x7684;&#x7C7B;&#x53BB;&#x586B;&#x6EE1;&#x65B9;&#x6CD5;&#x533A;&#xFF0C;&#x76F4;&#x5230;&#x6EA2;&#x51FA;</p>
+</li>
+<li>&#x7B14;&#x8005;&#x91C7;&#x7528;CGLIB&#x76F4;&#x63A5;&#x64CD;&#x4F5C;&#x5B57;&#x8282;&#x7801;&#x8FD0;&#x884C;&#x65F6;&#x4EA7;&#x751F;&#x5927;&#x91CF;&#x7684;&#x52A8;&#x6001;&#x7C7B;&#x3002;&#x5F88;&#x591A;&#x4E3B;&#x6D41;&#x6846;&#x67B6;&#xFF0C;&#x5982;Spring&#x3001;Hibernate&#xFF0C;&#x5728;&#x5BF9;&#x7C7B;&#x8FDB;&#x884C;&#x589E;&#x5F3A;&#x65F6;&#xFF0C;&#x90FD;&#x4F1A;&#x4F7F;&#x7528;&#x5230;CGLib&#x8FD9;&#x7C7B;&#x5B57;&#x8282;&#x7801;&#x6280;&#x672F;&#xFF0C;&#x589E;&#x5F3A;&#x7684;&#x7C7B;&#x8D8A;&#x591A;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x8D8A;&#x5927;&#x7684;&#x65B9;&#x6CD5;&#x533A;&#x6765;&#x4FDD;&#x8BC1;&#x52A8;&#x6001;&#x751F;&#x6210;&#x7684;Class&#x53EF;&#x4EE5;&#x52A0;&#x8F7D;&#x5165;&#x5185;&#x5B58;&#x3002;</li>
+</ul>
+<pre class="language-"><code class="lang-yaml"><span class="token punctuation">-</span>XX<span class="token punctuation">:</span>MetaspaceSize=10M <span class="token punctuation">-</span>XX<span class="token punctuation">:</span>MaxMetaspaceSize=10M <span class="token punctuation">-</span>XX<span class="token punctuation">:</span>+PrintGCDetails
+</code></pre>
+<pre class="language-"><code class="lang-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cglib<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span></span><span class="token class-name">Enhancer</span></span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cglib<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span></span><span class="token class-name">MethodInterceptor</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">JavaMethodAreaOOM</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>
+            <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Enhancer</span> enhancer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Enhancer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            enhancer<span class="token punctuation">.</span><span class="token function">setSuperclass</span><span class="token punctuation">(</span><span class="token class-name">OOMObject</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            enhancer<span class="token punctuation">.</span><span class="token function">setUseCache</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            enhancer<span class="token punctuation">.</span><span class="token function">setCallback</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">MethodInterceptor</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>obj<span class="token punctuation">,</span> method<span class="token punctuation">,</span> args1<span class="token punctuation">,</span> proxy<span class="token punctuation">)</span> <span class="token operator">-&gt;</span> proxy<span class="token punctuation">.</span><span class="token function">invokeSuper</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> args1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            enhancer<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">OOMObject</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;</p>
+<pre class="language-"><code class="lang-java"><span class="token class-name">Exception</span> in thread <span class="token string">&quot;main&quot;</span> <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cglib<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span>CodeGenerationException</span><span class="token operator">:</span> <span class="token class-name"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span></span>OutOfMemoryError</span><span class="token operator">--</span><span class="token operator">&gt;</span><span class="token class-name">Metaspace</span>
+    at <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cglib<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span>ReflectUtils</span><span class="token punctuation">.</span><span class="token function">defineClass</span><span class="token punctuation">(</span><span class="token class-name">ReflectUtils</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">538</span><span class="token punctuation">)</span>
+    at <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cglib<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span>AbstractClassGenerator</span><span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token class-name">AbstractClassGenerator</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">363</span><span class="token punctuation">)</span>
+    at <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cglib<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span></span>Enhancer</span><span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span><span class="token class-name">Enhancer</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">585</span><span class="token punctuation">)</span>
+    at <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cglib<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span>AbstractClassGenerator</span>$<span class="token class-name">ClassLoaderData</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token class-name">AbstractClassGenerator</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">131</span><span class="token punctuation">)</span>
+    at <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cglib<span class="token punctuation">.</span>core<span class="token punctuation">.</span></span>AbstractClassGenerator</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token class-name">AbstractClassGenerator</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">319</span><span class="token punctuation">)</span>
+    at <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cglib<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span></span>Enhancer</span><span class="token punctuation">.</span><span class="token function">createHelper</span><span class="token punctuation">(</span><span class="token class-name">Enhancer</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">572</span><span class="token punctuation">)</span>
+    at <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>cglib<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span></span>Enhancer</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token class-name">Enhancer</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">387</span><span class="token punctuation">)</span>
+    at <span class="token class-name"><span class="token namespace">com<span class="token punctuation">.</span>llh<span class="token punctuation">.</span>jdk<span class="token punctuation">.</span>map<span class="token punctuation">.</span></span>JavaMethodAreaOOM</span><span class="token punctuation">.</span><span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">JavaMethodAreaOOM</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">14</span><span class="token punctuation">)</span>
+</code></pre>
+<p>-</p>
+<p>&#x65B9;&#x6CD5;&#x533A;&#x6EA2;&#x51FA;&#x4E5F;&#x662F;&#x4E00;&#x79CD;&#x5E38;&#x89C1;&#x7684;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x5F02;&#x5E38;&#xFF0C;&#x4E00;&#x4E2A;&#x7C7B;&#x8981;&#x88AB;&#x5783;&#x573E;&#x6536;&#x96C6;&#x5668;&#x56DE;&#x6536;&#x6389;&#xFF0C;&#x5224;&#x5B9A;&#x6761;&#x4EF6;&#x662F;&#x6BD4;&#x8F83;&#x82DB;&#x523B;&#x7684;&#x3002;&#x5728;&#x7ECF;&#x5E38;&#x52A8;&#x6001;&#x751F;&#x6210;&#x5927;&#x91CF;Class&#x7684;&#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x7279;&#x522B;&#x6CE8;&#x610F;&#x7C7B;&#x7684;&#x56DE;&#x6536;&#x72B6;&#x51B5;&#x3002;&#x8FD9;&#x7C7B;&#x573A;&#x666F;&#x9664;&#x4E86;&#x4E0A;&#x9762;&#x63D0;&#x5230;&#x7684;&#x7A0B;&#x5E8F;&#x4F7F;&#x7528;&#x4E86;CGLib&#x5B57;&#x8282;&#x7801;&#x589E;&#x5F3A;&#x548C;&#x52A8;&#x6001;&#x8BED;&#x8A00;&#x4E4B;&#x5916;&#xFF0C;&#x5E38;&#x89C1;&#x7684;&#x8FD8;&#x6709;&#xFF1A;&#x5927;&#x91CF;JSP&#x6216;&#x52A8;&#x6001;&#x4EA7;&#x751F;JSP&#x6587;&#x4EF6;&#x7684;&#x5E94;&#x7528;&#xFF08;JSP&#x7B2C;&#x4E00;&#x6B21;&#x8FD0;&#x884C;&#x65F6;&#x9700;&#x8981;&#x7F16;&#x8BD1;&#x4E3A;Java&#x7C7B;&#xFF09;&#x3001;&#x57FA;&#x4E8E;OSGi&#x7684;&#x5E94;&#x7528;&#xFF08;&#x5373;&#x4F7F;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x7C7B;&#x6587;&#x4EF6;&#xFF0C;&#x88AB;&#x4E0D;&#x540C;&#x7684;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#x4E5F;&#x4F1A;&#x89C6;&#x4E3A;&#x4E0D;&#x540C;&#x7684;&#x7C7B;&#xFF09;&#x7B49;&#x3002;</p>
+<h3 id="&#x672C;&#x5730;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;"><a name="&#x672C;&#x5730;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;" class="anchor-navigation-ex-anchor" href="#&#x672C;&#x5730;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.4. &#x672C;&#x5730;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;</h3>
+<p>DirectMemory&#x5BB9;&#x91CF;&#x53EF;&#x901A;&#x8FC7;-XX&#xFF1A;MaxDirectMemorySize&#x6307;&#x5B9A;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;&#xFF0C;&#x5219;&#x9ED8;&#x8BA4;&#x4E0E;Java&#x5806;&#x6700;&#x5927;&#x503C;&#xFF08;-Xmx&#x6307;&#x5B9A;&#xFF09;&#x4E00;&#x6837;</p>
+<ul>
+<li>&#x4F7F;&#x7528;unsafe&#x5206;&#x914D;&#x672C;&#x673A;&#x5185;&#x5B58;</li>
+</ul>
+<pre class="language-"><code class="lang-yaml"><span class="token punctuation">-</span>XX<span class="token punctuation">:</span>MaxDirectMemorySize=50M <span class="token punctuation">-</span>XX<span class="token punctuation">:</span>+PrintGCDetails
+</code></pre>
+<pre class="language-"><code class="lang-java"><span class="token keyword">import</span> <span class="token import"><span class="token namespace">sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span></span><span class="token class-name">Unsafe</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span></span><span class="token class-name">Field</span></span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DirectMemoryOOM</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> _1MB <span class="token operator">=</span> <span class="token number">1024</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Field</span> unsafeField <span class="token operator">=</span> <span class="token class-name">Unsafe</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        unsafeField<span class="token punctuation">.</span><span class="token function">setAccessible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Unsafe</span> unsafe <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Unsafe</span><span class="token punctuation">)</span> unsafeField<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            unsafe<span class="token punctuation">.</span><span class="token function">allocateMemory</span><span class="token punctuation">(</span>_1MB<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;</p>
+<pre class="language-"><code class="lang-log">Exception in thread <span class="token string">&quot;main&quot;</span> java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>OutOfMemoryError
+    at sun<span class="token punctuation">.</span>misc<span class="token punctuation">.</span>Unsafe<span class="token punctuation">.</span>allocateMemory<span class="token operator">(</span>Native Method<span class="token operator">)</span>
+    at com<span class="token punctuation">.</span>llh<span class="token punctuation">.</span>jdk<span class="token punctuation">.</span>map<span class="token punctuation">.</span>DirectMemoryOOM<span class="token punctuation">.</span>main<span class="token operator">(</span>DirectMemoryOOM<span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">15</span><span class="token operator">)</span>
+Heap
+ PSYoungGen      total <span class="token number">75264K</span><span class="token punctuation">,</span> used <span class="token number">5161K</span> <span class="token punctuation">[</span><span class="token number">0x000000076ca00000</span><span class="token punctuation">,</span> <span class="token number">0x0000000771e00000</span><span class="token punctuation">,</span> <span class="token number">0x00000007c0000000</span><span class="token operator">)</span>
+  eden space <span class="token number">64512K</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token operator">%</span> used <span class="token punctuation">[</span><span class="token number">0x000000076ca00000</span><span class="token punctuation">,</span><span class="token number">0x000000076cf0a638</span><span class="token punctuation">,</span><span class="token number">0x0000000770900000</span><span class="token operator">)</span>
+  from space <span class="token number">10752K</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token operator">%</span> used <span class="token punctuation">[</span><span class="token number">0x0000000771380000</span><span class="token punctuation">,</span><span class="token number">0x0000000771380000</span><span class="token punctuation">,</span><span class="token number">0x0000000771e00000</span><span class="token operator">)</span>
+  to   space <span class="token number">10752K</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token operator">%</span> used <span class="token punctuation">[</span><span class="token number">0x0000000770900000</span><span class="token punctuation">,</span><span class="token number">0x0000000770900000</span><span class="token punctuation">,</span><span class="token number">0x0000000771380000</span><span class="token operator">)</span>
+ ParOldGen       total <span class="token number">172032K</span><span class="token punctuation">,</span> used <span class="token number">0K</span> <span class="token punctuation">[</span><span class="token number">0x00000006c5e00000</span><span class="token punctuation">,</span> <span class="token number">0x00000006d0600000</span><span class="token punctuation">,</span> <span class="token number">0x000000076ca00000</span><span class="token operator">)</span>
+  object space <span class="token number">172032K</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token operator">%</span> used <span class="token punctuation">[</span><span class="token number">0x00000006c5e00000</span><span class="token punctuation">,</span><span class="token number">0x00000006c5e00000</span><span class="token punctuation">,</span><span class="token number">0x00000006d0600000</span><span class="token operator">)</span>
+ Metaspace       used <span class="token number">3348K</span><span class="token punctuation">,</span> capacity <span class="token number">4496K</span><span class="token punctuation">,</span> committed <span class="token number">4864K</span><span class="token punctuation">,</span> reserved <span class="token number">1056768K</span>
+  class space    used <span class="token number">366K</span><span class="token punctuation">,</span> capacity <span class="token number">388K</span><span class="token punctuation">,</span> committed <span class="token number">512K</span><span class="token punctuation">,</span> reserved <span class="token number">1048576K</span>
+</code></pre>
+<p>&#x7531;DirectMemory&#x5BFC;&#x81F4;&#x7684;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#xFF0C;&#x4E00;&#x4E2A;&#x660E;&#x663E;&#x7684;&#x7279;&#x5F81;&#x662F;&#x5728;Heap Dump&#x6587;&#x4EF6;&#x4E2D;&#x4E0D;&#x4F1A;&#x770B;&#x89C1;&#x660E;&#x663E;&#x7684;&#x5F02;&#x5E38;&#xFF0C;&#x5982;&#x679C;&#x8BFB;&#x8005;&#x53D1;&#x73B0;OOM&#x4E4B;&#x540E;Dump&#x6587;&#x4EF6;&#x5F88;&#x5C0F;&#xFF0C;&#x800C;&#x7A0B;&#x5E8F;&#x4E2D;&#x53C8;&#x76F4;&#x63A5;&#x6216;&#x95F4;&#x63A5;&#x4F7F;&#x7528;&#x4E86;NIO&#xFF0C;&#x90A3;&#x5C31;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x68C0;&#x67E5;&#x4E00;&#x4E0B;&#x662F;&#x4E0D;&#x662F;&#x8FD9;&#x65B9;&#x9762;&#x7684;&#x539F;&#x56E0;&#x3002;</p>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> Copyright &amp; copy lviter@163.com </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> <i>updated</i> 2024-08-01 09:49:44 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="JVM调优-jdk1.8.html" class="navigation navigation-prev " aria-label="Previous page: JVM调优-jdk1.8">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="垃圾收集器与内存分配策略.html" class="navigation navigation-next " aria-label="Next page: 垃圾收集器与内存分配策略">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"OutOfMemoryError异常","level":"1.2.2.1.3","depth":4,"next":{"title":"垃圾收集器与内存分配策略","level":"1.2.2.1.4","depth":4,"path":"Java-技能/JVM/深入理解JVM-jdk1.7/垃圾收集器与内存分配策略.md","ref":"Java-技能/JVM/深入理解JVM-jdk1.7/垃圾收集器与内存分配策略.md","articles":[]},"previous":{"title":"JVM调优-jdk1.8","level":"1.2.2.1.2","depth":4,"path":"Java-技能/JVM/深入理解JVM-jdk1.7/JVM调优-jdk1.8.md","ref":"Java-技能/JVM/深入理解JVM-jdk1.7/JVM调优-jdk1.8.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","copy-code-button","page-footer-ex","anchor-navigation-ex","expandable-chapters-small","prism","-highlight","-lunr","-search","theme-comscore","search-pro","splitter","back-to-top-button","advanced-emoji","pageview-count","-sharing","sharing-plus","insert-logo"],"ignores":["_book","node_modules"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-solarizedlight.css"],"lang":{"flow":"typescript"}},"page-footer-ex":{"copyright":"Copyright & copy lviter@163.com","markdown":true,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"<i>updated</i>"},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"fontsettings":{"theme":"white","family":"sans","size":2},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"theme-comscore":{},"back-to-top-button":{},"pageview-count":{},"expandable-chapters-small":{},"copy-code-button":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"qq":false,"all":["douban","facebook","google","hatenaBookmark","instapaper","linkedin","twitter","weibo","messenger","whatsapp"],"douban":false,"facebook":false,"weibo":true,"whatsapp":false,"line":true,"google":true,"qzone":true},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"insert-logo":{"style":"background: none; max-height: 30px; min-height: 30px","url":"static/images/qrcode_lviter.png"},"expandable-chapters":{}},"theme":"default","author":"lviter","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"越过山丘","language":"zh-hans","links":{"sidebar":{"GitHub":"https://github.com/lviter/professional"}},"gitbook":"*","description":"关注点分离"},"file":{"path":"Java-技能/JVM/深入理解JVM-jdk1.7/OutOfMemoryError异常.md","mtime":"2024-08-01T09:49:44.335Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2024-08-01T09:50:34.181Z"},"basePath":"../../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../../gitbook/gitbook.js"></script>
+    <script src="../../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    </body>
+</html>
+
